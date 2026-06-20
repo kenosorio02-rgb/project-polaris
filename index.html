@@ -90,6 +90,38 @@
 .kpiBox.kpi-crit .kval{color:var(--red)}
 .reportSection{border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:10px;background:rgba(255,255,255,.04)}
 .reportSection h4{font-size:13px;font-weight:700;margin-bottom:6px;color:var(--cyan)}
+
+/* Story audio controls */
+.storyAudioBar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;padding:10px 12px;border:1px solid rgba(94,234,212,.22);background:rgba(8,12,24,.42);border-radius:14px}
+.storyAudioBar .audioTitle{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:.08em;text-transform:uppercase}
+.audioBtn{border:1px solid rgba(94,234,212,.34);background:rgba(94,234,212,.11);color:#d9fffa;border-radius:12px;padding:9px 12px;font-size:12px;font-weight:900;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:.15s;white-space:nowrap}
+.audioBtn:hover{transform:translateY(-1px);border-color:var(--cyan);background:rgba(94,234,212,.18)}
+.audioBtn.playing{border-color:rgba(167,139,250,.55);background:rgba(167,139,250,.18);color:#ede9fe}
+.audioNote{font-size:11px;color:var(--mut);margin-top:6px}
+@media(max-width:560px){.storyAudioBar{align-items:flex-start;flex-direction:column}.audioBtn{width:100%;justify-content:center}}
+
+/* Visual explainer images inside Wissen & Best Practices cards */
+.theoryItem.visualTheory{display:block;padding:14px;background:rgba(255,255,255,.055)}
+.theoryItem.visualTheory h4{font-size:15px;margin-bottom:12px;color:var(--txt)}
+.visualExplainer{
+  margin:0;
+  border:1px solid rgba(94,234,212,.22);
+  background:rgba(255,255,255,.035);
+  border-radius:18px;
+  padding:10px;
+  overflow:hidden;
+  box-shadow:0 18px 50px rgba(0,0,0,.22);
+}
+.visualExplainer img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:620px;
+  object-fit:contain;
+  border-radius:14px;
+}
+@media(max-width:560px){.theoryItem.visualTheory{padding:10px}.visualExplainer{padding:7px;border-radius:14px}.visualExplainer img{border-radius:10px}}
+
 </style></head><body>
 <header class="top"><div class="wrap topin"><div class="logo">⭐</div><div><div class="brand"><span>AI PM</span> Academy</div><div class="pill">Project POLARIS · KI im Projektmanagement</div></div><div class="topright"><div class="meter"><div class="fill" id="fill"></div></div><div class="xp" id="xp">0 XP</div></div></div></header>
 <section class="screen active" id="intro"><div class="wrap hero"><div class="heroGrid"><div class="card heroMain"><div class="ey">Project Briefing</div><h1 class="h1">AI PM Academy<br><span class="grad">Project POLARIS.</span></h1><p class="lead">Du bist Project Manager bei <b>NovaTech Solutions</b>. Das Unternehmen baut mit Project POLARIS eine neue cloudbasierte Kundenportal-Plattform. Dein Auftrag: das Projekt strukturiert führen und dabei echte KI-Produkte gezielt im Projektmanagement einsetzen.</p><div class="box story" style="margin-top:20px"><p><b>Ausgangslage:</b> Die Geschäftsleitung will innerhalb von 12 Wochen einen ersten produktiven Launch. Fachbereich, IT, Legal, Finance und ein externer Implementierungspartner arbeiten zusammen — und alle bringen unterschiedliche Erwartungen mit.</p><p><b>Wichtig:</b> AIDA begleitet dich als persönliche E-Learning-KI durch die Story. Die eigentliche Projektarbeit wird aber immer mit realen Tools simuliert: Jira mit Atlassian Intelligence, Microsoft Copilot, Miro AI, Confluence AI, Asana Intelligence, ChatGPT/Claude und Power BI Copilot.</p></div><div class="toolGrid" style="margin-top:16px"><div class="tool"><h4>🎯 Projektziel</h4><p>Launch eines Kundenportals mit Login, Dashboard, Dokumentenbereich, Benachrichtigungen und Management Reporting.</p></div><div class="tool"><h4>⏱️ Zeitrahmen</h4><p>12 Wochen bis zum Go-Live. Das E-Learning selbst ist auf ca. 60 Minuten Lernzeit ausgelegt.</p></div><div class="tool"><h4>💰 Budget</h4><p>CHF 180'000 Gesamtbudget inklusive interner Umsetzung, externer Unterstützung, Testing und Go-Live-Vorbereitung.</p></div><div class="tool"><h4>👥 Team</h4><p>9 Personen: du als PM, Product Owner, UX, 4 Entwickler, QA, Legal/Compliance-Ansprechperson und externer Vendor.</p></div></div><div class="box" style="margin-top:16px"><div class="ey" style="margin-bottom:8px">Lernfokus</div><p class="lead" style="font-size:16px">Der Fokus liegt nicht auf einer bestimmten Projektmethode, sondern auf der Frage: <b>Wann, wo und wie unterstützen KI-Produkte Projektmanager in der Praxis?</b> Du lernst, KI sinnvoll einzusetzen, Outputs kritisch zu prüfen und Entscheidungen weiterhin verantwortungsvoll zu führen.</p></div><button class="btn" style="margin-top:24px" onclick="startCourse()">Project POLARIS starten →</button></div><div class="card heroSide"><div class="ey">Projekt-Steckbrief</div><div class="stat"><span>Projekt</span><b>POLARIS</b></div><div class="stat"><span>Unternehmen</span><b>NovaTech</b></div><div class="stat"><span>Dauer</span><b>12 Wochen</b></div><div class="stat"><span>Budget</span><b>CHF 180k</b></div><div class="stat"><span>Team</span><b>9 Personen</b></div><div class="stat"><span>Risiko</span><b>mittel-hoch</b></div><div class="stat"><span>Toolfokus</span><b>echte KI-Tools</b></div><div class="stat"><span>Lernzeit</span><b>ca. 60 Min.</b></div><div class="stat"><span>Fortschritt</span><b id="dashPct">0%</b></div><div class="stat"><span>Status</span><b id="dashStatus">Ready</b></div><button class="btn btn2" style="margin-top:18px;width:100%;justify-content:center" onclick="resetAll()">Reset</button></div></div></div></section>
@@ -229,7 +261,7 @@ const modules = [
   ],
 
   theory: [
-    { icon: '⚡', title: 'MoSCoW-Methode', text: '<b>Must have</b> (Go-Live-Blocker) · <b>Should have</b> (hoher Wert, kein Blocker) · <b>Could have</b> (Nice-to-have) · <b>Won\'t have</b> (explizit raus aus Scope). Mit dieser Klassifikation kannst du mit Stakeholdern schriftlich bestätigen, was wann lieferbar ist – und Scope-Creep durch Referenz abwehren.' },
+    { icon:'', title:'MoSCoW-Methode', image:'04_MoSCoW-Methode.png', visual:true },
     { icon: '💎', title: 'WSJF – Weighted Shortest Job First', text: 'Ein priorisierungswerkzeug aus SAFe: (Geschäftswert + Risikoreduzierung + Zeitkritikalität) ÷ Jobgrösse. Je höher der Wert, desto höher die Priorität. KI kann WSJF-Scores aus Ticket-Beschreibungen schätzen – du kalibrierst mit Businesskontext.' },
     { icon: '🔒', title: 'Technische Abhängigkeiten', text: 'Im Jira-Backlog kannst du Abhängigkeiten explizit verlinken. Atlassian Intelligence erkennt auch implizite Abhängigkeiten aus dem Tickettext. Nicht erkannte Abhängigkeiten sind häufig die Hauptursache für Sprint-Fails.' },
     { icon: '📊', title: 'Velocity und Kapazitätsplanung', text: 'Sprint-Velocity ist die durchschnittliche Story-Point-Leistung des Teams pro Sprint. Atlassian Intelligence kann historische Velocity-Daten auswerten und warnen, wenn der geplante Sprint die reale Kapazität übersteigt.' }
@@ -610,14 +642,53 @@ const quiz = [
 // ═══════════════════════════════════════════════════════════════════════════════
 // REPLACE: theoryHtml - vertical list, short text, compact
 // ═══════════════════════════════════════════════════════════════════════════════
+function getTheoryVisual(m, item){
+  const moduleTitle = (m.t || '').toLowerCase();
+  const itemTitle = (item && item.title ? item.title : '').toLowerCase();
+
+  if ((moduleTitle.includes('kickoff') || moduleTitle.includes('charter')) && itemTitle.includes('project charter')) {
+    return {src:'01_Project%20Charter.png', alt:'Project Charter visuell erklärt'};
+  }
+  if (moduleTitle.includes('stakeholder') && itemTitle.includes('macht-interesse')) {
+    return {src:'02_Stakeholder%20Matrix.png', alt:'Macht-Interesse-Matrix visuell erklärt'};
+  }
+  if (moduleTitle.includes('requirements') && itemTitle.includes('user stories')) {
+    return {src:'03_User%20Stories.png', alt:'User Stories visuell erklärt'};
+  }
+  if (moduleTitle.includes('backlog') && itemTitle.includes('moscow')) {
+    return {src:'04_MoSCoW-Methode.png', alt:'MoSCoW-Methode visuell erklärt'};
+  }
+  if ((moduleTitle.includes('risiko') || moduleTitle.includes('raid')) && itemTitle.includes('risikomatrix')) {
+    return {src:'06_Risikoanalyse.png', alt:'Risikomatrix visuell erklärt'};
+  }
+  if ((moduleTitle.includes('change') || moduleTitle.includes('adoption')) && itemTitle.includes('adkar')) {
+    return {src:'08_ADKAR%20Modell.png', alt:'ADKAR Modell visuell erklärt'};
+  }
+  if (moduleTitle.includes('vendor') && itemTitle.includes('scorecard')) {
+    return {src:'11_VENDOR-Scorecard.png', alt:'Vendor Scorecard visuell erklärt'};
+  }
+  return null;
+}
+
 function theoryHtml(m) {
   if (!m.theory) return `<div class="box"><p>Theorie folgt.</p></div><button class="btn" style="margin-top:12px" onclick="doneTopic(1)">Weiter →</button>`;
   return `<div class="box">
     <div class="theoryList">
-      ${m.theory.map(t => `<div class="theoryItem">
-        <div class="ticon">${t.icon}</div>
-        <div><h4>${t.title}</h4><p>${t.text}</p></div>
-      </div>`).join('')}
+      ${m.theory.map(t => {
+        const visual = getTheoryVisual(m, t);
+        if (visual) {
+          return `<div class="theoryItem visualTheory">
+            <h4>${t.icon} ${t.title}</h4>
+            <div class="visualExplainer">
+              <img src="${visual.src}" alt="${visual.alt}" loading="lazy" onerror="this.closest('.visualTheory').style.display='none'">
+            </div>
+          </div>`;
+        }
+        return `<div class="theoryItem">
+          <div class="ticon">${t.icon}</div>
+          <div><h4>${t.title}</h4><p>${t.text}</p></div>
+        </div>`;
+      }).join('')}
     </div>
   </div>
   <button class="btn" style="margin-top:12px" onclick="doneTopic(1)">Wissen verstanden →</button>`;
@@ -1455,10 +1526,69 @@ function checkGovPolicy() {
 
 
 
+
+// ─── STORY AUDIO ──────────────────────────────────────────────────────────────
+const storyAudioFiles = [
+  '01_Kickoff.mp3',
+  '02_Stakeholder.mp3',
+  '03_Requirements.mp3',
+  '04_Backlog.mp3',
+  '05_Sprint.mp3',
+  '06_Risikoanalyse.mp3',
+  '07_Reporting.mp3',
+  '08_Ressourcen.mp3',
+  '09_Change.mp3',
+  '10_AI_Gov.mp3',
+  '11_Vendor.mp3',
+  '12_GoLive.mp3'
+];
+let activeStoryAudio = null;
+let activeStoryButton = null;
+
+function resetStoryAudioButton(btn){
+  if(!btn) return;
+  btn.classList.remove('playing');
+  btn.innerHTML = '▶️ Anhören';
+}
+
+function stopStoryAudio(){
+  if(activeStoryAudio){
+    activeStoryAudio.pause();
+    activeStoryAudio.currentTime = 0;
+    activeStoryAudio = null;
+  }
+  resetStoryAudioButton(activeStoryButton);
+  activeStoryButton = null;
+}
+
+function playStoryAudio(file, btn, ev){
+  if(ev) ev.stopPropagation();
+  if(activeStoryAudio && activeStoryButton === btn && !activeStoryAudio.paused){
+    activeStoryAudio.pause();
+    resetStoryAudioButton(btn);
+    return;
+  }
+  stopStoryAudio();
+  activeStoryAudio = new Audio(file);
+  activeStoryButton = btn;
+  btn.classList.add('playing');
+  btn.innerHTML = '⏸ Pause';
+  activeStoryAudio.play().catch(() => {
+    resetStoryAudioButton(btn);
+    toast('Audio konnte nicht gestartet werden. Prüfe Dateiname und Upload auf GitHub.');
+  });
+  activeStoryAudio.onended = () => {
+    resetStoryAudioButton(btn);
+    activeStoryAudio = null;
+    activeStoryButton = null;
+  };
+}
+
 // ─── STATE ────────────────────────────────────────────────────────────────────
 let current = 0, completed = new Set(), topicDone = [], topicOpen = [], xp = 0, quizAnswers = {};
 
 function init() {
+  if (typeof stopStoryAudio === 'function') stopStoryAudio();
   current = 0; completed = new Set();
   topicDone = modules.map(_ => [false, false, false, false, false]);
   topicOpen = modules.map(_ => [false, false, false, false, false]);
@@ -1471,7 +1601,7 @@ function show(id) {
   document.getElementById(id).classList.add('active');
 }
 
-function startCourse() { show('course'); toggleTopic(0); }
+function startCourse() { stopStoryAudio(); show('course'); toggleTopic(0); }
 
 // ─── NAV ──────────────────────────────────────────────────────────────────────
 function renderNav() {
@@ -1488,7 +1618,7 @@ function renderNav() {
 
 function goModule(i) {
   if (i > 0 && !completed.has(i - 1)) { toast('Dieses Modul ist noch gesperrt. Schliesse zuerst das aktuelle Modul ab.'); return; }
-  current = i; renderNav(); renderModule(); window.scrollTo({ top: 0, behavior: 'smooth' });
+  stopStoryAudio(); current = i; renderNav(); renderModule(); window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ─── MODULE RENDER ────────────────────────────────────────────────────────────
@@ -1545,16 +1675,25 @@ function nextModule() {
   if (!moduleReady(current)) { toast('Du musst zuerst alle fünf Abschnitte erledigen.'); return; }
   completed.add(current);
   if (current < modules.length - 1) {
-    current++; renderNav(); renderModule(); window.scrollTo({ top: 0, behavior: 'smooth' });
+    stopStoryAudio(); current++; renderNav(); renderModule(); window.scrollTo({ top: 0, behavior: 'smooth' });
     toast('Nächstes Modul freigeschaltet! 🎉');
   } else {
-    show('quiz'); renderNav(); toast('Final Quiz freigeschaltet. Plane dafür ca. 10 Minuten ein.');
+    stopStoryAudio(); show('quiz'); renderNav(); toast('Final Quiz freigeschaltet. Plane dafür ca. 10 Minuten ein.');
   }
 }
 
 // ─── STORY ────────────────────────────────────────────────────────────────────
 function storyHtml(m) {
-  return `<div class="box story">${m.story.map(p => `<p>${p}</p>`).join('')}</div>
+  const audioFile = storyAudioFiles[current] || null;
+  const audioButton = audioFile ? `
+    <div class="storyAudioBar">
+      <div>
+        <div class="audioTitle">🎙️ AIDA Storyline</div>
+        <div class="audioNote">Optional: Lass dir diese Storyline mit deiner ElevenLabs-Aufnahme vorlesen.</div>
+      </div>
+      <button class="audioBtn" onclick="playStoryAudio('${audioFile}', this, event)">▶️ Anhören</button>
+    </div>` : '';
+  return `<div class="box story">${audioButton}${m.story.map(p => `<p>${p}</p>`).join('')}</div>
   <button class="btn" style="margin-top:12px" onclick="doneTopic(0)">Storyline gelesen →</button>`;
 }
 
