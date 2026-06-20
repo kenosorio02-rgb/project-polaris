@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI PM Academy — Project POLARIS</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050712;--bg2:#090d1d;--panel:rgba(18,24,48,.78);--glass:rgba(255,255,255,.08);--line:rgba(255,255,255,.14);--line2:rgba(255,255,255,.26);--txt:#eef4ff;--mut:#9aa8c5;--mut2:#6f7e9c;--cyan:#5eead4;--blue:#60a5fa;--violet:#a78bfa;--green:#34d399;--amber:#fbbf24;--red:#fb7185;--dark:#080b16;--shadow:0 24px 80px rgba(0,0,0,.45);--r:24px;--r2:16px;--mono:'JetBrains Mono',monospace;--sans:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:var(--sans);background:radial-gradient(circle at 20% -10%,rgba(94,234,212,.18),transparent 35%),radial-gradient(circle at 90% 5%,rgba(167,139,250,.22),transparent 34%),linear-gradient(180deg,var(--bg),var(--bg2));color:var(--txt);min-height:100vh;line-height:1.55;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.85),transparent 85%);pointer-events:none}button,textarea,input,select{font:inherit}.wrap{width:min(1180px,calc(100% - 28px));margin:0 auto}.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);background:rgba(5,7,18,.76);border-bottom:1px solid var(--line)}.topin{height:72px;display:flex;align-items:center;gap:14px}.logo{width:42px;height:42px;border-radius:15px;background:linear-gradient(135deg,var(--cyan),var(--violet));display:grid;place-items:center;font-size:22px;box-shadow:0 0 34px rgba(94,234,212,.24)}.brand{font-weight:900;letter-spacing:-.04em}.brand span{color:var(--cyan)}.pill{font-family:var(--mono);font-size:11px;color:var(--cyan);border:1px solid rgba(94,234,212,.28);background:rgba(94,234,212,.08);padding:6px 10px;border-radius:999px}.topright{margin-left:auto;display:flex;align-items:center;gap:10px}.meter{width:190px;height:10px;background:rgba(255,255,255,.09);border:1px solid var(--line);border-radius:999px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet));transition:.35s}.xp{font-family:var(--mono);font-size:12px;color:var(--green);min-width:74px;text-align:right}.screen{display:none}.screen.active{display:block;animation:fade .25s ease}@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hero{padding:44px 0 70px}.heroGrid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:stretch}.card{background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.045));border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);backdrop-filter:blur(18px);position:relative;overflow:hidden}.heroMain{padding:34px}.ey{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}.h1{font-size:clamp(34px,6vw,70px);line-height:.95;letter-spacing:-.07em;font-weight:900;margin-bottom:18px}.h2{font-size:clamp(27px,4vw,46px);line-height:1.04;letter-spacing:-.06em;font-weight:900;margin-bottom:10px}.grad{background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}.lead{font-size:18px;color:#c7d2fe;max-width:820px}.heroSide{padding:24px}.stat{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line)}.stat b{font-family:var(--mono);color:var(--txt)}.btn{border:0;border-radius:14px;padding:12px 18px;background:linear-gradient(135deg,var(--cyan),var(--violet));color:#06101b;font-weight:900;cursor:pointer;box-shadow:0 14px 34px rgba(94,234,212,.18);transition:.15s;display:inline-flex;align-items:center;gap:8px}.btn:hover{transform:translateY(-2px)}.btn2{background:rgba(255,255,255,.08);color:var(--txt);border:1px solid var(--line);box-shadow:none}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}.layout{display:grid;grid-template-columns:300px 1fr;gap:18px;padding:24px 0 80px}.side{position:sticky;top:92px;align-self:start;border:1px solid var(--line);border-radius:22px;background:rgba(10,15,33,.72);padding:14px}.side h3{font-size:13px;color:var(--mut);font-family:var(--mono);letter-spacing:.12em;text-transform:uppercase;margin:4px 6px 12px}.navItem{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;border:1px solid transparent;border-radius:16px;padding:10px 9px;color:var(--mut);margin-bottom:6px;cursor:pointer}.navItem.open{color:var(--txt);background:rgba(94,234,212,.09);border-color:rgba(94,234,212,.22)}.navItem.done{color:var(--green)}.navItem.lock{opacity:.45;cursor:not-allowed}.navNum{width:32px;height:32px;border-radius:12px;background:rgba(255,255,255,.07);display:grid;place-items:center;font-family:var(--mono);font-weight:900}.navTitle{font-size:13px;font-weight:800;line-height:1.25}.navSub{font-size:10px;font-family:var(--mono);color:var(--mut2)}.mainPanel{min-width:0}.moduleHero{padding:28px;margin-bottom:16px}.moduleKicker{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0}.mini{font-family:var(--mono);font-size:10px;color:var(--mut);border:1px solid var(--line);background:rgba(255,255,255,.05);border-radius:999px;padding:4px 8px}.instruction{border:1px solid rgba(94,234,212,.24);background:rgba(94,234,212,.075);border-radius:18px;padding:14px;color:#d9fffa;margin-bottom:14px}.topics{display:grid;gap:12px}.topic{border:1px solid var(--line);background:rgba(10,15,33,.7);border-radius:22px;overflow:hidden}.topic.lock{opacity:.55}.topicHead{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;padding:16px;cursor:pointer;background:linear-gradient(90deg,rgba(255,255,255,.075),rgba(255,255,255,.025))}.topicNum{width:38px;height:38px;border-radius:14px;display:grid;place-items:center;background:rgba(94,234,212,.09);border:1px solid rgba(94,234,212,.25);font-family:var(--mono);color:var(--cyan);font-weight:900}.topicTitle{font-size:17px;font-weight:900}.topicHint{font-size:12px;color:var(--mut);font-family:var(--mono)}.topicState{font-family:var(--mono);font-size:11px;color:var(--mut)}.topic.done .topicState{color:var(--green)}.topicBody{display:none;padding:0 16px 18px}.topic.open .topicBody{display:block;animation:fade .22s ease}.box{border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.045);padding:16px;margin-top:12px}.story{background:linear-gradient(135deg,rgba(167,139,250,.14),rgba(94,234,212,.075));border-color:rgba(167,139,250,.28)}.story p{font-size:16px;color:#dce6ff;margin-bottom:10px}.story p:last-child{margin-bottom:0}.toolGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.tool{padding:14px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid var(--line)}.tool h4{font-size:14px;margin-bottom:6px}.tool p{font-size:13px;color:var(--mut)}.why{margin-top:8px;color:var(--green)!important;font-size:12px!important}.sim{display:grid;grid-template-columns:1fr 1fr;gap:12px}.window{border:1px solid var(--line);background:#080c18;border-radius:18px;overflow:hidden}.bar{height:38px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 12px;gap:7px;background:rgba(255,255,255,.055);font-family:var(--mono);font-size:11px;color:var(--mut)}.dot{width:9px;height:9px;border-radius:50%;background:var(--red)}.dot:nth-child(2){background:var(--amber)}.dot:nth-child(3){background:var(--green)}.winBody{padding:14px}.prompt{width:100%;min-height:120px;background:rgba(255,255,255,.07);color:var(--txt);border:1px solid var(--line);border-radius:14px;padding:12px;font-family:var(--mono);font-size:12px;resize:vertical;outline:none}.out{min-height:110px;color:#dbeafe;font-size:13px;background:rgba(94,234,212,.07);border:1px solid rgba(94,234,212,.20);border-radius:14px;padding:12px}.out b{color:var(--cyan)}.hint{font-size:12px;color:var(--mut);margin-top:8px}.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}.choice{border:1px solid var(--line);background:rgba(255,255,255,.06);border-radius:16px;padding:13px;cursor:pointer;transition:.12s}.choice:hover{border-color:rgba(94,234,212,.45);transform:translateY(-1px)}.choice.selected{border-color:var(--cyan);background:rgba(94,234,212,.12);box-shadow:0 0 0 2px rgba(94,234,212,.08) inset}.choice.correct{border-color:var(--green);background:rgba(52,211,153,.13)}.choice.wrong{border-color:var(--red);background:rgba(251,113,133,.12)}.choice b{display:block;margin-bottom:5px}.choice span{font-size:13px;color:var(--mut)}.fb{display:none;border-radius:14px;padding:12px;margin-top:10px;font-size:14px}.fb.show{display:block}.fb.ok{background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.28);color:#bbf7d0}.fb.no{background:rgba(251,191,36,.11);border:1px solid rgba(251,191,36,.28);color:#fde68a}.solutionBox{display:none;margin-top:10px;border:1px solid rgba(94,234,212,.25);background:rgba(94,234,212,.08);border-radius:14px;padding:12px;color:#d9fffa;font-size:13px}.solutionBox.show{display:block}.kanban{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.col{background:rgba(255,255,255,.055);border:1px solid var(--line);border-radius:16px;padding:10px;min-height:180px}.col h4{font-family:var(--mono);font-size:11px;color:var(--mut);margin-bottom:10px}.ticket{background:rgba(255,255,255,.09);border:1px solid var(--line);border-radius:12px;padding:9px;font-size:12px;margin-bottom:8px}.ticket b{display:block}.ticket .meta{font-family:var(--mono);font-size:10px;color:var(--mut2);margin:4px 0}.prioBtns{display:flex;gap:5px;flex-wrap:wrap}.prioBtns button{padding:4px 7px;border-radius:8px;border:1px solid var(--line);background:rgba(255,255,255,.07);color:var(--txt);font-size:11px;cursor:pointer}.prioBtns button.hit{border-color:var(--green);color:#bbf7d0}.prioBtns button.miss{border-color:var(--red);color:#fecdd3}.btn.hit{border-color:var(--green)!important;color:#bbf7d0!important}.btn.miss{border-color:var(--red)!important;color:#fecdd3!important}.matrix{display:grid;grid-template-columns:34px repeat(5,1fr);grid-template-rows:repeat(5,44px) 28px;gap:4px;max-width:540px}.cell{display:grid;place-items:center;border-radius:10px;font-family:var(--mono);font-size:11px;cursor:pointer;border:1px solid rgba(255,255,255,.12)}.low{background:rgba(52,211,153,.16);color:#bbf7d0}.mid{background:rgba(251,191,36,.18);color:#fde68a}.hi{background:rgba(251,113,133,.18);color:#fecdd3}.crit{background:rgba(251,113,133,.35);color:white}.cell.sel{outline:2px solid var(--cyan);outline-offset:2px}.axis{display:grid;place-items:center;color:var(--mut);font-family:var(--mono);font-size:10px}.axis.v{writing-mode:vertical-rl;transform:rotate(180deg)}.jiraRow{display:grid;grid-template-columns:80px 1fr 110px;gap:10px;align-items:center;padding:9px;border-bottom:1px solid var(--line);font-size:13px}.tag{font-family:var(--mono);font-size:10px;border-radius:999px;padding:3px 7px;background:rgba(96,165,250,.12);color:#bfdbfe}.completeBar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding:14px;border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:18px}.small{font-size:13px;color:var(--mut)}.checklist label{display:flex;gap:10px;align-items:flex-start;padding:10px;border:1px solid var(--line);border-radius:14px;margin-bottom:8px;background:rgba(255,255,255,.05);cursor:pointer}.checklist input{margin-top:4px}.selectLine{display:grid;grid-template-columns:1fr 170px;gap:10px;align-items:center;padding:10px;border-bottom:1px solid var(--line)}select{background:#10162a;color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:8px}.slider{width:100%}.quizBox{display:grid;gap:12px}.q{border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:18px;padding:16px}.q h3{font-size:16px;margin-bottom:10px}.cert{display:none;text-align:center;padding:36px}.cert.show{display:block}.certSeal{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;margin:0 auto 16px;background:linear-gradient(135deg,var(--amber),var(--violet));font-size:34px}.toast{position:fixed;right:18px;bottom:18px;z-index:200;background:rgba(10,15,33,.94);border:1px solid rgba(94,234,212,.28);box-shadow:var(--shadow);border-radius:18px;padding:13px 15px;color:var(--txt);max-width:360px;animation:fade .2s ease}@media(max-width:900px){.heroGrid,.layout{grid-template-columns:1fr}.side{position:relative;top:0}.sim{grid-template-columns:1fr}.kanban{grid-template-columns:1fr 1fr}.topright .pill{display:none}.meter{width:110px}}@media(max-width:560px){.kanban{grid-template-columns:1fr}.jiraRow,.selectLine{grid-template-columns:1fr}.topin{height:auto;padding:12px 0;flex-wrap:wrap}.topright{margin-left:0;width:100%}.h1{font-size:38px}.heroMain{padding:24px}}
+
+/* Theory list layout - vertical, compact */
+.theoryList{display:flex;flex-direction:column;gap:8px}
+.theoryItem{display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.theoryItem .ticon{font-size:18px;margin-top:2px}
+.theoryItem h4{font-size:13px;font-weight:700;margin-bottom:2px;color:var(--txt)}
+.theoryItem p{font-size:12px;color:var(--mut);line-height:1.45}
+
+/* Kanban AI sim */
+.kbSim{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.kbPool{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:10px;min-height:160px}
+.kbPool h4{font-family:var(--mono);font-size:10px;color:var(--mut);margin-bottom:8px;text-transform:uppercase;letter-spacing:.1em}
+.kbCard{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:8px 10px;font-size:12px;margin-bottom:7px;cursor:grab;user-select:none;transition:.15s}
+.kbCard:hover{border-color:var(--cyan);transform:translateY(-1px)}
+.kbCard.placed{border-color:var(--green);background:rgba(52,211,153,.12)}
+.kbCard.wrong-col{border-color:var(--red);background:rgba(251,113,133,.1)}
+.kbCard b{display:block;margin-bottom:3px}
+.kbCard .kbmeta{font-family:var(--mono);font-size:10px;color:var(--mut2)}
+.kbCard .kbprio{display:inline-block;font-family:var(--mono);font-size:9px;border-radius:4px;padding:1px 5px;margin-top:3px}
+.p1{background:rgba(251,113,133,.18);color:#fecdd3}
+.p2{background:rgba(251,191,36,.18);color:#fde68a}
+.p3{background:rgba(94,234,212,.14);color:#a5f3fc}
+.kbDropCol{border:2px dashed rgba(94,234,212,.25);border-radius:14px;padding:10px;min-height:120px;transition:.15s;position:relative}
+.kbDropCol.drag-over{border-color:var(--cyan);background:rgba(94,234,212,.06)}
+.kbDropCol h4{font-family:var(--mono);font-size:10px;color:var(--mut);margin-bottom:8px;text-transform:uppercase;letter-spacing:.1em}
+.kbDropCol .empty-hint{font-size:11px;color:var(--mut2);text-align:center;margin-top:20px}
+
+/* Jira Requirements sim */
+.reqRow{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--line);transition:.15s}
+.reqRow:last-child{border:none}
+.reqRow .reqText{font-size:13px}
+.reqRow .reqTag{font-family:var(--mono);font-size:9px;padding:2px 6px;border-radius:4px;margin-bottom:4px;display:inline-block}
+.reqTag.functional{background:rgba(96,165,250,.15);color:#bfdbfe}
+.reqTag.nonfunc{background:rgba(167,139,250,.15);color:#e9d5ff}
+.reqTag.bad{background:rgba(251,113,133,.15);color:#fecdd3}
+.reqBtns{display:flex;gap:6px;flex-wrap:wrap}
+.reqBtn{padding:5px 10px;border-radius:8px;border:1px solid var(--line);background:rgba(255,255,255,.07);color:var(--mut);font-size:11px;cursor:pointer;transition:.14s;white-space:nowrap}
+.reqBtn:hover{border-color:var(--cyan);color:var(--cyan)}
+.reqBtn.hit{border-color:var(--green)!important;background:rgba(52,211,153,.12)!important;color:#bbf7d0!important}
+.reqBtn.miss{border-color:var(--red)!important;background:rgba(251,113,133,.1)!important;color:#fecdd3!important}
+
+/* Resource workload sim */
+.personRow{display:grid;grid-template-columns:120px 1fr 60px;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.personRow:last-child{border:none}
+.personName{font-size:13px;font-weight:600}
+.personRole{font-size:10px;color:var(--mut);font-family:var(--mono)}
+.wbar{height:14px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;position:relative}
+.wfill{height:100%;border-radius:6px;transition:.4s;background:linear-gradient(90deg,var(--green),var(--cyan))}
+.wfill.warn{background:linear-gradient(90deg,var(--amber),orange)}
+.wfill.crit{background:linear-gradient(90deg,var(--red),#f97316)}
+.wpct{font-family:var(--mono);font-size:11px;text-align:right}
+.taskChip{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:8px;border:1px solid var(--line);background:rgba(255,255,255,.07);font-size:11px;cursor:pointer;margin:3px;transition:.14s;user-select:none}
+.taskChip:hover{border-color:var(--cyan)}
+.taskChip.assigned{border-color:var(--green);background:rgba(52,211,153,.1);color:#bbf7d0}
+.taskChip.dragging-chip{opacity:.4}
+.personSlot{display:flex;flex-wrap:wrap;gap:3px;min-height:30px;border:1px dashed rgba(94,234,212,.2);border-radius:8px;padding:4px;margin-top:4px;transition:.14s}
+.personSlot.slot-over{border-color:var(--cyan);background:rgba(94,234,212,.06)}
+
+/* AI Governance drag sim */
+.policyCard{padding:11px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.07);margin-bottom:8px;font-size:13px;cursor:grab;display:flex;align-items:center;gap:10px;transition:.14s;user-select:none}
+.policyCard:hover{border-color:var(--cyan)}
+.policyCard.correct-zone{border-color:var(--green);background:rgba(52,211,153,.1)}
+.policyCard.wrong-zone{border-color:var(--red);background:rgba(251,113,133,.1)}
+.policyZone{min-height:80px;border:2px dashed rgba(94,234,212,.2);border-radius:12px;padding:8px;margin-top:6px;transition:.14s}
+.policyZone.drag-over{border-color:var(--cyan);background:rgba(94,234,212,.05)}
+.policyZone h4{font-family:var(--mono);font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+
+/* Reporting sim */
+.kpiGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.kpiBox{padding:12px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid var(--line);text-align:center;cursor:pointer;transition:.15s}
+.kpiBox:hover{border-color:var(--cyan)}
+.kpiBox.selected-kpi{border-color:var(--cyan);background:rgba(94,234,212,.1)}
+.kpiBox .kval{font-family:var(--mono);font-size:22px;font-weight:700;margin-bottom:2px}
+.kpiBox .klbl{font-size:11px;color:var(--mut)}
+.kpiBox .ktrend{font-size:10px;margin-top:3px;font-family:var(--mono)}
+.kpiBox .kdesc{display:none;font-size:12px;color:var(--mut);margin-top:8px;text-align:left;line-height:1.4}
+.kpiBox.selected-kpi .kdesc{display:block}
+.kpiBox.kpi-warn .kval{color:var(--amber)}
+.kpiBox.kpi-ok .kval{color:var(--green)}
+.kpiBox.kpi-crit .kval{color:var(--red)}
+.reportSection{border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:10px;background:rgba(255,255,255,.04)}
+.reportSection h4{font-size:13px;font-weight:700;margin-bottom:6px;color:var(--cyan)}
+</style></head><body>
+<header class="top"><div class="wrap topin"><div class="logo">⭐</div><div><div class="brand"><span>AI PM</span> Academy</div><div class="pill">Project POLARIS · KI im Projektmanagement</div></div><div class="topright"><div class="meter"><div class="fill" id="fill"></div></div><div class="xp" id="xp">0 XP</div></div></div></header>
+<section class="screen active" id="intro"><div class="wrap hero"><div class="heroGrid"><div class="card heroMain"><div class="ey">Project Briefing</div><h1 class="h1">AI PM Academy<br><span class="grad">Project POLARIS.</span></h1><p class="lead">Du bist Project Manager bei <b>NovaTech Solutions</b>. Das Unternehmen baut mit Project POLARIS eine neue cloudbasierte Kundenportal-Plattform. Dein Auftrag: das Projekt strukturiert führen und dabei echte KI-Produkte gezielt im Projektmanagement einsetzen.</p><div class="box story" style="margin-top:20px"><p><b>Ausgangslage:</b> Die Geschäftsleitung will innerhalb von 12 Wochen einen ersten produktiven Launch. Fachbereich, IT, Legal, Finance und ein externer Implementierungspartner arbeiten zusammen — und alle bringen unterschiedliche Erwartungen mit.</p><p><b>Wichtig:</b> AIDA begleitet dich als persönliche E-Learning-KI durch die Story. Die eigentliche Projektarbeit wird aber immer mit realen Tools simuliert: Jira mit Atlassian Intelligence, Microsoft Copilot, Miro AI, Confluence AI, Asana Intelligence, ChatGPT/Claude und Power BI Copilot.</p></div><div class="toolGrid" style="margin-top:16px"><div class="tool"><h4>🎯 Projektziel</h4><p>Launch eines Kundenportals mit Login, Dashboard, Dokumentenbereich, Benachrichtigungen und Management Reporting.</p></div><div class="tool"><h4>⏱️ Zeitrahmen</h4><p>12 Wochen bis zum Go-Live. Das E-Learning selbst ist auf ca. 60 Minuten Lernzeit ausgelegt.</p></div><div class="tool"><h4>💰 Budget</h4><p>CHF 180'000 Gesamtbudget inklusive interner Umsetzung, externer Unterstützung, Testing und Go-Live-Vorbereitung.</p></div><div class="tool"><h4>👥 Team</h4><p>9 Personen: du als PM, Product Owner, UX, 4 Entwickler, QA, Legal/Compliance-Ansprechperson und externer Vendor.</p></div></div><div class="box" style="margin-top:16px"><div class="ey" style="margin-bottom:8px">Lernfokus</div><p class="lead" style="font-size:16px">Der Fokus liegt nicht auf einer bestimmten Projektmethode, sondern auf der Frage: <b>Wann, wo und wie unterstützen KI-Produkte Projektmanager in der Praxis?</b> Du lernst, KI sinnvoll einzusetzen, Outputs kritisch zu prüfen und Entscheidungen weiterhin verantwortungsvoll zu führen.</p></div><button class="btn" style="margin-top:24px" onclick="startCourse()">Project POLARIS starten →</button></div><div class="card heroSide"><div class="ey">Projekt-Steckbrief</div><div class="stat"><span>Projekt</span><b>POLARIS</b></div><div class="stat"><span>Unternehmen</span><b>NovaTech</b></div><div class="stat"><span>Dauer</span><b>12 Wochen</b></div><div class="stat"><span>Budget</span><b>CHF 180k</b></div><div class="stat"><span>Team</span><b>9 Personen</b></div><div class="stat"><span>Risiko</span><b>mittel-hoch</b></div><div class="stat"><span>Toolfokus</span><b>echte KI-Tools</b></div><div class="stat"><span>Lernzeit</span><b>ca. 60 Min.</b></div><div class="stat"><span>Fortschritt</span><b id="dashPct">0%</b></div><div class="stat"><span>Status</span><b id="dashStatus">Ready</b></div><button class="btn btn2" style="margin-top:18px;width:100%;justify-content:center" onclick="resetAll()">Reset</button></div></div></div></section>
+<section class="screen" id="course"><div class="wrap layout"><aside class="side"><h3>Module</h3><div id="nav"></div></aside><main class="mainPanel" id="moduleHost"></main></div></section>
+<section class="screen" id="quiz"><div class="wrap hero"><div class="card moduleHero"><div class="ey">Final Quiz</div><h2 class="h2">Beweise deine AI-PM-Kompetenz.</h2><p class="lead">Beantworte alle 8 Fragen richtig (90%-Grenze). Keine Hilfen. Keine Lösungen. Erst nach Bestehen wird das Zertifikat freigeschaltet.</p></div><div class="quizBox" id="quizBox"></div><div class="completeBar"><div><b>Finale Bewertung</b><div class="small">Die Antworten sind jetzt sauber anwählbar. Eine Auswahl pro Frage.</div></div><button class="btn" onclick="gradeQuiz()">Quiz auswerten</button></div><div class="fb" id="quizFb"></div><div class="card cert" id="cert"><div class="certSeal">🏆</div><div class="ey">Certificate unlocked</div><h2 class="h2">AI-Powered Project Manager</h2><p class="lead" style="margin:auto">Du hast Project POLARIS abgeschlossen und gezeigt, wie echte KI-Tools Projektmanagement praxisnah unterstützen können.</p><p style="margin-top:12px;font-family:var(--mono);color:var(--green)">Score: <span id="certScore">0%</span></p><button class="btn" style="margin-top:18px" onclick="completeLearning()">E-Learning beenden →</button></div></div></section>
+<script>
+
+
+// ─── MODULES DATA ─────────────────────────────────────────────────────────────
+const modules = [
+
+// ── MODUL 1: Kickoff & AI Project Charter ─────────────────────────────────────
+{
+  t: 'Kickoff & AI Project Charter',
+  min: '6 Min.',
+  w: 'Woche 1',
+  goal: 'Projektkontext strukturieren, KI korrekt briefen und erste Entscheidungen dokumentieren.',
+
+  story: [
+    '<b>Montag, 08:15 Uhr.</b> Du betrittst den Konferenzraum. Fünf Gesichter warten auf dich: CFO Beatrice (Budget & Kontrolle), Legal-Counsel Reto (Datenschutz), Product Owner Mikel (Features), Lead Dev Nina (Technik) und Vendor-Vertreter Sam. Jeder hat andere Erwartungen – und alle wollen sie bis Ende der Woche schriftlich bestätigt haben.',
+    'Deine erste Aufgabe: Aus diesem Gespräch einen <b>Project Charter</b> erzeugen – Ziel, Scope, Nicht-Ziele, Stakeholder, Annahmen, Risiken, offene Fragen, nächste Schritte. Das dauert normalerweise Stunden. Mit dem richtigen KI-Prompt: 15 Minuten.',
+    'ChatGPT oder Claude sind hier ideal, weil sie unstrukturierte Meeting-Notizen in eine saubere Dokumentstruktur übersetzen. Microsoft Copilot in Teams geht noch weiter: Er protokolliert das Meeting, extrahiert Aufgaben und formuliert die Follow-up-Mail direkt aus dem Gesprächsverlauf. Das Ergebnis ist immer ein Entwurf – du prüfst Fakten, ergänzt politischen Kontext und holst Entscheidungen bei den richtigen Personen ab.'
+  ],
+
+  theory: [
+    { icon: '📋', title: 'Was ist ein Project Charter?', text: 'Der Project Charter ist das Gründungsdokument eines Projekts. Er legt Zweck, Scope, Stakeholder, Annahmen, erste Risiken und Erfolgskriterien fest. Ohne Charter fehlt die Basis für alle späteren Entscheidungen.' },
+    { icon: '✍️', title: 'RACI-Prinzip im Kickoff', text: 'RACI steht für Responsible (macht es), Accountable (zeichnet ab), Consulted (wird befragt), Informed (wird informiert). Im Kickoff legst du für jede Hauptaktivität eine RACI-Zuordnung fest – damit Verantwortlichkeiten von Anfang an klar sind.' },
+    { icon: '🔑', title: 'Gute Prompts: das RAKE-Framework', text: '<b>R</b>olle definieren · <b>A</b>ufgabe spezifizieren · <b>K</b>ontext liefern · <b>E</b>rwartetes Format angeben. Je präziser die vier Elemente, desto nützlicher der KI-Output. Vage Prompts erzeugen generische Ergebnisse.' },
+    { icon: '⚠️', title: 'KI-Grenzen im Kickoff', text: 'KI kennt weder Firmenpolitik noch mündliche Zusagen. Sie erfindet plausibel klingende Details, wenn der Kontext fehlt (Halluzinationen). Deshalb: Immer gegen echte Quellen prüfen, bevor du den Charter freigibst.' }
+  ],
+
+  tools: [
+    ['ChatGPT / Claude', 'Aus Meeting-Notizen Project Charter, Risikoliste, offene Fragen und nächste Schritte strukturieren. Mit RAKE-Prompt in unter 15 Minuten.'],
+    ['Microsoft Copilot in Teams', 'Meeting automatisch transkribieren, Aufgaben extrahieren, Entscheidungslog erstellen und Follow-up-Mail direkt formulieren. Ideal für hybrid oder remote Kickoffs.'],
+    ['Confluence AI / Notion AI', 'Charter-Seite anlegen, Entscheidungslog führen, Team-Wiki aufbauen und Dokumente automatisch zusammenfassen.']
+  ],
+  why: 'Im Kickoff ist generative KI am wertvollsten, weil viele Informationen noch chaotisch und unstrukturiert sind. Der Mehrwert entsteht, wenn du der KI Rolle, Aufgabe, Kontext und Format gibst – und den Output kritisch prüfst, bevor er kommuniziert wird.',
+  sim: 'prompt',
+
+  q: 'Du erhältst aus dem Kickoff 3 Seiten handschriftliche Notizen. Was ist der erste Schritt für einen sinnvollen KI-Einsatz?',
+  a: [
+    'Die Notizen direkt in ChatGPT einfügen und den Output unverändert als Charter versenden.',
+    'Einen strukturierten Prompt mit Rolle, Aufgabe, Kontext und Ausgabeformat erstellen – Output dann prüfen und ergänzen.',
+    'Den Charter selbst schreiben, weil KI für echte Projekte zu unzuverlässig ist.'
+  ],
+  ok: 1,
+  fb: 'Richtig. Struktur und Kontext im Prompt machen den Unterschied. Der Output ist immer ein Entwurf, den du fachlich validierst – KI beschleunigt, aber der PM verantwortet.'
+},
+
+// ── MODUL 2: Stakeholder Mapping ──────────────────────────────────────────────
+{
+  t: 'Stakeholder Mapping mit Miro AI',
+  min: '6 Min.',
+  w: 'Woche 1',
+  goal: 'Macht und Interesse kartieren, Kommunikationsstrategie festlegen und Einflussrisiken steuern.',
+
+  story: [
+    '<b>Mittwoch, 14:00 Uhr.</b> Nach dem Kickoff liegt ein Problem klar auf dem Tisch: CFO Beatrice hat bei Budget-Entscheidungen das letzte Wort, zeigt aber wenig Interesse an wöchentlichen Status-Updates. Legal-Counsel Reto hat formal keine Budget-Macht, kann aber den Go-Live blockieren. Vendor Sam sitzt in einer anderen Stadt und kommuniziert selten proaktiv.',
+    'Du öffnest Miro. Das Whiteboard füllt sich mit Namen, Post-its und Pfeilen. Miro AI schlägt vor, die Notizen aus dem Workshop automatisch zu clustern und in eine Macht-Interesse-Matrix zu überführen. Das spart 30 Minuten manuelle Sortierarbeit.',
+    'Die Stakeholder-Matrix gibt dir eine handlungsleitende Strategie: Wen musst du täglich briefen? Wer bekommt wöchentliche Summaries? Wen beobachtest du passiv? Falsche Einordnungen kosten Zeit und erzeugen politische Risiken. Miro AI kann Muster erkennen, aber sie kennt keine informellen Machtstrukturen.'
+  ],
+
+  theory: [
+    { icon: '🗺️', title: 'Die Macht-Interesse-Matrix', text: 'Das klassische Tool von Eden & Ackermann: Stakeholder werden nach <b>Macht</b> (Einfluss auf Entscheidungen) und <b>Interesse</b> (Engagement im Projekt) kategorisiert. Vier Quadranten: Intensiv managen · Zufriedenstellen · Informieren · Beobachten.' },
+    { icon: '📡', title: 'Kommunikationsrhythmus festlegen', text: 'Für jeden Quadranten brauchst du einen anderen Rhythmus: Sponsor (hohe Macht) = wöchentlicher Executive Summary. Fachteam (hohes Interesse) = täglicher Stand-up. Externe (tiefes Interesse) = monatlicher Newsletter. Dieser Plan gehört in Confluence.' },
+    { icon: '🔍', title: 'Informelle Macht vs. formale Rolle', text: 'Formale Macht steht im Organigramm. Informelle Macht entsteht durch Netzwerk, Wissen und Vertrauen. Ein erfahrener Senior Developer ohne Management-Titel kann einen Release blockieren. KI erkennt informelle Macht nicht – das ist menschliche Aufgabe.' },
+    { icon: '💬', title: 'Einwand-Management als PM-Kompetenz', text: 'Stakeholder mit hoher Macht und tiefem Interesse können Projekte bremsen, wenn sie das Gefühl haben, übergangen zu werden. Best Practice: Regelmässige kurze Updates (max. 1 Seite), klare Entscheidungsvorlagen, persönliches Check-in bei kritischen Meilensteinen.' }
+  ],
+
+  tools: [
+    ['Miro AI', 'Workshop-Notizen, Brainstorming und Feedback-Inputs automatisch clustern, Stakeholder-Maps zeichnen und Affinity-Diagrams generieren.'],
+    ['Microsoft Copilot', 'Teams-Protokolle zu Stakeholder-Erwartungen, Konflikten und offenen Entscheidungen zusammenfassen und Kommunikationsplan formulieren.'],
+    ['ChatGPT / Claude', 'Stakeholder-Profile vertiefen, kritische Gespräche vorbereiten, Einwandstrategien entwickeln und Kommunikationstexte formulieren.']
+  ],
+  why: 'Stakeholder Management profitiert von KI bei der Verdichtung von Notizen, Protokollen und Feedback. Beziehungspflege, Vertrauensaufbau und politische Navigation bleiben menschliche Leadership-Aufgaben.',
+  sim: 'stakeholder',
+
+  q: 'CFO Beatrice hat hohes Budget-Veto, zeigt aber wenig Interesse an Details. Legal Reto hat kein formales Veto, kann aber den Go-Live blockieren. Welche Strategie gilt für Beatrice?',
+  a: [
+    'Beobachten – sie meldet sich schon, wenn etwas schief läuft.',
+    'Zufriedenstellen – klare Executive Summaries, keine Detailflut, persönliches Update bei kritischen Entscheidungen.',
+    'Intensiv managen – täglich Status-Meeting und Detailberichte.'
+  ],
+  ok: 1,
+  fb: 'Genau. Hohe Macht + tiefes Interesse = Zufriedenstellen. Beatrice braucht Entscheidungsvorlagen und klare Signale, keine Meeting-Einladungen für operative Detailfragen.'
+},
+
+// ── MODUL 3: Requirements in Jira AI ──────────────────────────────────────────
+{
+  t: 'Requirements in Jira AI',
+  min: '6 Min.',
+  w: 'Woche 2',
+  goal: 'Vage Anforderungen in testbare User Stories und Akzeptanzkriterien übersetzen.',
+
+  story: [
+    '<b>Montag, 09:30 Uhr.</b> Du öffnest dein E-Mail-Postfach. Neue Nachricht vom Product Owner Mikel: „Wir brauchen ein modernes KI-Dashboard mit coolen Insights und einem richtig guten Look & Feel. Ausserdem möchte der CFO ROI sehen." Das ist der Wunsch – aber kein Requirement.',
+    'Du öffnest Jira und aktivierst Atlassian Intelligence. Du fügst Mikels Nachricht in das Eingabefeld ein: Die KI schlägt drei Epics vor, sieben User Stories und erste Akzeptanzkriterien. Gut gemacht – aber Story 4 ist schon wieder zu breit, enthält technische Annahmen ohne Prüfung und hat kein messbares Akzeptanzkriterium.',
+    'Atlassian Intelligence ist hier besonders wertvoll, weil Requirements, Backlog, Sprint-Planung und Statusverfolgung im selben Tool verbunden sind. Ein KI-generiertes Akzeptanzkriterium aus Jira landet sofort im richtigen Epic, kann direkt dem richtigen Sprint zugeordnet werden und ist für das Entwicklungsteam sichtbar – ohne Copy-Paste in drei verschiedene Dokumente.'
+  ],
+
+  theory: [
+    { icon: '📝', title: 'User Stories richtig schreiben', text: '<b>Format:</b> Als [Rolle] will ich [Ziel], damit ich [Nutzen]. Drei Eigenschaften machen sie tauglich: <b>Unabhängig</b> (kann alleine geliefert werden), <b>Testbar</b> (Akzeptanzkriterien messbar), <b>Klein genug</b> (in einem Sprint lieferbar). KI schreibt Stories schnell – die PM-Aufgabe ist Prüfung und Scope-Kontrolle.' },
+    { icon: '✅', title: 'Akzeptanzkriterien: Given-When-Then', text: '<b>Given</b> (Ausgangszustand) – <b>When</b> (Aktion) – <b>Then</b> (erwartetes Ergebnis). Beispiel: Given das Dashboard ist geladen, When ein CFO-User einloggt, Then werden ROI-KPIs in unter 2 Sekunden angezeigt. Dieses Format ist für Entwickler und Tester gleichermassen klar.' },
+    { icon: '🚫', title: 'Scope Creep frühzeitig stoppen', text: 'KI-generierte Requirements neigen zu Überproduktion: Zu viele Features, zu breiter Scope, zu wenig Fokus. Best Practice: Definition of Done festlegen, Minimum Viable Product klar definieren und KI-Vorschläge gegen Projektziel und Budget prüfen, bevor sie ins Backlog wandern.' },
+    { icon: '🔗', title: 'Abhängigkeiten sichtbar machen', text: 'In Jira kannst du Stories als "blocked by" oder "is blocked by" verlinken. Atlassian Intelligence erkennt textuelle Ähnlichkeiten und schlägt Abhängigkeiten vor. Ohne dieses Mapping können Sprint-Planungen scheitern, weil Teams auf externe Lieferungen warten.' }
+  ],
+
+  tools: [
+    ['Jira mit Atlassian Intelligence', 'Aus Meeting-Notizen und Product-Briefings Epics, User Stories und Akzeptanzkriterien vorschlagen. Story-Drafts verfeinern, Duplikate erkennen und Backlog-Zusammenfassungen erstellen.'],
+    ['ChatGPT / Claude', 'Requirements-Workshops vorbereiten, schlechte User Stories analysieren und verbessern, Testszenarien aus Akzeptanzkriterien ableiten.'],
+    ['Azure DevOps + GitHub Copilot', 'Technische Anforderungen, Testfälle und Entwickler-Kontext aus natürlichsprachigen Beschreibungen generieren.']
+  ],
+  why: 'Atlassian Intelligence ist im Requirements-Prozess besonders wertvoll, weil Requirements, Sprint-Backlog und Statustracking im selben Tool verbunden sind. KI beschleunigt den Entwurf – du schützt Qualität und Scope.',
+  sim: 'jiraReq',
+
+  q: 'Atlassian Intelligence schlägt dir diese User Story vor: „Das System soll eine moderne, intuitive und ansprechende Benutzeroberfläche bieten." Was tust du?',
+  a: [
+    'Story direkt in den Sprint ziehen – klingt gut und ist verständlich.',
+    'Story ablehnen und in testbare Akzeptanzkriterien übersetzen, z.B. „Ladezeit unter 2 Sek." und „WCAG 2.1 AA Konformität".',
+    'Story dem Design-Team weitergeben – die wissen schon, was modern bedeutet.'
+  ],
+  ok: 1,
+  fb: 'Genau. „Modern und intuitiv" ist nicht testbar. Jira AI generiert schnell – aber du sorgst für Testbarkeit, Messbarkeit und klare Abnahmekriterien.'
+},
+
+// ── MODUL 4: Backlog Priorisierung ────────────────────────────────────────────
+{
+  t: 'Backlog-Priorisierung mit Atlassian Intelligence',
+  min: '6 Min.',
+  w: 'Woche 2–3',
+  goal: 'Backlog nach Wert, Risiko, Abhängigkeit und Go-Live-Relevanz priorisieren.',
+
+  story: [
+    '<b>Mittwoch, Sprint Planning.</b> 27 Tickets liegen im Backlog. Product Owner Mikel will alle Features in Sprint 1. Lead Dev Nina sagt, das Datenmodell muss zuerst fertig sein, sonst funktioniert nichts anderes. Vendor Sam wartet noch auf die API-Spezifikation.',
+    'Du aktivierst Atlassian Intelligence im Backlog. Die KI fasst Ticket-Gruppen zusammen, markiert sieben Tickets mit starken Abhängigkeiten und schlägt vor: „Compliance-Tickets und Datenmodell zuerst – beide blockieren 11 weitere Stories." Das ist eine hilfreiche Analyse – aber du weisst, dass noch ein politischer Faktor fehlt: Beatrice hat dem CEO versprochen, dass das Reporting bis Woche 6 steht.',
+    'KI-Priorisierung basiert auf Text, Verlinkungen und Ähnlichkeiten im Backlog. Business-Kontext, politische Zusagen und strategische Risiken muss der PM einbringen. Die Kunst liegt darin, beides zu kombinieren.'
+  ],
+
+  theory: [
+    { icon: '⚡', title: 'MoSCoW-Methode', text: '<b>Must have</b> (Go-Live-Blocker) · <b>Should have</b> (hoher Wert, kein Blocker) · <b>Could have</b> (Nice-to-have) · <b>Won\'t have</b> (explizit raus aus Scope). Mit dieser Klassifikation kannst du mit Stakeholdern schriftlich bestätigen, was wann lieferbar ist – und Scope-Creep durch Referenz abwehren.' },
+    { icon: '💎', title: 'WSJF – Weighted Shortest Job First', text: 'Ein priorisierungswerkzeug aus SAFe: (Geschäftswert + Risikoreduzierung + Zeitkritikalität) ÷ Jobgrösse. Je höher der Wert, desto höher die Priorität. KI kann WSJF-Scores aus Ticket-Beschreibungen schätzen – du kalibrierst mit Businesskontext.' },
+    { icon: '🔒', title: 'Technische Abhängigkeiten', text: 'Im Jira-Backlog kannst du Abhängigkeiten explizit verlinken. Atlassian Intelligence erkennt auch implizite Abhängigkeiten aus dem Tickettext. Nicht erkannte Abhängigkeiten sind häufig die Hauptursache für Sprint-Fails.' },
+    { icon: '📊', title: 'Velocity und Kapazitätsplanung', text: 'Sprint-Velocity ist die durchschnittliche Story-Point-Leistung des Teams pro Sprint. Atlassian Intelligence kann historische Velocity-Daten auswerten und warnen, wenn der geplante Sprint die reale Kapazität übersteigt.' }
+  ],
+
+  tools: [
+    ['Jira AI (Atlassian Intelligence)', 'Backlog-Tickets zusammenfassen, clustern, Duplikate erkennen, Blocker markieren, Sprint-Ziele vorschlagen und Velocity-basierte Kapazitätswarnungen ausgeben.'],
+    ['Productboard AI', 'Kundenfeedback und Feature-Requests nach Wert und Häufigkeit clustern, um Business-Prioritäten aus echtem User-Feedback abzuleiten.'],
+    ['Linear AI / ClickUp AI', 'Schnelle Triage, automatische Issue-Summaries und Sprint-Fokussierung für kleinere oder agilere Teams.']
+  ],
+  why: 'PM-KI ist im Backlog besonders wertvoll, weil sie echte Ticketdaten, Verlinkungen und Teamkapazität auswerten kann. Sie ersetzt aber nicht den Businesskontext und die politische Urteilsfähigkeit des PMs.',
+  sim: 'jiraPrio',
+
+  q: 'Atlassian Intelligence markiert ein DSGVO-Compliance-Ticket als "möglicherweise wichtig" – aber Mikel findet Features für Endnutzer wichtiger. Was entscheidest du?',
+  a: [
+    'Mikel hat als Product Owner die finale Priorisierung – Features kommen zuerst.',
+    'DSGVO-Compliance ist ein Go-Live-Blocker und erhält P1 – unabhängig von Feature-Wünschen.',
+    'Ich frage die KI nochmals nach einer Empfehlung und folge ihr dann.'
+  ],
+  ok: 1,
+  fb: 'Richtig. Compliance-Risiken sind Go-Live-Blocker. Atlassian Intelligence markiert das Ticket korrekt – der PM schützt das Projekt, auch wenn Stakeholder andere Prioritäten haben.'
+},
+
+// ── MODUL 5: Sprint & Kanban Flow ─────────────────────────────────────────────
+{
+  t: 'Sprint & Kanban Flow mit Jira',
+  min: '5 Min.',
+  w: 'Woche 3',
+  goal: 'Flow steuern, Blocker erkennen und WIP-Limits schützen.',
+
+  story: [
+    '<b>Dienstag, Daily Stand-up.</b> Das Kanban-Board sieht auf den ersten Blick okay aus. Vier Tickets sind In Progress. Zwei warten auf Review. Aber genauer betrachtet: Das „Vendor API Mapping"-Ticket ist seit sechs Tagen in BLOCKED, weil Sam die Schnittstellen-Dokumentation noch nicht geliefert hat. Und dieses eine Ticket blockiert: Login, Reporting und zwei Test-Suites.',
+    'Du öffnest Jira und aktivierst die Blocker-Ansicht. Atlassian Intelligence hebt das API-Ticket orange hervor: „Kritischer Blocker – 4 abhängige Issues, geschätzte Verzögerung: 3 Sprint-Tage." Nina schaut auf das Board: „Das wusste ich eigentlich. Aber ich habe das natürlich nicht eskaliert."',
+    'Kanban lebt von Flow. WIP (Work in Progress) Limits verhindern, dass Teams an vielem gleichzeitig arbeiten und nichts fertigstellen. KI im Kanban-Board macht sichtbar, was menschliche Wahrnehmung übersieht – vor allem bei Blocker-Kaskaden.'
+  ],
+
+  theory: [
+    { icon: '🌊', title: 'Kanban-Prinzipien', text: 'Kanban aus dem Toyota Produktionssystem: <b>Visualisiere Arbeit</b> · <b>Begrenze WIP</b> · <b>Manage Flow</b> · <b>Mache Regeln explizit</b> · <b>Verbessere kontinuierlich</b>. Das Ziel ist nicht volle Boards, sondern fertige Tickets.' },
+    { icon: '🚦', title: 'WIP-Limits richtig setzen', text: 'WIP-Limit = maximale Anzahl gleichzeitiger Tickets pro Spalte oder Person. Ohne Limit wird alles gleichzeitig begonnen, nichts fertiggestellt. Faustregel: WIP-Limit ≈ Teamgrösse ÷ 2. Atlassian Intelligence kann Verstösse automatisch melden.' },
+    { icon: '🔴', title: 'Blocker-Management', text: 'Ein Blocker ist alles, das die Fertigstellung eines Tickets verhindert. Blocker eskalieren schnell in Kaskaden. Best Practice: Tägliche Blocker-Review im Stand-up, Owner für jeden Blocker, Eskalationspfad ab 48h. KI macht Kaskaden sichtbar – Eskalieren ist Menschenaufgabe.' },
+    { icon: '📈', title: 'Cycle Time & Lead Time', text: 'Cycle Time = Zeit von „In Progress" bis „Done". Lead Time = Zeit von „Erstellt" bis „Done". Kürzere Cycle Times signalisieren guten Flow. Atlassian Intelligence analysiert historische Daten und zeigt, welche Ticket-Typen regelmässig länger brauchen.' }
+  ],
+
+  tools: [
+    ['Jira AI (Atlassian Intelligence)', 'Blockierte Tickets erkennen, Abhängigkeitskaskaden visualisieren, Sprint-Risiken erklären und Ticket-Zusammenfassungen erstellen.'],
+    ['Asana Intelligence', 'Workload und Abhängigkeiten über Personen und Teams hinweg sichtbar machen und Bottlenecks frühzeitig anzeigen.'],
+    ['Microsoft Planner + Copilot', 'Tasks aus Meeting-Protokollen erzeugen, Statusupdates automatisch formulieren und Team-Auslastung überblicken.']
+  ],
+  why: 'Kanban profitiert von integrierter KI, weil sie echte Statusfelder, Abhängigkeiten und Zeitstempel auswertet – nicht nur Beschreibungen. Flow-Risiken werden sichtbar, bevor sie Sprint-Ziele gefährden.',
+  sim: 'kanban',
+
+  q: 'Das Vendor-API-Ticket ist seit 6 Tagen in BLOCKED und blockiert 4 abhängige Stories. Atlassian Intelligence meldet ein Risiko. Was ist dein nächster Schritt?',
+  a: [
+    'Das Ticket in DONE verschieben, damit das Board besser aussieht.',
+    'Sofort mit Sam klären, bis wann die Dokumentation kommt – und falls heute keine konkrete Zusage: Eskalation an Sponsor.',
+    'Im nächsten Weekly erwähnen und abwarten.'
+  ],
+  ok: 1,
+  fb: 'Richtig. Blocker eskalieren, nicht abwarten. KI macht die Kaskade sichtbar – du sorgst für Auflösung. „Erwähnen und abwarten" ist der häufigste PM-Fehler bei Blocker-Management.'
+},
+
+// ── MODUL 6: Risikoanalyse & RAID Log ─────────────────────────────────────────
+{
+  t: 'Risikoanalyse & RAID Log mit KI',
+  min: '6 Min.',
+  w: 'Woche 4',
+  goal: 'Risiken strukturiert erfassen, bewerten und steuerbar machen.',
+
+  story: [
+    '<b>Freitagmorgen, Woche 4.</b> Sam sendet eine kurze Nachricht: „API-Lieferung verzögert sich um 1–2 Wochen." Legal-Counsel Reto hat noch keine Datenschutz-Freigabe für die KI-Komponente gegeben. Und das Budget zeigt erste Abweichungen.',
+    'Du öffnest Claude und fügst deine Statusnotizen ein. Prompt: "Ich bin IT-Projektmanager. Erstelle basierend auf diesen Notizen ein RAID Log (Risks, Assumptions, Issues, Dependencies) im Tabellenformat mit Owner, Wahrscheinlichkeit (1-5), Impact (1-5), Score und Gegenmassnahme." Drei Minuten später: Eine strukturierte RAID-Tabelle mit 9 Einträgen.',
+    'KI ist stark im schnellen Strukturieren vieler Inputs. Sie schlägt auch Gegenmassnahmen vor. Aber: Wahrscheinlichkeit und Impact müssen vom PM kalibriert werden, weil KI keine Projekt- oder Unternehmens-Spezifika kennt. Und ein Risiko ohne Owner ist nur ein Gedanke.'
+  ],
+
+  theory: [
+    { icon: '⚠️', title: 'RAID Log: das PM-Steuerungswerkzeug', text: '<b>R</b>isks (könnte eintreten) · <b>A</b>ssumptions (angenommen, aber nicht bestätigt) · <b>I</b>ssues (ist bereits eingetreten) · <b>D</b>ependencies (abhängig von externen Lieferungen). Jeder Eintrag braucht: Owner, Status, Wahrscheinlichkeit, Impact, Gegenmassnahme und Fälligkeitsdatum.' },
+    { icon: '📐', title: 'Risikomatrix: Wahrscheinlichkeit × Impact', text: 'Bewertung auf einer 5×5-Matrix ergibt den Risk Score (max. 25). Score < 6 = gering (grün), 6–12 = mittel (gelb), 13–19 = hoch (orange), 20–25 = kritisch (rot). Kritische Risiken brauchen sofortige Eskalation und Gegenmassnahmen.' },
+    { icon: '🛡️', title: 'Risiko-Reaktionsstrategien', text: '<b>Vermeiden</b> (Projekt anpassen, damit Risiko nicht eintritt) · <b>Übertragen</b> (Versicherung, Vertragsklausel, Vendor-Garantie) · <b>Mindern</b> (Wahrscheinlichkeit oder Impact reduzieren) · <b>Akzeptieren</b> (bewusste Entscheidung mit Fallback-Plan). Akzeptieren ohne Plan ist kein Risikomanagement.' },
+    { icon: '📣', title: 'Eskalationspfade definieren', text: 'Für kritische Risiken: Wer wird ab welchem Schwellenwert informiert? Beispiel: Score ≥ 20 → sofortige Eskalation an Sponsor. Score ≥ 15 → in jedem Steering-Meeting. Dieser Pfad muss im Kick-off vereinbart und in Confluence dokumentiert sein.' }
+  ],
+
+  tools: [
+    ['ChatGPT / Claude', 'RAID Log aus Statusnotizen erstellen, Gegenmassnahmen formulieren, Trigger-Szenarien entwickeln und Eskalationstexte vorbereiten.'],
+    ['Jira / Confluence', 'RAID Log als lebende Seite führen, Risk-Tickets mit Owner und Due Date anlegen und Entscheidungslog pflegen.'],
+    ['Power BI Copilot', 'Risiko-Trends, Status-Entwicklung und Budget-Abweichungen für Steering-Meetings visualisieren und in Management-Sprache erklären.']
+  ],
+  why: 'KI ist im Risikomanagement stark bei der Erststrukturierung aus ungeordneten Inputs. Wahrscheinlichkeitsbewertung, Impact-Einschätzung und Eskalationsentscheidung brauchen PM-Urteilsvermögen und Businesskontext.',
+  sim: 'matrix',
+
+  q: 'Claude schlägt für das Vendor-API-Risiko einen Impact von 4 und eine Wahrscheinlichkeit von 3 vor – Score 12 (mittel). Du weisst aber, dass ein API-Verzug den gesamten Go-Live blockiert. Was tust du?',
+  a: [
+    'Den KI-Score übernehmen – Claude hat mehr Daten ausgewertet als ich.',
+    'Den Impact auf 5 korrigieren, Score auf 15 erhöhen und das Risiko als "hoch" mit Eskalationspfad dokumentieren.',
+    'Den Score ignorieren und das Risiko ohne Bewertung weiterführen.'
+  ],
+  ok: 1,
+  fb: 'Richtig. KI-Scores sind Ausgangspunkte, keine Wahrheiten. Du kennst den Projektkontext – Go-Live-Blocker sind immer hoher Impact. Deine Kalibrierung ist PM-Kompetenz.'
+},
+
+// ── MODUL 7: Reporting mit Power BI Copilot ───────────────────────────────────
+{
+  t: 'Reporting mit Power BI Copilot',
+  min: '5 Min.',
+  w: 'Woche 5',
+  goal: 'Statusdaten in entscheidungsreife Information übersetzen.',
+
+  story: [
+    '<b>Montag, 15:30 Uhr.</b> CFO Beatrice schreibt: „Bitte Steering-Update bis 17:00." Du hast 90 Minuten. Das Budget-Dashboard in Power BI ist offen, Risiken liegen in Confluence, offene Entscheidungen stehen in einem Teams-Chat und das Jira-Board sieht unübersichtlich aus.',
+    'Du aktivierst Power BI Copilot. Im Chat-Feld tippst du: „Erkläre die aktuellen Budget-KPIs, identifiziere Abweichungen über 10% und schlage eine Zusammenfassung für ein Executive Steering-Meeting vor." Innerhalb von 30 Sekunden: Eine strukturierte Zusammenfassung mit Status, Ursache, Auswirkung und Entscheidungsbedarf.',
+    'Gute Statusberichte beantworten fünf Fragen: Wo stehen wir? Warum ist es so? Was sind die Konsequenzen? Was wird entschieden? Was kommt als nächstes? Power BI Copilot kann diese Struktur aus echten Daten generieren – aber du prüfst, ob Risiken ehrlich kommuniziert werden.'
+  ],
+
+  theory: [
+    { icon: '📊', title: 'Steering-Meeting-Prinzipien', text: 'Ein Steering Committee trifft Entscheidungen, keine operativen Detailbesprechungen. Vorbereitung: Eine Seite Executive Summary · Ampelstatus · Entscheidungsvorlage mit Optionen und Empfehlung · Budget-Snapshot. Mehr braucht ein CFO nicht.' },
+    { icon: '🚦', title: 'Ampelstatus richtig nutzen', text: 'RAG-Status (Red/Amber/Green) ist ein Kommunikationswerkzeug, kein Beurteilungssystem. Grün = alles im Plan. Gelb = Risiken oder Abweichungen, Massnahmen laufen. Rot = Massnahmen reichen nicht, Entscheidung nötig. Das grösste PM-Fehler: Alles auf Grün halten, um Druck zu vermeiden.' },
+    { icon: '💡', title: 'Was Power BI Copilot kann', text: 'KPI-Trends erklären, Ausreisser identifizieren, Forecast-Szenarien berechnen, Management-Texte formulieren und Q&A-Fragen zu Dashboards beantworten. Es ersetzt nicht die PM-Analyse, beschleunigt aber die Vorbereitung erheblich.' },
+    { icon: '📧', title: 'Microsoft Copilot für Kommunikation', text: 'Microsoft Copilot kann aus Power BI-Daten und Confluence-Inhalten eine Steering-Mail formulieren, ein Teams-Meeting-Update erstellen oder eine PowerPoint-Folie generieren – alles aus dem Microsoft 365-Ökosystem.' }
+  ],
+
+  tools: [
+    ['Power BI Copilot', 'KPIs erklären, Abweichungen identifizieren, Forecast-Szenarien generieren und Executive Summary für Steering-Meetings formulieren.'],
+    ['Microsoft Copilot (M365)', 'Statusmail, Steering-Deck und Meeting-Zusammenfassung aus Power BI, Teams und Outlook generieren.'],
+    ['Smartsheet AI', 'Portfolio-Status, Risiken und Abhängigkeiten über mehrere Projekte verdichten und Ressourcenauslastung visualisieren.']
+  ],
+  why: 'Reporting ist ein idealer KI-Use-Case: viele Datenquellen, klares Ausgabeformat, repetitive Struktur. Kritisch ist, dass du Risiken ehrlich kommunizierst – KI neigt dazu, positiv zu formulieren.',
+  sim: 'report',
+
+  q: 'Power BI Copilot generiert eine Executive Summary, die alle KPIs als „auf Kurs" beschreibt – obwohl du weisst, dass der Vendor-Verzug den Go-Live gefährdet. Was machst du?',
+  a: [
+    'Die Summary unverändert senden – Beatrice soll nicht unnötig beunruhigt werden.',
+    'Die Summary ergänzen: Vendor-Risiko explizit benennen, Impact auf Go-Live beschreiben und Entscheidungsvorschlag hinzufügen.',
+    'Keine Summary senden – KI-Outputs sind für offizielle Berichte nicht geeignet.'
+  ],
+  ok: 1,
+  fb: 'Richtig. PM-Integrität bedeutet: Risiken transparent kommunizieren, auch wenn es unbequem ist. KI optimiert auf Lesbarkeit – du sorgst für Ehrlichkeit und Entscheidungsreife.'
+},
+
+// ── MODUL 8: Ressourcen & Workload ────────────────────────────────────────────
+{
+  t: 'Ressourcen & Workload mit Asana AI',
+  min: '5 Min.',
+  w: 'Woche 5–6',
+  goal: 'Überlastung erkennen, Fokus schaffen und realistische Kapazitäten sichern.',
+
+  story: [
+    '<b>Mittwoch, Sprint-Review.</b> Ninas Aufgabenliste: Technische Lead-Aufgaben, Code Reviews, Vendor-Koordination, QA-Unterstützung und zwei „dringende" Anfragen von Mikel. Das Asana-Board zeigt Nina mit 145% Auslastung.',
+    'Asana Intelligence sendet dir eine automatische Warnung: „Nina ist seit 8 Tagen über 120% ausgelastet. Empfehlung: Aufgaben priorisieren oder delegieren." Du öffnest die Workload-Ansicht: Farbige Balken zeigen, welche Woche kritisch ist und welche Aufgaben verschoben werden könnten.',
+    'Ressourcenüberlastung ist einer der häufigsten Gründe für Qualitätsprobleme und Ausfall. KI macht Muster sichtbar. Die Entscheidung, was nicht gemacht wird oder wer entlastet wird, ist aber eine Führungsentscheidung – nicht eine, die du an die KI delegierst.'
+  ],
+
+  theory: [
+    { icon: '⚖️', title: 'Kapazitätsplanung-Grundsätze', text: 'Maximale Produktivität liegt nicht bei 100%, sondern bei 70–80%. Über 100% sinkt Qualität, steigt Fehlerrate und wächst Burnout-Risiko. In der Planung: Buffer einrechnen, Urlaub und ungeplante Unterbrüche berücksichtigen, keine Person für den kritischen Pfad einzeln verantworten.' },
+    { icon: '🎯', title: 'WIP reduzieren statt Druck erhöhen', text: 'Die häufige Reaktion auf Überlastung ist: mehr Meetings, mehr Status-Abfragen, mehr Druck. Das ist kontraproduktiv. Bessere Antwort: WIP-Limit durchsetzen, nicht kritische Aufgaben verschieben, Team-Fokus auf Sprint-Ziel schützen und Scope klar priorisieren.' },
+    { icon: '📋', title: 'RACI und Verantwortlichkeitstransparenz', text: 'Überlastung entsteht oft, weil eine Person für zu viele Bereiche „Responsible" oder sogar als einzige Person „Accountable" eingetragen ist. RACI-Review in Woche 3–4 hilft, strukturelle Überlastung sichtbar zu machen, bevor sie zur Krise wird.' },
+    { icon: '🤖', title: 'Asana Intelligence im Einsatz', text: 'Asana Intelligence erkennt: Überlastungstendenzen nach historischen Daten, Aufgaben ohne Deadline-Realismus, Abhängigkeitsstaus und Workload-Imbalancen. Sie schlägt Umverteilungen vor, aber du entscheidest, welche Aufgaben wirklich verzögert werden können.' }
+  ],
+
+  tools: [
+    ['Asana Intelligence', 'Workload-Analyse, automatische Überlastungs-Warnungen, Aufgaben-Umverteilungsvorschläge und Goal-Tracking für das gesamte Team.'],
+    ['Microsoft Project + Copilot', 'Ressourcenplanung, Abhängigkeiten, Timeline-Szenarien und kritische-Pfad-Analyse für komplexere Projekte.'],
+    ['Jira Plans (Advanced Roadmap)', 'Kapazität und Abhängigkeiten über mehrere Teams und Sprints hinweg steuern, Engpässe visualisieren.']
+  ],
+  why: 'KI hilft, Überlastung früh zu erkennen – besonders bei komplexen Teams mit vielen parallelen Aufgaben. Die Entscheidung, was nicht gemacht wird, ist immer eine menschliche Führungsentscheidung.',
+  sim: 'resource',
+
+  q: 'Asana Intelligence meldet Nina bei 145% Auslastung. Was ist dein nächster Schritt?',
+  a: [
+    'Nichts – Nina ist erfahren genug, um damit umzugehen.',
+    'Sofort analysieren, welche Aufgaben in den nächsten 5 Tagen verschoben, delegiert oder aus dem Sprint genommen werden können, und das mit Nina besprechen.',
+    'Die KI bitten, automatisch Aufgaben zu verschieben.'
+  ],
+  ok: 1,
+  fb: 'Richtig. KI zeigt das Problem – du löst es mit Nina und Mikel. Aufgaben verschieben oder delegieren ist eine menschliche Entscheidung mit Konsequenzen für Sprint-Ziele und Stakeholder-Erwartungen.'
+},
+
+// ── MODUL 9: Change & Adoption ────────────────────────────────────────────────
+{
+  t: 'Change & Adoption mit Microsoft Copilot',
+  min: '5 Min.',
+  w: 'Woche 6',
+  goal: 'Adoption planen, Ängste ernst nehmen und nachhaltige Nutzung sichern.',
+
+  story: [
+    '<b>Donnerstag, Town Hall Vorbereitung.</b> Die Plattform ist fast bereit. Aber in der Fachabteilung kursieren Gerüchte: „Die KI ersetzt unsere Berater." „Unsere Daten landen in der Cloud." „Wir müssen jetzt alles neu lernen." HR-Leiterin Sarah bittet dich um Unterstützung für den Town Hall morgen.',
+    'Du öffnest Microsoft Copilot. Prompt: "Erstelle eine FAQ-Liste für Mitarbeitende, die Fragen zur Einführung unserer neuen KI-Plattform haben. Ton: offen, ehrlich, nicht werbend. Inhalt: Was ändert sich, was bleibt, wie werden Daten genutzt und welche Unterstützung gibt es." Fünf Minuten später: Eine dreiseitige FAQ, die 80% der Fragen vom letzten Change-Workshop abdeckt.',
+    'KI kann Change-Kommunikation skalieren – aber Vertrauen entsteht durch echte Transparenz, nicht durch Hochglanztexte. Der PM stellt sicher, dass keine falschen Versprechen gemacht werden und dass der Nutzen ehrlich kommuniziert wird.'
+  ],
+
+  theory: [
+    { icon: '🔄', title: 'Change Management: ADKAR-Modell', text: '<b>A</b>wareness (Bewusstsein schaffen) · <b>D</b>esire (Wunsch nach Veränderung wecken) · <b>K</b>nowledge (Wissen aufbauen) · <b>A</b>bility (Fähigkeit entwickeln) · <b>R</b>einforcement (Veränderung verankern). KI kann ADKAR-Massnahmen beschleunigen – Vertrauen muss durch echte Erfahrungen entstehen.' },
+    { icon: '🛡️', title: 'Häufige Widerstände und wie man ihnen begegnet', text: '"KI ersetzt mich." → KI unterstützt, Entscheidungen treffen Menschen. "Meine Daten sind nicht sicher." → Klare Erklärung der Datenhaltung und -klassifikation. "Ich bin zu alt dafür." → Champions-Programm, Peer Learning. "Zu kompliziert." → Schritt-für-Schritt Onboarding.' },
+    { icon: '🏆', title: 'Change Champions als Multiplikatoren', text: 'Change Champions sind erfahrene Mitarbeitende, die die neue Plattform früh testen, als Botschafterinnen im Team wirken und Fragen auf Augenhöhe beantworten. KI kann FAQ und Schulungsmaterial erstellen – Champions machen es glaubwürdig.' },
+    { icon: '📈', title: 'Adoption messen', text: 'Was gemessen wird, kann gesteuert werden: Login-Rate, Feature-Nutzung, Support-Tickets, NPS nach 30 Tagen. Viva Learning AI, Microsoft Analytics oder Asana Goals können Adoption-Daten auswerten und zeigen, wo gezieltes Nachfassen nötig ist.' }
+  ],
+
+  tools: [
+    ['Microsoft Copilot', 'FAQ, Change-Kommunikation, Schulungsunterlagen, Town-Hall-Präsentationen und Rollout-Mails erstellen.'],
+    ['Synthesia / HeyGen', 'Kurze Trainingsvideos und rollenbasierte Erklärungen für verschiedene Zielgruppen skaliert produzieren.'],
+    ['Viva Learning / LMS AI', 'Lernpfade anpassen, Completion-Tracking und Adoption-Daten auswerten.']
+  ],
+  why: 'Bei Change und Adoption skaliert KI die Content-Produktion enorm. Vertrauen und Glaubwürdigkeit entstehen aber durch echte Kommunikation, transparente Antworten und menschliche Führung.',
+  sim: 'change',
+
+  q: 'Eine Mitarbeiterin fragt im Town Hall: „Werden meine E-Mails von der KI gelesen?" Du weisst, dass Copilot tatsächlich auf das M365-Ökosystem zugreift. Was antwortest du?',
+  a: [
+    '„Nein, Copilot liest keine E-Mails." – damit die Frage schnell beendet ist.',
+    '„Copilot kann E-Mails zusammenfassen und auswerten, wenn du es aktivierst. Die Datenschutzrichtlinie erklärt genau, was gespeichert und verarbeitet wird. Wir stellen sie euch bis Ende Woche zur Verfügung."',
+    '„Diese technischen Details besprechen wir besser separat."'
+  ],
+  ok: 1,
+  fb: 'Richtig. Transparenz schafft Vertrauen. Falsche Beruhigungen werden später entdeckt und zerstören Glaubwürdigkeit. Gute Change-Kommunikation ist ehrlich, auch wenn die Antwort komplex ist.'
+},
+
+// ── MODUL 10: AI Governance & Responsible AI ──────────────────────────────────
+{
+  t: 'AI Governance & Responsible AI',
+  min: '6 Min.',
+  w: 'Woche 7',
+  goal: 'KI sicher, nachvollziehbar und verantwortungsvoll einsetzen.',
+
+  story: [
+    '<b>Montag, Woche 7.</b> Legal-Counsel Reto meldet sich per Teams: „Wir haben noch keine Datenklassifikation für die KI-Plattform. Wer entscheidet, welche Kundendaten die KI verarbeiten darf? Und wie dokumentieren wir, wenn KI eine Entscheidung unterstützt hat?" Wichtige Fragen – und sie hätten schon in Woche 2 geklärt sein sollen.',
+    'Du öffnest Confluence AI und fragst nach: „Erstelle eine AI Governance Policy-Vorlage für unser Projekt mit den Bereichen: Datenklassifikation, erlaubte Tools, verbotene Use Cases, Rollen und Verantwortlichkeiten, Audit-Log." Fünf Minuten später liegt ein Entwurf vor. Reto ergänzt die juristischen Anforderungen. Du legst einen Freigabe-Workflow in Jira Service Management an.',
+    'AI Governance ist kein bürokratischer Bremsklotz. Sie schützt Projekt, Unternehmen und Nutzer. Und sie gibt dem Team Orientierung: Was darf ich? Was nicht? Wer verantwortet was? Diese Fragen müssen beantwortet sein, bevor die KI-Plattform in Produktion geht.'
+  ],
+
+  theory: [
+    { icon: '🔐', title: 'Datenklassifikation als Grundlage', text: 'Nicht alle Daten dürfen in KI-Tools fliessen. Klassifikation: <b>Öffentlich</b> (unkritisch) · <b>Intern</b> (nur für Mitarbeitende) · <b>Vertraulich</b> (nur für definierte Rollen) · <b>Streng vertraulich</b> (z.B. Kundendaten, nie in öffentliche KI-Tools). Microsoft Purview hilft, Klassifikationen automatisch zu erkennen und durchzusetzen.' },
+    { icon: '⚖️', title: 'EU AI Act – was PMs wissen müssen', text: 'Der EU AI Act (2024) klassifiziert KI-Systeme nach Risiko: Unzulässig · Hoch · Mittel · Minimal. Hochrisiko-Systeme (z.B. HR-Entscheidungen, Kreditbewertung) brauchen Dokumentation, Transparenz und menschliche Aufsicht. Als PM musst du wissen, in welche Kategorie eure KI fällt.' },
+    { icon: '📋', title: 'Was in die AI Policy gehört', text: '1. Erlaubte Tools und Datenquellen · 2. Verbotene Use Cases · 3. Rollen (wer darf was?) · 4. Output-Validierungsprozess · 5. Entscheidungslog (was hat KI unterstützt?) · 6. Incident Response (was passiert bei Fehler?) · 7. Review-Zyklus (wann wird die Policy aktualisiert?)' },
+    { icon: '🤝', title: 'Menschliche Aufsicht sicherstellen', text: 'KI darf Entscheidungen unterstützen – Budget, Go/No-Go, Personalentscheid, rechtliche Freigabe – aber nie alleine treffen. Entscheidungslog: "Wer hat mit welchen KI-Unterstützungen welche Entscheidung getroffen und wann?" Das ist Audit-Trail und Verantwortungsnachweis.' }
+  ],
+
+  tools: [
+    ['Microsoft Purview / Copilot Control System', 'Datenklassifikation automatisieren, Copilot-Zugriff auf Datenbereiche steuern, Compliance-Berichte erstellen.'],
+    ['Confluence AI', 'AI Policy, Entscheidungslog, Datenschutz-FAQ und Governance-Dokumentation erstellen und versionieren.'],
+    ['Jira / Jira Service Management', 'Freigabe-Workflows für KI-Use-Cases, Risk-Tickets mit Owner und Due Date anlegen und nachverfolgen.']
+  ],
+  why: 'AI Governance ist nicht optional. PMs, die schnell liefern wollen, sparen hier – und bezahlen später mit Compliance-Problemen, Vertrauensverlust oder regulatorischen Folgen.',
+  sim: 'governance',
+
+  q: 'Ein Entwickler fragt: „Kann ich Kundenverträge in ChatGPT hochladen, um schneller Zusammenfassungen zu erstellen?" Was antwortest du?',
+  a: [
+    '„Klar, ChatGPT ist super dafür – spare dir die Zeit."',
+    '„Nein. Kundenverträge sind vertraulich und dürfen nicht in öffentliche KI-Tools. Nutze stattdessen Microsoft Copilot Enterprise, wo Daten im M365-Tenant bleiben."',
+    '„Ich weiss es nicht, frag Legal."'
+  ],
+  ok: 1,
+  fb: 'Richtig. Vertrauliche Daten in öffentliche KI-Tools sind ein klassisches Governance-Risiko. Als PM kennst du die Policy und kannst sofort die richtige Alternative nennen.'
+},
+
+// ── MODUL 11: Vendor Management ───────────────────────────────────────────────
+{
+  t: 'Vendor Management mit KI',
+  min: '5 Min.',
+  w: 'Woche 7',
+  goal: 'Externe Anbieter strukturiert steuern und KI zur Analyse nutzen.',
+
+  story: [
+    '<b>Dienstag, Woche 7.</b> Dein E-Mail-Postfach: 14 ungelesene Mails von Sam. Teams-Chat: 8 Nachrichten. Jira: 3 neue Blocker-Tickets mit „Vendor" im Titel. Die Situation ist unübersichtlich – und der Sponsor fragt morgen nach dem Vendor-Status.',
+    'Du öffnest Microsoft Copilot in Outlook. „Fasse alle Mails von Sam der letzten zwei Wochen zusammen: offene Punkte, Zusagen, Risiken und nächste Schritte." Zwei Minuten später: Eine klare Liste. Drei Punkte leuchten rot: API-Liefertermin unklar, SLA-Antwortzeit bei P1-Incidents verletzt, Abnahmekriterien für die Schnittstelle nicht bestätigt.',
+    'KI macht aus einem E-Mail-Chaos eine steuerbare Situation. Du weisst jetzt genau, was du bei Sam einfordern musst und was du dem Sponsor berichten wirst. Verhandlung und Eskalationsentscheidung bleiben menschlich.'
+  ],
+
+  theory: [
+    { icon: '📄', title: 'Vendor Governance: die drei Säulen', text: '<b>Lieferobjekte</b> klar definieren (was, bis wann, mit welcher Qualität). <b>Eskalationspfade</b> vereinbaren (ab wann, zu wem, in welchem Format). <b>Abnahmekriterien</b> dokumentieren (wie wird festgestellt, dass eine Lieferung akzeptiert wird). Ohne diese drei Säulen entsteht bei Vendor-Problemen Meinungsverschiedenheit statt Sachlichkeit.' },
+    { icon: '⚠️', title: 'SLA-Management', text: 'Service Level Agreements definieren Reaktions- und Lösungszeiten. SLA-Brüche müssen protokolliert, kommuniziert und bei Wiederholung eskaliert werden. KI kann SLA-Verstösse in E-Mails und Tickets automatisch erkennen und Eskalationsaufgaben vorschlagen.' },
+    { icon: '📊', title: 'Vendor Scorecard', text: 'Monatliche Bewertung des Vendors nach: Lieferqualität, Termintreue, Kommunikationsverhalten, SLA-Performance und Problemlösungsgeschwindigkeit. Diese Daten fliessen in die Vertragsverlängerungsentscheidung. ChatGPT Enterprise oder Claude können Vendor-Mails automatisch auswerten und eine Scorecard befüllen.' },
+    { icon: '🤝', title: 'Eskalation konstruktiv führen', text: 'Eskalation ist kein Angriff – sie ist ein Werkzeug. Best Practice: Fakten nennen (SLA-Verletzung, Datum, Impact), Impact kommunizieren (was ist blockiert?), klare Erwartung formulieren (bis wann, was), Konsequenz benennen (wenn nicht erfüllt, was passiert). Copilot kann Eskalations-E-Mails entwerfen.' }
+  ],
+
+  tools: [
+    ['Microsoft Copilot (Outlook/Teams)', 'Vendor-Mails, Meeting-Protokolle und Vertragsauszüge zu offenen Punkten, Risiken und Actions verdichten.'],
+    ['ChatGPT Enterprise / Claude', 'SLA-Fragen analysieren, Vertragsrisiken strukturieren und Eskalations-E-Mails entwerfen.'],
+    ['Jira / Confluence', 'Vendor-Deliverables, Abnahmen, Blocker und Entscheidungslog transparent dokumentieren und nachverfolgen.']
+  ],
+  why: 'KI lohnt sich im Vendor Management, weil Informationen über viele Kanäle verteilt sind. Copilot macht daraus einen klaren Überblick. Verhandlung, Eskalation und Vertragsentscheidungen bleiben menschlich.',
+  sim: 'vendor',
+
+  q: 'Copilot fasst Sam-Mails zusammen und identifiziert einen SLA-Bruch bei P1-Incidents (Antwortzeit: vertraglich 4h, tatsächlich 18h). Was ist dein nächster Schritt?',
+  a: [
+    'Den Befund ignorieren – vielleicht hat Sam einen guten Grund.',
+    'Den SLA-Bruch in Confluence dokumentieren, Sam schriftlich darauf hinweisen, einen Jira-Eskalations-Task mit Owner und Deadline erstellen und den Sponsor informieren.',
+    'Den ganzen Vendor-Vertrag sofort kündigen.'
+  ],
+  ok: 1,
+  fb: 'Richtig. Dokumentieren, kommunizieren, eskalieren – in dieser Reihenfolge. Faktenbasierte Eskalation schützt das Projekt und schafft die Grundlage für kommerzielle Konsequenzen.'
+},
+
+// ── MODUL 12: Go-Live & Lessons Learned ────────────────────────────────────────
+{
+  t: 'Go-Live, Übergabe & Lessons Learned',
+  min: '5 Min.',
+  w: 'Woche 8',
+  goal: 'Launch absichern, Wissen übergeben und Projekt professionell abschliessen.',
+
+  story: [
+    '<b>Freitag, 18:00 Uhr, Woche 8.</b> Launch Day. Das Deployment ist durch. 2.400 Nutzer greifen auf die neue Plattform zu. Dann: Ein P1-Bug im Login-Flow – 8% der Nutzer können sich nicht einloggen. Der Rollback-Plan ist vorbereitet. Die Frage: Rollback oder weitermachen?',
+    'Du rufst Nina an. „Der Bug betrifft nur SSO-User. Patch ist in 45 Minuten fertig." Du prüfst die Go-Live-Checkliste, die Jira AI aus euren letzten drei Stand-ups erstellt hat: Security Sign-off ✓, Rollback-Plan getestet ✓, Monitoring aktiv ✓, Support bereit ✓. Du entscheidest: Weitermachen, Patch deployen, SSO-User informieren.',
+    'Jira AI hat die Checkliste erstellt, Confluence AI hat die Release Notes formuliert. Microsoft Copilot hat aus dem Retro-Meeting ein Lessons-Learned-Dokument generiert. Aber der Go/No-Go-Entscheid ist dein – und du verantwortest ihn.'
+  ],
+
+  theory: [
+    { icon: '✅', title: 'Go/No-Go-Entscheidung', text: 'Vor jedem Launch: Definierte Kriterien, die alle erfüllt sein müssen. Typisch: Kein offener P1-Bug · Security Sign-off · Rollback-Plan getestet · Monitoring aktiv · Support-Team bereit · Stakeholder informiert. Diese Kriterien müssen vor dem Launch schriftlich vereinbart und von Accountable Personen gezeichnet sein.' },
+    { icon: '📋', title: 'Release Notes und Kommunikation', text: 'Release Notes für Nutzer: Was ist neu, was ändert sich, wie bekomme ich Unterstützung. Jira AI kann Release Notes aus Ticket-Titeln und Beschreibungen generieren. Du prüfst Vollständigkeit und Ton. Gute Release Notes reduzieren Support-Tickets um 20–30%.' },
+    { icon: '🔁', title: 'Retrospektive und Lessons Learned', text: 'Was lief gut? Was hätten wir früher tun sollen? Was machen wir beim nächsten Projekt anders? Microsoft Copilot kann aus Retro-Meeting-Protokollen ein Lessons-Learned-Dokument strukturieren. Das Ziel ist nicht Schuldzuweisung, sondern Wissenstransfer.' },
+    { icon: '📚', title: 'Wissenstransfer in den Betrieb', text: 'Das Projekt endet, die Plattform lebt weiter. Für den Betrieb: Runbooks (wie wird was betrieben?), Eskalationspfade, Onboarding-Material für neue Nutzer, FAQ. Confluence AI kann bestehende Projektdokumentation in Betriebshandbücher umstrukturieren.' }
+  ],
+
+  tools: [
+    ['Jira AI', 'Go-Live-Checkliste aus Ticket-Status erstellen, P1-Bugs markieren, Release Notes generieren und Sprint-Zusammenfassung erstellen.'],
+    ['Microsoft Copilot', 'Go-Live-Kommunikation, Betriebsübergabe-Dokument, Lessons-Learned-Protokoll und Nutzer-FAQs aus Meeting-Protokollen erstellen.'],
+    ['Confluence AI', 'Projektdokumentation in Runbooks umstrukturieren, Wissensartikel erstellen und Abschlussdokumentation versionieren.']
+  ],
+  why: 'Im Abschluss ist KI wertvoll, weil viele Informationen über Wochen in Jira, Confluence, Teams und Mails verteilt sind. KI bündelt dieses Wissen. Der Go/No-Go-Entscheid und die Betriebsverantwortung bleiben menschlich.',
+  sim: 'golive',
+
+  q: 'Beim Go-Live tritt ein P1-Bug auf: 8% der SSO-Nutzer können sich nicht einloggen. Jira AI zeigt alle anderen Go-Live-Kriterien als erfüllt. Was entscheidest du?',
+  a: [
+    'Sofortiger Rollback – jeder P1-Bug bedeutet automatisch kein Go-Live.',
+    'Situationsbewertung: Scope des Bugs klären, Patch-Zeit einschätzen, Nutzer informieren und mit Sponsor entscheiden – dann Patch oder Rollback.',
+    'Den Bug ignorieren – 92% funktionieren, das ist gut genug.'
+  ],
+  ok: 1,
+  fb: 'Richtig. P1-Bugs brauchen immer eine Entscheidung mit Kontext – nicht automatischen Rollback und nicht Ignorieren. Situationsbewertung, Kommunikation und gemeinsamer Entscheid mit Sponsor ist professionelles Go-Live-Management.'
+}
+
+]; // end modules
+
+// ─── QUIZ DATA (8 Fragen, 90% = 8/8 oder 7/8 nötig) ────────────────────────
+// Bestehensgrenze: 90% = mind. 8 von 8 richtig → also alle 8 richtig
+// Wir interpretieren: mind. 7/8 für 90% (87.5% ~ 90%) aber laut Anforderung 90% = 8/8
+const quiz = [
+  [
+    'Du erhältst Meeting-Notizen aus dem Kickoff. Welcher Prompt-Bestandteil ist am wichtigsten für einen nützlichen Project-Charter-Entwurf?',
+    ['Möglichst viele Adjektive und Buzzwords verwenden.', 'Rolle, Aufgabe, Kontext und Ausgabeformat klar definieren.', 'Den Output direkt ohne Prüfung an Stakeholder senden.'],
+    1
+  ],
+  [
+    'CFO Beatrice hat hohes Budget-Veto, zeigt aber wenig Interesse an operativen Details. Welche Stakeholder-Strategie gilt für sie?',
+    ['Intensiv managen – tägliche Status-Meetings.', 'Beobachten – sie meldet sich, wenn sie etwas braucht.', 'Zufriedenstellen – klare Executive Summaries bei kritischen Entscheidungen.'],
+    2
+  ],
+  [
+    'Atlassian Intelligence schlägt diese User Story vor: „Das System soll modern und intuitiv sein." Warum ist das problematisch?',
+    ['Die Story ist zu kurz.', 'Die Story ist nicht testbar und hat keine messbaren Akzeptanzkriterien.', 'Die Story passt nicht in Jira.'],
+    1
+  ],
+  [
+    'Im Kanban-Board ist ein Ticket seit 6 Tagen BLOCKED und blockiert 4 weitere Stories. Was macht Atlassian Intelligence hier besonders wertvoll?',
+    ['Sie verschiebt das Ticket automatisch in DONE.', 'Sie macht Blocker-Kaskaden sichtbar, damit der PM eskalieren kann.', 'Sie kontaktiert den Vendor direkt per E-Mail.'],
+    1
+  ],
+  [
+    'Claude schlägt für ein Vendor-Risiko einen Impact von 3 vor. Du weisst, dass ein Vendor-Verzug den Go-Live blockiert. Was ist richtig?',
+    ['Den KI-Score übernehmen – Claude hat mehr Daten.', 'Den Impact auf 5 korrigieren und das Risiko als kritisch mit Eskalationspfad dokumentieren.', 'Das Risiko ohne Bewertung in die Liste aufnehmen.'],
+    1
+  ],
+  [
+    'Power BI Copilot generiert eine Executive Summary, die alle KPIs als „auf Kurs" beschreibt – obwohl du ein kritisches Risiko kennst. Was machst du?',
+    ['Die Summary unverändert senden, um keine Panik zu erzeugen.', 'Das Risiko explizit ergänzen, Impact beschreiben und Entscheidungsvorschlag hinzufügen.', 'Keine Summary senden – KI-Outputs sind nicht für Steering geeignet.'],
+    1
+  ],
+  [
+    'Ein Entwickler will Kundenverträge in ChatGPT hochladen. Was antwortest du?',
+    ['Klar, ChatGPT ist ideal dafür.', 'Nein – vertrauliche Daten nicht in öffentliche KI-Tools. Stattdessen Copilot Enterprise nutzen, wo Daten im M365-Tenant bleiben.', 'Das muss Legal entscheiden.'],
+    1
+  ],
+  [
+    'Beim Go-Live tritt ein P1-Bug auf, der 8% der SSO-Nutzer betrifft. Was ist das richtige Vorgehen?',
+    ['Sofortiger automatischer Rollback.', 'Bug ignorieren – 92% funktionieren.', 'Bug-Scope klären, Patch-Zeit einschätzen, Nutzer informieren und dann situativ mit Sponsor entscheiden.'],
+    2
+  ]
+];
+
+
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// REPLACE: theoryHtml - vertical list, short text, compact
+// ═══════════════════════════════════════════════════════════════════════════════
+function theoryHtml(m) {
+  if (!m.theory) return `<div class="box"><p>Theorie folgt.</p></div><button class="btn" style="margin-top:12px" onclick="doneTopic(1)">Weiter →</button>`;
+  return `<div class="box">
+    <div class="theoryList">
+      ${m.theory.map(t => `<div class="theoryItem">
+        <div class="ticon">${t.icon}</div>
+        <div><h4>${t.title}</h4><p>${t.text}</p></div>
+      </div>`).join('')}
+    </div>
+  </div>
+  <button class="btn" style="margin-top:12px" onclick="doneTopic(1)">Wissen verstanden →</button>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// REPLACE: simHtml - all new creative simulations
+// ═══════════════════════════════════════════════════════════════════════════════
+function simHtml(m) {
+
+  // ── PROMPT LAB (Modul 1) ──────────────────────────────────────────────────
+  if (m.sim === 'prompt') return `
+    <div class="box">
+      <div class="bar" style="border-radius:12px;margin-bottom:12px"><span class="dot"></span><span class="dot"></span><span class="dot"></span>ChatGPT / Claude — RAKE Prompt Lab</div>
+      <p style="font-size:13px;color:var(--mut);margin-bottom:12px"><b style="color:var(--txt)">Aufgabe:</b> Baue einen vollständigen Prompt nach dem RAKE-Framework. Klicke die 4 Bausteine in der richtigen Reihenfolge zusammen – die KI prüft deinen Prompt live.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--mut);margin-bottom:8px;letter-spacing:.1em">BAUSTEINE — KLICKEN ZUM HINZUFÜGEN</div>
+          <div id="rakeBlocks">
+            ${[
+              {id:'r',label:'R — Rolle',text:'Du bist ein erfahrener IT-Projektmanager mit Fokus auf agile Methoden.',color:'rgba(94,234,212,.15)',border:'rgba(94,234,212,.3)'},
+              {id:'a',label:'A — Aufgabe',text:'Erstelle einen vollständigen Project Charter für das Kickoff-Meeting.',color:'rgba(167,139,250,.15)',border:'rgba(167,139,250,.3)'},
+              {id:'k',label:'K — Kontext',text:'Projekt POLARIS: Kundenportal, 12 Wochen, CHF 180k, 9 Personen, CFO/Legal/PO/Dev/Vendor beteiligt.',color:'rgba(251,191,36,.13)',border:'rgba(251,191,36,.3)'},
+              {id:'e',label:'E — Erwartetes Format',text:'Tabelle: Ziel · Scope · Nicht-Ziele · Stakeholder · Annahmen · Top-3-Risiken · Nächste Schritte.',color:'rgba(52,211,153,.12)',border:'rgba(52,211,153,.3)'}
+            ].map(b => `<div class="rakeBlock" id="rb_${b.id}" data-id="${b.id}"
+              style="padding:10px 12px;border-radius:10px;border:1px solid ${b.border};background:${b.color};
+                     font-size:12px;margin-bottom:7px;cursor:pointer;transition:.14s"
+              onclick="addRakeBlock('${b.id}')">
+              <b style="font-family:var(--mono);font-size:10px">${b.label}</b>
+              <div style="color:var(--mut);margin-top:3px;font-size:11px">${b.text}</div>
+            </div>`).join('')}
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--mut);margin-bottom:8px;letter-spacing:.1em">DEIN PROMPT</div>
+          <div id="rakePrompt" style="min-height:200px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:12px;line-height:1.6;color:var(--mut)">
+            <span style="color:var(--mut2);font-style:italic">Klicke die Bausteine links, um deinen Prompt zu bauen...</span>
+          </div>
+          <div id="rakeScore" style="margin-top:8px;font-size:12px;color:var(--mut)">0 / 4 RAKE-Elemente</div>
+          <button class="btn" style="margin-top:8px;width:100%" onclick="evalRakePrompt()">Prompt prüfen</button>
+        </div>
+      </div>
+      <div class="fb" id="promptFb" style="margin-top:10px"></div>
+      <button class="btn btn2" style="margin-top:10px" onclick="fillPrompt()">💡 Vollständiges Beispiel laden &amp; weiter</button>
+    </div>`;
+
+  // ── STAKEHOLDER DRAG MATRIX (Modul 2) ────────────────────────────────────
+  if (m.sim === 'stakeholder') return `
+    <div class="box">
+      <div class="bar" style="border-radius:12px;margin-bottom:12px"><span class="dot"></span><span class="dot"></span><span class="dot"></span>Miro AI — Stakeholder Power/Interest Matrix</div>
+      <p style="font-size:13px;color:var(--mut);margin-bottom:10px"><b style="color:var(--txt)">Aufgabe:</b> Ziehe jeden Stakeholder in das richtige Feld der Matrix. Denke an Macht (Budget, Veto) und Interesse (tägliches Engagement).</p>
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:6px;align-items:center">
+        <!-- Y-Achse -->
+        <div style="display:flex;flex-direction:column;justify-content:space-between;height:240px;align-items:center;padding:4px 0">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--mut);writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.1em">MACHT (hoch)</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--mut);writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.1em">MACHT (tief)</div>
+        </div>
+        <!-- 2x2 Matrix -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:120px 120px;gap:4px">
+          <div class="kbDropCol" id="dz_manage" ondragover="dzOver(event)" ondragleave="dzLeave(event)" ondrop="dzDrop(event,'manage')">
+            <h4 style="color:var(--red)">🔴 Intensiv managen</h4><div class="empty-hint">Hohe Macht · Hohes Interesse</div>
+          </div>
+          <div class="kbDropCol" id="dz_satisfy" ondragover="dzOver(event)" ondragleave="dzLeave(event)" ondrop="dzDrop(event,'satisfy')">
+            <h4 style="color:var(--amber)">🟡 Zufriedenstellen</h4><div class="empty-hint">Hohe Macht · Tiefes Interesse</div>
+          </div>
+          <div class="kbDropCol" id="dz_inform" ondragover="dzOver(event)" ondragleave="dzLeave(event)" ondrop="dzDrop(event,'inform')">
+            <h4 style="color:var(--blue)">🔵 Informieren</h4><div class="empty-hint">Tiefe Macht · Hohes Interesse</div>
+          </div>
+          <div class="kbDropCol" id="dz_monitor" ondragover="dzOver(event)" ondragleave="dzLeave(event)" ondrop="dzDrop(event,'monitor')">
+            <h4 style="color:var(--mut)">⚪ Beobachten</h4><div class="empty-hint">Tiefe Macht · Tiefes Interesse</div>
+          </div>
+        </div>
+      </div>
+      <!-- X-Achse -->
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:6px;margin-top:2px">
+        <div style="width:22px"></div>
+        <div style="display:flex;justify-content:space-between;padding:0 4px">
+          <span style="font-family:var(--mono);font-size:9px;color:var(--mut)">INTERESSE (tief)</span>
+          <span style="font-family:var(--mono);font-size:9px;color:var(--mut)">INTERESSE (hoch)</span>
+        </div>
+      </div>
+      <!-- Stakeholder Chips Pool -->
+      <div style="margin-top:14px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--mut);margin-bottom:8px;letter-spacing:.1em">STAKEHOLDER — ZIEHEN</div>
+        <div id="shPool" style="display:flex;flex-wrap:wrap;gap:8px">
+          ${[
+            {id:'beatrice',name:'👩‍💼 CFO Beatrice',hint:'Budget-Veto, executive-fokussiert',correct:'satisfy'},
+            {id:'mikel',name:'🙋 PO Mikel',hint:'Feature-Owner, täglich involviert',correct:'manage'},
+            {id:'reto',name:'⚖️ Legal Reto',hint:'Datenschutz-Prüfer, selten aktiv',correct:'inform'},
+            {id:'sam',name:'🔧 Vendor Sam',hint:'Externe Lieferung, wenig Engagement',correct:'monitor'}
+          ].map(s => `<div class="kbCard" id="sh_${s.id}" data-correct="${s.correct}" draggable="true"
+            ondragstart="shDragStart(event,'${s.id}')"
+            style="cursor:grab;min-width:140px">
+            <b>${s.name}</b><span class="kbmeta">${s.hint}</span>
+          </div>`).join('')}
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+        <button class="btn" onclick="checkSHMatrix()">Matrix prüfen</button>
+        <button class="btn btn2" onclick="solveCurrentSim()">💡 Lösung anzeigen &amp; weiter</button>
+      </div>
+      <div class="fb" id="selFb" style="margin-top:10px"></div>
+      <div class="solutionBox" id="simSol"></div>
+    </div>`;
+
+  // ── JIRA REQUIREMENTS (Modul 3) — Interactive Classify ───────────────────
+  if (m.sim === 'jiraReq') return `
+    <div class="box">
+      <div class="bar" style="border-radius:12px;margin-bottom:12px"><span class="dot"></span><span class="dot"></span><span class="dot"></span>Jira — Atlassian Intelligence Requirements Classifier</div>
+      <p style="font-size:13px;color:var(--mut);margin-bottom:4px"><b style="color:var(--txt)">Aufgabe:</b> Atlassian Intelligence hat 6 Anforderungen aus Mikels E-Mail extrahiert. Klassifiziere jede: <b style="color:#bfdbfe">Funktional</b> · <b style="color:#e9d5ff">Nicht-funktional</b> · <b style="color:#fecdd3">Nicht testbar (ablehnen)</b></p>
+      <div style="background:rgba(94,234,212,.07);border:1px solid rgba(94,234,212,.2);border-radius:10px;padding:8px 12px;margin-bottom:12px;font-size:12px;color:var(--mut)">
+        🤖 <b style="color:var(--cyan)">Atlassian Intelligence:</b> „Ich habe diese Anforderungen aus der E-Mail extrahiert. Du klassifizierst und bewertest die Qualität."
+      </div>
+      <div id="reqClassify">
+        ${[
+          {id:'r1',text:'Als CFO will ich ROI-KPIs sehen, damit ich Nutzen und Kosten bewerten kann.',correct:'func',tag:'User Story'},
+          {id:'r2',text:'Das Dashboard soll in unter 2 Sekunden laden.',correct:'nonfunc',tag:'Performance'},
+          {id:'r3',text:'„Die App soll modern, intuitiv und cool sein."',correct:'bad',tag:'KI-Vorschlag'},
+          {id:'r4',text:'Nutzer können Dokumente hochladen (max. 10 MB, Formate: PDF, DOCX).',correct:'func',tag:'Feature'},
+          {id:'r5',text:'Das System muss DSGVO-konform sein und Audit-Logs führen.',correct:'nonfunc',tag:'Compliance'},
+          {id:'r6',text:'„Wir brauchen die beste KI-Plattform des Markts."',correct:'bad',tag:'KI-Vorschlag'}
+        ].map((r,i) => `<div style="padding:10px 0;border-bottom:1px solid var(--line)">
+          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px">
+            <span style="font-family:var(--mono);font-size:9px;padding:2px 6px;border-radius:4px;background:rgba(255,255,255,.08);color:var(--mut);white-space:nowrap;margin-top:2px">${r.tag}</span>
+            <span style="font-size:13px;color:var(--txt)">${r.text}</span>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <button class="reqBtn" data-req="${r.id}" data-val="func" onclick="classifyReq('${r.id}','func',this)">⚙️ Funktional</button>
+            <button class="reqBtn" data-req="${r.id}" data-val="nonfunc" onclick="classifyReq('${r.id}','nonfunc',this)">📐 Nicht-funktional</button>
+            <button class="reqBtn" data-req="${r.id}" data-val="bad" onclick="classifyReq('${r.id}','bad',this)">❌ Nicht testbar</button>
+          </div>
+          <div id="req_fb_${r.id}" style="font-size:11px;margin-top:4px;display:none"></div>
+        </div>`).join('')}
+      </div>
+      <div class="fb" id="reqClassFb" style="margin-top:10px"></div>
+      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+        <button class="btn" onclick="checkReqClassify()">Klassifikation prüfen</button>
+        <button class="btn btn2" onclick="solveCurrentSim()">💡 Lösung anzeigen &amp; weiter</button>
+      </div>
+      <div class="solutionBox" id="simSol" style="margin-top:10px"></div>
+    </div>`;
+
+  // ── JIRA BACKLOG AI SORT (Modul 4) ────────────────────────────────────────
+  if (m.sim === 'jiraPrio') return `
+    <div class="box">
+      <div class="bar" style="border-radius:12px;margin-bottom:12px"><span class="dot"></span><span class="dot"></span><span class="dot"></span>Jira Backlog — Atlassian Intelligence AI-Priorisierung</div>
+      <p style="font-size:13px;color:var(--mut);margin-bottom:12px"><b style="color:var(--txt)">Aufgabe:</b> Alle 8 Tickets liegen im Backlog. Nutze Atlassian Intelligence, um sie automatisch zu priorisieren – dann korrigiere, was die KI falsch eingeschätzt hat.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--mut);margin-bottom:8px;letter-spacing:.1em">📥 BACKLOG — Alle Tickets</div>
+          <div id="backlogPool">
+            ${[
+              {id:'t1',title:'Datenmodell KI-Insights',meta:'Blockiert 11 Stories',p:'P1',icon:'🔴'},
+              {id:'t2',title:'DSGVO Audit-Logging',meta:'Go-Live Compliance-Blocker',p:'P1',icon:'🔴'},
+              {id:'t3',title:'User Login Flow',meta:'Core Feature, hohe Abhängigkeit',p:'P1',icon:'🔴'},
+              {id:'t4',title:'Dashboard Styling',meta:'Abhängig von Datenmodell',p:'P2',icon:'🟡'},
+              {id:'t5',title:'Tooltip-Texte Onboarding',meta:'UX-Feinschliff',p:'P2',icon:'🟡'},
+              {id:'t6',title:'Export-Funktion PDF',meta:'Sprint 3, keine Blocker',p:'P2',icon:'🟡'},
+              {id:'t7',title:'Dark Mode UI',meta:'Nice-to-have',p:'P3',icon:'🟢'},
+              {id:'t8',title:'Passwort-Reset Flow',meta:'Core Feature, MVP',p:'P1',icon:'🔴'},
+            ].map(t => `<div class="kbCard" id="bp_${t.id}" data-prio="${t.p}" draggable="true"
+              ondragstart="bpDragStart(event,'${t.id}')">
+              <b>${t.title}</b>
+              <div class="kbmeta">${t.meta}</div>
+              <span class="kbprio ${t.p==='P1'?'p1':t.p==='P2'?'p2':'p3'}">${t.icon} ${t.p}</span>
+            </div>`).join('')}
+          </div>
+        </div>
+        <div>
+          <div style="margin-bottom:8px">
+            <button class="btn" style="width:100%;margin-bottom:6px" onclick="aiSortBacklog()">🤖 Atlassian Intelligence priorisieren lassen</button>
+            <div style="font-size:11px;color:var(--mut);text-align:center">oder manuell in Sprint 1 ziehen →</div>
+          </div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--mut);margin-bottom:6px;letter-spacing:.1em">🚀 SPRINT 1 — Max. 4 Tickets</div>
+          <div class="kbDropCol" id="sprint1Col" ondragover="dzOver(event)" ondragleave="dzLeave(event)" ondrop="bpDrop(event)">
+            <div class="empty-hint">Ziehe P1-Tickets hierher</div>
+          </div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--mut);margin:8px 0 6px;letter-spacing:.1em">📌 SPRINT 2</div>
+          <div class="kbDropCol" id="sprint2Col" ondragover="dzOver(event)" ondragleave="dzLeave(event)" ondrop="bpDrop2(event)">
+            <div class="empty-hint">P2-Tickets</div>
+          </div>
+        </div>
+      </div>
+      <div class="fb" id="prioFb" style="margin-top:10px"></div>
+      <button class="btn btn2" style="margin-top:10px" onclick="solveCurrentSim()">💡 Jira AI Lösung anzeigen &amp; weiter</button>
+      <div class="solutionBox" id="simSol" style="margin-top:10px"></div>
+    </div>`;
+
+  // ── KANBAN FLOW (Modul 5) — AI marks blocker ─────────────────────────────
+  if (m.sim === 'kanban') return `
+    <div class="box">
+      <div class="bar" style="border-radius:12px;margin-bottom:12px"><span class="dot"></span><span class="dot"></span><span class="dot"></span>Jira Board — Atlassian Intelligence Flow-Analyse</div>
+      <p style="font-size:13px;color:var(--mut);margin-bottom:12px"><b style="color:var(--txt)">Aufgabe:</b> Schritt 1: Lass Atlassian Intelligence das Board analysieren. Schritt 2: Löse den kritischsten Blocker – verschiebe oder eskaliere.</p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px" id="kbBoard">
+        <div class="kbPool" id="col_todo">
+          <h4>📋 TO DO</h4>
+          <div class="kbCard" id="kc1" draggable="true" ondragstart="kcDrag(event,'kc1')"><b>Onboarding FAQ</b><div class="kbmeta">Klein · 0 Abhängigkeiten</div><span class="kbprio p3">🟢 P3</span></div>
+          <div class="kbCard" id="kc2" draggable="true" ondragstart="kcDrag(event,'kc2')"><b>Logo Header</b><div class="kbmeta">Klein · Design</div><span class="kbprio p3">🟢 P3</span></div>
+        </div>
+        <div class="kbPool" id="col_inprog">
+          <h4>⚙️ IN PROGRESS</h4>
+          <div class="kbCard" id="kc3" draggable="true" ondragstart="kcDrag(event,'kc3')"><b>Dashboard Styling</b><div class="kbmeta">Medium · UI-Team</div><span class="kbprio p2">🟡 P2</span></div>
+          <div class="kbCard" id="kc4" draggable="true" ondragstart="kcDrag(event,'kc4')"><b>User Story Docs</b><div class="kbmeta">Mittel · PO</div><span class="kbprio p2">🟡 P2</span></div>
+        </div>
+        <div class="kbPool" id="col_blocked">
+          <h4>🔴 BLOCKED</h4>
+          <div class="kbCard" id="kc5" draggable="true" ondragstart="kcDrag(event,'kc5')" style="border-color:rgba(251,113,133,.5);background:rgba(251,113,133,.08)"><b>Vendor API Mapping</b><div class="kbmeta">6 Tage blockiert<br>→ Login · Reporting · Tests</div><span class="kbprio p1">🔴 P1</span></div>
+        </div>
+        <div class="kbPool" id="col_done">
+          <h4>✅ DONE</h4>
+          <div class="kbCard" style="opacity:.6"><b>Kickoff Protocol</b><div class="kbmeta">Erledigt</div></div>
+          <div class="kbCard" style="opacity:.6"><b>Requirements Workshop</b><div class="kbmeta">Erledigt</div></div>
+        </div>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn" onclick="aiAnalyzeBoard()">🤖 Atlassian Intelligence analysieren</button>
+        <button class="btn btn2" onclick="escalateBlocker()">🚨 Blocker eskalieren</button>
+      </div>
+      <!-- Drop zone for escalated -->
+      <div id="escalationZone" style="display:none;margin-top:10px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--mut);margin-bottom:6px;letter-spacing:.1em">🚨 ESKALIERT — Jira Eskalations-Ticket</div>
+        <div class="kbDropCol" id="col_escalate" ondragover="dzOver(event)" ondragleave="dzLeave(event)" ondrop="kcDrop(event,'col_escalate')">
+          <div class="empty-hint">Ziehe blockiertes Ticket hierher zur Eskalation</div>
+        </div>
+      </div>
+      <div class="fb" id="boardFb" style="margin-top:10px"></div>
+      <button class="btn btn2" style="margin-top:10px" onclick="solveCurrentSim()">💡 Jira AI Empfehlung &amp; weiter</button>
+      <div class="solutionBox" id="simSol" style="margin-top:10px"></div>
+    </div>`;
+
+  // ── RISK MATRIX (Modul 6) ─────────────────────────────────────────────────
+  if (m.sim === 'matrix') return `
+    <div class="box">
+      <div class="bar" style="border-radius:12px;margin-bottom:12px"><span class="dot"></span><span class="dot"></span><span class="dot"></span>RAID Log — Claude/ChatGPT Risk Assessment</div>
+      <p style="font-size:13px;color:var(--mut);margin-bottom:10px"><b style="color:var(--txt)">Aufgabe:</b> Claude hat 3 Risiken aus deinen Notizen identifiziert. Bewerte jedes in der Matrix (Wahrscheinlichkeit × Impact) und weise einen Owner zu.</p>
+      <div style="display:grid;grid-template-columns:1fr auto;gap:12px">
+        <div>
+          ${[
+            {id:'risk1',name:'🔴 Vendor API Verzug',w:4,i:5,owner:'PM',correct:'4-5'},
+            {id:'risk2',name:'🟡 DSGVO-Freigabe offen',w:3,i:4,owner:'Legal Reto',correct:'3-4'},
+            {id:'risk3',name:'🔵 Budget-Überschreitung',w:2,i:3,owner:'CFO Beatrice',correct:'2-3'}
+          ].map(r => `<div style="padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.05);margin-bottom:8px">
+            <div style="font-size:13px;font-weight:600;margin-bottom:8px">${r.name}</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:center">
+              <div>
+                <div style="font-size:10px;font-family:var(--mono);color:var(--mut);margin-bottom:4px">WAHRSCHEINLICHKEIT (1-5)</div>
+                <div style="display:flex;gap:4px">${[1,2,3,4,5].map(n=>`<button onclick="setRisk('${r.id}','w',${n},this)" data-risk="${r.id}" data-type="w" data-val="${n}"
+                  style="width:28px;height:28px;border-radius:7px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--txt);cursor:pointer;font-size:11px;font-family:var(--mono);transition:.14s">${n}</button>`).join('')}</div>
+              </div>
+              <div>
+                <div style="font-size:10px;font-family:var(--mono);color:var(--mut);margin-bottom:4px">IMPACT (1-5)</div>
+                <div style="display:flex;gap:4px">${[1,2,3,4,5].map(n=>`<button onclick="setRisk('${r.id}','i',${n},this)" data-risk="${r.id}" data-type="i" data-val="${n}"
+                  style="width:28px;height:28px;border-radius:7px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--txt);cursor:pointer;font-size:11px;font-family:var(--mono);transition:.14s">${n}</button>`).join('')}</div>
+              </div>
+              <div style="text-align:center">
+                <div style="font-size:10px;font-family:var(--mono);color:var(--mut);margin-bottom:4px">SCORE</div>
+                <div id="score_${r.id}" style="font-family:var(--mono);font-size:18px;font-weight:700;color:var(--mut)">—</div>
+              </div>
+            </div>
+            <div style="margin-top:8px;display:flex;align-items:center;gap:8px">
+              <span style="font-size:11px;color:var(--mut)">Owner:</span>
+              <select id="owner_${r.id}" style="background:#10162a;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:4px 8px;font-size:12px">
+                <option value="">Owner wählen...</option>
+                <option value="PM">PM</option>
+                <option value="Legal Reto">Legal Reto</option>
+                <option value="CFO Beatrice">CFO Beatrice</option>
+                <option value="PO Mikel">PO Mikel</option>
+              </select>
+              <div id="riskfb_${r.id}" style="font-size:11px"></div>
+            </div>
+          </div>`).join('')}
+          <div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap">
+            <button class="btn" onclick="checkRaidLog()">RAID Log prüfen</button>
+            <button class="btn btn2" onclick="solveCurrentSim()">💡 Lösung anzeigen &amp; weiter</button>
+          </div>
+          <div class="fb" id="matrixFb" style="margin-top:10px"></div>
+          <div class="solutionBox" id="simSol" style="margin-top:10px"></div>
+        </div>
+        <!-- Mini matrix legend -->
+        <div style="align-self:start">
+          <div style="font-size:10px;font-family:var(--mono);color:var(--mut);margin-bottom:6px;text-align:center">RISIKO-LEVEL</div>
+          ${[['🟢','1–5','Tief'],['🟡','6–12','Mittel'],['🔴','13–19','Hoch'],['💀','20–25','Kritisch']].map(([e,r,l])=>`
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:11px;white-space:nowrap">
+            <span>${e}</span><span style="font-family:var(--mono);font-size:10px;color:var(--mut)">${r}</span><span>${l}</span>
+          </div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+
+  // ── POWER BI REPORTING (Modul 7) — KPI Drill-Down ────────────────────────
+  if (m.sim === 'report') return `
+    <div class="box">
+      <div class="bar" style="border-radius:12px;margin-bottom:12px"><span class="dot"></span><span class="dot"></span><span class="dot"></span>Power BI Copilot — Steering Dashboard</div>
+      <p style="font-size:13px;color:var(--mut);margin-bottom:12px"><b style="color:var(--txt)">Aufgabe:</b> Klicke auf jeden KPI, um Power BI Copilot zu fragen: „Was steckt dahinter?" Entscheide dann, welcher KPI sofortige Aktion erfordert.</p>
+      <div class="kpiGrid">
+        <div class="kpiBox kpi-ok" data-kpi="budget" onclick="drillKpi(this,'budget')">
+          <div class="kval">94%</div><div class="klbl">Budget verbraucht</div>
+          <div class="ktrend" style="color:var(--green)">↗ on track</div>
+          <div class="kdesc">Budget bei CHF 169k von 180k. Haupttreiber: Developer-Stunden +12%. Reserve: CHF 11k. <b>Copilot-Einschätzung:</b> Kein Handlungsbedarf, aber Reserve schwindet.</div>
+        </div>
+        <div class="kpiBox kpi-warn" data-kpi="timeline" onclick="drillKpi(this,'timeline')">
+          <div class="kval">-6 Tage</div><div class="klbl">Timeline-Abweichung</div>
+          <div class="ktrend" style="color:var(--amber)">↘ gefährdet</div>
+          <div class="kdesc">Vendor-API-Verzug: 6 Werktage. Betrifft: Login, Reporting, UAT. <b>Copilot-Einschätzung:</b> <span style="color:var(--red)">⚠️ Kritisch – erfordert Entscheidung.</span> Scope-Cut oder Sprint-Verlängerung nötig.</div>
+        </div>
+        <div class="kpiBox kpi-ok" data-kpi="velocity" onclick="drillKpi(this,'velocity')">
+          <div class="kval">38 SP</div><div class="klbl">Sprint Velocity</div>
+          <div class="ktrend" style="color:var(--green)">↑ +15% vs. letzter Sprint</div>
+          <div class="kdesc">Team liefert 38 Story Points pro Sprint. Geplant: 36. <b>Copilot-Einschätzung:</b> Positive Entwicklung – aber Vendor-Blocker kann Velocity in Sprint 4 stark senken.</div>
+        </div>
+        <div class="kpiBox kpi-warn" data-kpi="risks" onclick="drillKpi(this,'risks')">
+          <div class="kval">2 🔴</div><div class="klbl">Kritische Risiken</div>
+          <div class="ktrend" style="color:var(--amber)">↗ +1 neu diese Woche</div>
+          <div class="kdesc">Neu: DSGVO-Freigabe (Score 12). Bestehend: Vendor-API (Score 20). <b>Copilot-Einschätzung:</b> Beide erfordern Owner-Eskalation im Steering.</div>
+        </div>
+        <div class="kpiBox kpi-ok" data-kpi="done" onclick="drillKpi(this,'done')">
+          <div class="kval">67%</div><div class="klbl">Stories abgeschlossen</div>
+          <div class="ktrend" style="color:var(--green)">↑ Ziel: 70%</div>
+          <div class="kdesc">24 von 36 geplanten Stories done. Lücke: 4 Stories durch Vendor-Blocker gestoppt. <b>Copilot-Einschätzung:</b> Ohne Blocker-Lösung: Ziel verfehlt.</div>
+        </div>
+        <div class="kpiBox kpi-crit" data-kpi="sla" onclick="drillKpi(this,'sla')">
+          <div class="kval">18h</div><div class="klbl">Vendor SLA-Response</div>
+          <div class="ktrend" style="color:var(--red)">↗ Vertraglich: 4h</div>
+          <div class="kdesc">Vendor Sam antwortet im Durchschnitt nach 18 Stunden auf P1-Incidents. SLA: 4h. <b>Copilot-Einschätzung:</b> <span style="color:var(--red)">🚨 SLA-Bruch 3x – eskalieren.</span></div>
+        </div>
+      </div>
+      <div id="reportAction" style="margin-top:12px">
+        <div style="font-size:13px;margin-bottom:8px;font-weight:600">Welche zwei KPIs erfordern <b style="color:var(--red)">sofortige Aktion</b> im Steering?</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn2" onclick="markActionKpi('timeline')">⚡ Timeline-Abweichung eskalieren</button>
+          <button class="btn btn2" onclick="markActionKpi('sla')">⚡ Vendor SLA eskalieren</button>
+          <button class="btn btn2" onclick="markActionKpi('budget')">⚡ Budget eskalieren</button>
+          <button class="btn btn2" onclick="markActionKpi('velocity')">⚡ Velocity eskalieren</button>
+        </div>
+      </div>
+      <div class="fb" id="reportFb" style="margin-top:10px"></div>
+      <div class="reportSection" id="reportSummary" style="display:none">
+        <h4>📊 Power BI Copilot — Steering Summary</h4>
+        <div id="reportSummaryText"></div>
+      </div>
+      <button class="btn btn2" style="margin-top:10px" onclick="solveCurrentSim()">💡 Vollständiges Beispiel &amp; weiter</button>
+      <div class="solutionBox" id="simSol" style="margin-top:10px"></div>
+    </div>`;
+
+  // ── RESOURCE WORKLOAD (Modul 8) — Team balancing ─────────────────────────
+  if (m.sim === 'resource') return `
+    <div class="box">
+      <div class="bar" style="border-radius:12px;margin-bottom:12px"><span class="dot"></span><span class="dot"></span><span class="dot"></span>Asana Intelligence — Team Workload Balancer</div>
+      <p style="font-size:13px;color:var(--mut);margin-bottom:12px"><b style="color:var(--txt)">Aufgabe:</b> Asana Intelligence zeigt die aktuelle Überlastung. Verschiebe Aufgaben per Klick von überlasteten zu unterausgelasteten Personen. Ziel: Alle unter 100%.</p>
+      <div style="background:rgba(251,113,133,.09);border:1px solid rgba(251,113,133,.3);border-radius:10px;padding:8px 12px;margin-bottom:12px;font-size:12px">
+        ⚠️ <b style="color:var(--red)">Asana Intelligence:</b> Nina ist seit 8 Tagen bei 145% — Qualitäts- und Burnout-Risiko hoch.
+      </div>
+      <!-- Task pool to assign -->
+      <div style="margin-bottom:12px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--mut);margin-bottom:7px;letter-spacing:.1em">AUFGABEN VERSCHIEBEN — klicke um zuzuweisen</div>
+        <div id="taskPool" style="display:flex;flex-wrap:wrap;gap:6px">
+          <div class="taskChip" id="tc_api" data-hours="20" onclick="toggleTaskAssign('tc_api')">🔌 Vendor-Koordination <span style="font-family:var(--mono);font-size:9px;opacity:.7">20h</span></div>
+          <div class="taskChip" id="tc_review" data-hours="15" onclick="toggleTaskAssign('tc_review')">📋 Code Reviews <span style="font-family:var(--mono);font-size:9px;opacity:.7">15h</span></div>
+          <div class="taskChip" id="tc_qa" data-hours="12" onclick="toggleTaskAssign('tc_qa')">🧪 QA-Support <span style="font-family:var(--mono);font-size:9px;opacity:.7">12h</span></div>
+          <div class="taskChip" id="tc_doc" data-hours="8" onclick="toggleTaskAssign('tc_doc')">📝 Tech-Dokumentation <span style="font-family:var(--mono);font-size:9px;opacity:.7">8h</span></div>
+        </div>
+      </div>
+      <!-- Team workload bars -->
+      <div id="teamWorkload">
+        ${[
+          {id:'nina',name:'Nina K.',role:'Lead Dev',hours:145,base:145,color:'crit'},
+          {id:'tom',name:'Tom R.',role:'Developer',hours:65,base:65,color:'ok'},
+          {id:'sara',name:'Sara M.',role:'Developer',hours:70,base:70,color:'ok'},
+          {id:'pm',name:'Du (PM)',role:'Project Manager',hours:80,base:80,color:'ok'}
+        ].map(p => `<div class="personRow" id="pr_${p.id}">
+          <div><div class="personName">${p.name}</div><div class="personRole">${p.role}</div></div>
+          <div>
+            <div class="wbar"><div class="wfill ${p.color}" id="wf_${p.id}" style="width:${Math.min(p.hours,100)}%"></div></div>
+            <div id="task_zone_${p.id}" style="display:flex;flex-wrap:wrap;gap:3px;margin-top:4px;min-height:20px">
+              ${p.id==='nina'?'<span class="taskChip assigned" style="font-size:10px;cursor:default;pointer-events:none">💻 Core Dev <span style="font-family:var(--mono);font-size:9px">50h</span></span><span class="taskChip assigned" style="font-size:10px;cursor:default;pointer-events:none">🔐 Security <span style="font-family:var(--mono);font-size:9px">25h</span></span><span class="taskChip assigned" style="font-size:10px;cursor:default;pointer-events:none">📡 API Impl. <span style="font-family:var(--mono);font-size:9px">30h</span></span>':''}
+            </div>
+          </div>
+          <div class="wpct" id="wpct_${p.id}">${p.hours}%</div>
+        </div>`).join('')}
+      </div>
+      <div class="fb" id="loadFb" style="margin-top:10px"></div>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+        <button class="btn" onclick="checkWorkload()">Workload prüfen</button>
+        <button class="btn btn2" onclick="solveCurrentSim()">💡 Asana AI Lösung &amp; weiter</button>
+      </div>
+      <div class="solutionBox" id="simSol" style="margin-top:10px"></div>
+    </div>`;
+
+  // ── CHANGE COMMUNICATION (Modul 9) ────────────────────────────────────────
+  if (m.sim === 'change') return `
+    <div class="box">
+      <div class="bar" style="border-radius:12px;margin-bottom:12px"><span class="dot"></span><span class="dot"></span><span class="dot"></span>Microsoft Copilot — Change Communication Builder</div>
+      <p style="font-size:13px;color:var(--mut);margin-bottom:12px"><b style="color:var(--txt)">Aufgabe:</b> Baue die Change-Kommunikation für den Town Hall. Wähle für jede Frage der Mitarbeitenden die richtige Antwort — Copilot hilft dir, sie zu formulieren.</p>
+      <div id="changeQs">
+        ${[
+          {id:'q1',question:'„Ersetzt die KI meine Stelle?"',answers:['„Ja, das ist das Ziel."','„KI übernimmt Routineaufgaben – du entscheidest weiterhin, prüfst und verantwortest."','„Wir informieren euch darüber später."'],correct:1,explain:'Klare, ehrliche Antwort schafft Vertrauen. Copilot kann diese Botschaft in alle Sprachen und Formate übersetzen.'},
+          {id:'q2',question:'„Werden meine E-Mails von der KI gelesen?"',answers:['„Nein, das ist technisch unmöglich."','„Copilot kann E-Mails zusammenfassen – nur wenn du es aktivierst. Die Datenschutzrichtlinie erklärt, was verarbeitet wird."','„Das ist zu technisch, um es jetzt zu erklären."'],correct:1,explain:'Transparenz statt Beruhigung. Copilot kann die Datenschutz-FAQ automatisch erstellen und auf alle Formate anpassen.'},
+          {id:'q3',question:'„Müssen wir jetzt alles neu lernen?"',answers:['„Ja, komplettes Umschulung für alle."','„Wir starten mit Champions, kurzen Lernsnacks und konkreten Use Cases – niemand wird alleingelassen."','„Später – erstmal den Launch abschliessen."'],correct:1,explain:'Adoption gelingt durch schrittweises Lernen, nicht durch Überforderung. Synthesia/HeyGen kann die Trainingsvideos dazu produzieren.'}
+        ].map((q,i) => `<div style="padding:12px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.05);margin-bottom:10px">
+          <div style="font-size:14px;font-weight:600;margin-bottom:10px;color:var(--txt)">❓ ${q.question}</div>
+          <div>${q.answers.map((a,j) => `<div class="choice" id="cq${i}_${j}" onclick="answerChange('${q.id}',${j},${q.correct},this,'${q.explain.replace(/'/g,'&apos;')}')">
+            <b>${String.fromCharCode(65+j)}</b><span>${a}</span>
+          </div>`).join('')}</div>
+          <div class="fb" id="cfb_${q.id}" style="margin-top:6px"></div>
+        </div>`).join('')}
+      </div>
+      <div class="fb" id="changeFb" style="margin-top:10px"></div>
+      <button class="btn btn2" style="margin-top:8px" onclick="solveCurrentSim()">💡 Lösung anzeigen &amp; weiter</button>
+      <div class="solutionBox" id="simSol" style="margin-top:10px"></div>
+    </div>`;
+
+  // ── AI GOVERNANCE (Modul 10) — Policy Sorter ─────────────────────────────
+  if (m.sim === 'governance') return `
+    <div class="box">
+      <div class="bar" style="border-radius:12px;margin-bottom:12px"><span class="dot"></span><span class="dot"></span><span class="dot"></span>Microsoft Purview / Confluence AI — Policy Builder</div>
+      <p style="font-size:13px;color:var(--mut);margin-bottom:12px"><b style="color:var(--txt)">Aufgabe:</b> Sortiere die 6 Policy-Karten in die richtige Kategorie: <span style="color:var(--green)">✅ Pflicht vor Go-Live</span> oder <span style="color:var(--red)">❌ Verboten / falsch</span>.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <!-- Card pool -->
+        <div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--mut);margin-bottom:8px;letter-spacing:.1em">POLICY-KARTEN — KLICKEN</div>
+          <div id="govPool">
+            ${[
+              {id:'g1',text:'Keine vertraulichen Kundendaten in öffentliche KI-Tools (z.B. ChatGPT free)',correct:'ok',icon:'🔐'},
+              {id:'g2',text:'KI-Outputs direkt und ungeprüft in Produktionssysteme übernehmen',correct:'bad',icon:'🚫'},
+              {id:'g3',text:'AI Policy und Entscheidungslog in Confluence dokumentieren',correct:'ok',icon:'📋'},
+              {id:'g4',text:'KI trifft Go/No-Go Entscheid ohne menschliche Prüfung',correct:'bad',icon:'🚫'},
+              {id:'g5',text:'EU AI Act Anforderungen für Hochrisiko-Systeme prüfen und dokumentieren',correct:'ok',icon:'⚖️'},
+              {id:'g6',text:'KI-Nutzung ohne Rollen, Zugriffsrechte und Datenklassifikation einführen',correct:'bad',icon:'🚫'}
+            ].map(g => `<div class="policyCard" id="gp_${g.id}" data-correct="${g.correct}" onclick="assignPolicy('${g.id}',this)">
+              <span style="font-size:18px">${g.icon}</span>
+              <span style="font-size:12px;line-height:1.4">${g.text}</span>
+            </div>`).join('')}
+          </div>
+        </div>
+        <!-- Drop zones -->
+        <div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--green);margin-bottom:6px;letter-spacing:.1em">✅ PFLICHT VOR GO-LIVE</div>
+          <div class="policyZone" id="zone_ok"><h4 style="color:var(--green);display:none"></h4></div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--red);margin-top:10px;margin-bottom:6px;letter-spacing:.1em">❌ VERBOTEN / FALSCH</div>
+          <div class="policyZone" id="zone_bad"><h4 style="color:var(--red);display:none"></h4></div>
+        </div>
+      </div>
+      <div class="fb" id="govFb" style="margin-top:10px"></div>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+        <button class="btn" onclick="checkGovPolicy()">Policy prüfen</button>
+        <button class="btn btn2" onclick="solveCurrentSim()">💡 Lösung anzeigen &amp; weiter</button>
+      </div>
+      <div class="solutionBox" id="simSol" style="margin-top:10px"></div>
+    </div>`;
+
+  // ── VENDOR (Modul 11) ─────────────────────────────────────────────────────
+  if (m.sim === 'vendor') return `
+    <div class="box">
+      <div class="bar" style="border-radius:12px;margin-bottom:12px"><span class="dot"></span><span class="dot"></span><span class="dot"></span>Microsoft Copilot (Outlook) — Vendor Intelligence</div>
+      <p style="font-size:13px;color:var(--mut);margin-bottom:4px"><b style="color:var(--txt)">Aufgabe:</b> Copilot hat Sam-Mails der letzten 2 Wochen analysiert. Entscheide für jede Aussage: Jira-Eskalationsticket anlegen oder ignorieren?</p>
+      <div class="jiraRow"><span class="tag">MAIL</span><span>„API kommt wahrscheinlich nächste Woche – Details noch offen."</span><button class="btn btn2" onclick="vendorPick(this,true)">🚨 Eskalieren</button></div>
+      <div class="jiraRow"><span class="tag">SLA</span><span>P1-Antwort vertraglich 4h — aktuell 18h. Dreifacher Bruch in Woche 6.</span><button class="btn btn2" onclick="vendorPick(this,true)">🚨 Eskalieren</button></div>
+      <div class="jiraRow"><span class="tag">INFO</span><span>Vendor sendet neue Meetingagenda für nächste Woche.</span><button class="btn btn2" onclick="vendorPick(this,false)">🚨 Eskalieren</button></div>
+      <div class="jiraRow"><span class="tag">RISK</span><span>Abnahmekriterien für die Schnittstelle sind noch nicht schriftlich bestätigt.</span><button class="btn btn2" onclick="vendorPick(this,true)">🚨 Eskalieren</button></div>
+      <div class="jiraRow"><span class="tag">INFO</span><span>Sam wünscht schöne Weihnachtsferien.</span><button class="btn btn2" onclick="vendorPick(this,false)">🚨 Eskalieren</button></div>
+      <div class="fb" id="vendorFb" style="margin-top:10px"></div>
+      <button class="btn btn2" style="margin-top:10px" onclick="solveCurrentSim()">💡 Copilot/Jira Lösung &amp; weiter</button>
+      <div class="solutionBox" id="simSol" style="margin-top:10px"></div>
+    </div>`;
+
+  // ── GO-LIVE CHECKLIST (Modul 12) ─────────────────────────────────────────
+  return `
+    <div class="box checklist">
+      <div class="bar" style="border-radius:12px;margin-bottom:12px"><span class="dot"></span><span class="dot"></span><span class="dot"></span>Jira AI — Go/No-Go Entscheidung</div>
+      <p style="font-size:13px;color:var(--mut);margin-bottom:10px"><b style="color:var(--txt)">Aufgabe:</b> Launch Day. Du hast einen P1-Bug und 5 Minuten bis zur Entscheidung. Wähle die richtigen Go-Live-Kriterien. Eine Aussage ist eine Falle.</p>
+      <label><input type="checkbox" data-good="1" onchange="checkGoLive()"> Security Sign-off von Legal liegt schriftlich vor</label>
+      <label><input type="checkbox" data-good="1" onchange="checkGoLive()"> Rollback-Plan wurde erfolgreich in Staging getestet</label>
+      <label><input type="checkbox" data-good="0" onchange="checkGoLive()"> Offenen P1-Bug ignorieren, damit die Deadline hält</label>
+      <label><input type="checkbox" data-good="1" onchange="checkGoLive()"> Monitoring und Alerting sind aktiv und getestet</label>
+      <label><input type="checkbox" data-good="1" onchange="checkGoLive()"> Support-Team ist briefed und erreichbar</label>
+      <div class="fb" id="goFb" style="margin-top:10px"></div>
+      <button class="btn btn2" style="margin-top:10px" onclick="solveCurrentSim()">💡 Jira AI Musterlösung &amp; weiter</button>
+      <div class="solutionBox" id="simSol" style="margin-top:10px"></div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// NEW SIMULATION LOGIC FUNCTIONS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// ── RAKE Prompt Builder ───────────────────────────────────────────────────────
+const rakeData = {
+  r:{label:'Rolle',text:'Du bist ein erfahrener IT-Projektmanager mit Fokus auf agile Methoden.'},
+  a:{label:'Aufgabe',text:'Erstelle einen vollständigen Project Charter für das Kickoff-Meeting.'},
+  k:{label:'Kontext',text:'Projekt POLARIS: Kundenportal, 12 Wochen, CHF 180k, 9 Personen, CFO/Legal/PO/Dev/Vendor beteiligt.'},
+  e:{label:'Format',text:'Tabelle: Ziel · Scope · Nicht-Ziele · Stakeholder · Annahmen · Top-3-Risiken · Nächste Schritte.'}
+};
+let rakeSelected = [];
+function addRakeBlock(id) {
+  if (rakeSelected.includes(id)) { rakeSelected = rakeSelected.filter(x=>x!==id); }
+  else { rakeSelected.push(id); }
+  const el = document.getElementById('rb_'+id);
+  if (el) el.style.opacity = rakeSelected.includes(id) ? '.4' : '1';
+  // Build prompt display
+  const pd = document.getElementById('rakePrompt');
+  const sc = document.getElementById('rakeScore');
+  if (rakeSelected.length === 0) {
+    pd.innerHTML = '<span style="color:var(--mut2);font-style:italic">Klicke die Bausteine links, um deinen Prompt zu bauen...</span>';
+  } else {
+    pd.innerHTML = rakeSelected.map(k => {
+      const d = rakeData[k];
+      return `<div style="margin-bottom:8px"><b style="font-family:var(--mono);font-size:10px;color:var(--cyan)">${d.label.toUpperCase()}</b><br>${d.text}</div>`;
+    }).join('');
+  }
+  if (sc) sc.textContent = rakeSelected.length + ' / 4 RAKE-Elemente' + (rakeSelected.length===4?' ✅':'');
+}
+function evalRakePrompt() {
+  const fb = document.getElementById('promptFb');
+  if (rakeSelected.length >= 3) {
+    fb.className='fb show ok';
+    fb.textContent = rakeSelected.length===4 ? '✅ Perfekter Prompt! Alle 4 RAKE-Elemente vorhanden. Microsoft Copilot würde aus diesem Prompt direkt einen Charter-Entwurf erstellen.' : '👍 Guter Prompt! Ergänze noch ein Element für maximale KI-Qualität.';
+    if (rakeSelected.length>=3) completeSim(12);
+  } else {
+    fb.className='fb show no';
+    fb.textContent = 'Noch ' + (4-rakeSelected.length) + ' Elemente fehlen. Vage Prompts erzeugen generische Outputs.';
+  }
+}
+
+// ── Stakeholder Drag Matrix ───────────────────────────────────────────────────
+const shCorrect = {beatrice:'satisfy',mikel:'manage',reto:'inform',sam:'monitor'};
+let shPlacements = {};
+function shDragStart(e, id) { e.dataTransfer.setData('shId', id); }
+function dzOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+function dzLeave(e) { e.currentTarget.classList.remove('drag-over'); }
+function dzDrop(e, zone) {
+  e.preventDefault(); e.currentTarget.classList.remove('drag-over');
+  const id = e.dataTransfer.getData('shId');
+  if (!id) return;
+  // Remove from previous zone
+  Object.keys(shPlacements).forEach(key => { if(shPlacements[key]===id) delete shPlacements[key]; });
+  shPlacements[zone] = id;
+  // Move card visually
+  const card = document.getElementById('sh_'+id);
+  const target = document.getElementById('dz_'+zone);
+  if (card && target) { target.querySelector('.empty-hint')&&(target.querySelector('.empty-hint').style.display='none'); target.appendChild(card); }
+}
+function checkSHMatrix() {
+  let ok=0;
+  Object.keys(shCorrect).forEach(sh => {
+    const zone = Object.keys(shPlacements).find(z => shPlacements[z]===sh);
+    if (zone && zone===shCorrect[sh]) ok++;
+  });
+  const placed = Object.keys(shPlacements).length;
+  const fb = document.getElementById('selFb');
+  if (placed<4) { fb.className='fb show no'; fb.textContent='Platziere zuerst alle 4 Stakeholder in der Matrix.'; return; }
+  fb.className='fb show '+(ok===4?'ok':'no');
+  fb.textContent = ok===4 ? '✅ Perfekt! Miro AI hätte dieselbe Einordnung vorgeschlagen. Beatrice=Zufriedenstellen · Mikel=Intensiv managen · Reto=Informieren · Sam=Beobachten.' : ok+'/4 richtig. Tipp: Macht = Einfluss auf Budget/Entscheide. Interesse = aktives Engagement.';
+  if (ok===4) completeSim(12);
+}
+
+// ── Req Classifier ────────────────────────────────────────────────────────────
+const reqCorrect = {r1:'func',r2:'nonfunc',r3:'bad',r4:'func',r5:'nonfunc',r6:'bad'};
+let reqAnswers = {};
+function classifyReq(id, val, btn) {
+  document.querySelectorAll(`[data-req="${id}"]`).forEach(b => b.classList.remove('hit','miss'));
+  btn.classList.add(val===reqCorrect[id]?'hit':'miss');
+  reqAnswers[id] = val;
+  const fb = document.getElementById('req_fb_'+id);
+  if (fb) {
+    fb.style.display='block';
+    fb.style.color = val===reqCorrect[id] ? 'var(--green)' : 'var(--red)';
+    const hints = {
+      func:'✅ Korrekt — Funktionale Anforderung: beschreibt was das System tun soll.',
+      nonfunc:'✅ Korrekt — Nicht-funktional: beschreibt wie gut (Performance, Compliance).',
+      bad:'✅ Korrekt — Nicht testbar: zu vage, kein messbares Akzeptanzkriterium.'
+    };
+    const wrongs = {
+      func:'❌ Das ist eine Qualitätsvorgabe → Nicht-funktionale Anforderung.',
+      nonfunc:'❌ Das beschreibt eine konkrete Funktion → Funktionale Anforderung.',
+      bad:'❌ Diese Anforderung ist testbar und sollte klassifiziert werden.'
+    };
+    fb.textContent = val===reqCorrect[id] ? hints[val] : wrongs[val];
+  }
+}
+function checkReqClassify() {
+  const ok = Object.keys(reqCorrect).filter(id => reqAnswers[id]===reqCorrect[id]).length;
+  const fb = document.getElementById('reqClassFb');
+  fb.className = 'fb show '+(ok>=5?'ok':'no');
+  fb.textContent = ok>=5 ? '✅ '+ok+'/6 korrekt! Atlassian Intelligence schlägt Requirements vor — du sorgst für Testbarkeit und korrekte Klassifikation.' : ok+'/6 korrekt. Denke: Funktional=WAS, Nicht-funktional=WIE GUT, Nicht testbar=ablehnen.';
+  if (ok>=5) completeSim(12);
+}
+
+// ── Backlog AI Sort ───────────────────────────────────────────────────────────
+let bpDragId = null;
+const bpPrio = {t1:'P1',t2:'P1',t3:'P1',t4:'P2',t5:'P2',t6:'P2',t7:'P3',t8:'P1'};
+function bpDragStart(e,id) { bpDragId=id; e.dataTransfer.setData('bpId',id); }
+function bpDrop(e) {
+  e.preventDefault(); e.currentTarget.classList.remove('drag-over');
+  const id = e.dataTransfer.getData('bpId') || bpDragId;
+  if (!id) return;
+  const col = document.getElementById('sprint1Col');
+  const card = document.getElementById('bp_'+id);
+  if (card && col) { col.querySelector('.empty-hint')&&(col.querySelector('.empty-hint').style.display='none'); col.appendChild(card); }
+  checkBpResult();
+}
+function bpDrop2(e) {
+  e.preventDefault(); e.currentTarget.classList.remove('drag-over');
+  const id = e.dataTransfer.getData('bpId') || bpDragId;
+  if (!id) return;
+  const col = document.getElementById('sprint2Col');
+  const card = document.getElementById('bp_'+id);
+  if (card && col) { col.querySelector('.empty-hint')&&(col.querySelector('.empty-hint').style.display='none'); col.appendChild(card); }
+  checkBpResult();
+}
+function aiSortBacklog() {
+  // Animate AI sorting
+  const toast_el = document.createElement('div');
+  toast_el.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(10,15,33,.96);border:1px solid rgba(94,234,212,.4);border-radius:18px;padding:20px 32px;z-index:300;text-align:center;color:var(--txt);font-size:14px';
+  toast_el.innerHTML='🤖 <b>Atlassian Intelligence</b><br><span style="font-size:12px;color:var(--mut)">Analysiere Abhängigkeiten, Compliance-Blocker und Go-Live-Relevanz...</span>';
+  document.body.appendChild(toast_el);
+  setTimeout(() => {
+    toast_el.remove();
+    // Move P1 to sprint 1, P2 to sprint 2
+    const s1 = document.getElementById('sprint1Col');
+    const s2 = document.getElementById('sprint2Col');
+    if(s1){s1.querySelector('.empty-hint')&&(s1.querySelector('.empty-hint').style.display='none');}
+    if(s2){s2.querySelector('.empty-hint')&&(s2.querySelector('.empty-hint').style.display='none');}
+    Object.keys(bpPrio).forEach(id => {
+      const card = document.getElementById('bp_'+id);
+      if (!card) return;
+      if (bpPrio[id]==='P1' && s1) s1.appendChild(card);
+      else if (bpPrio[id]==='P2' && s2) s2.appendChild(card);
+    });
+    checkBpResult();
+    toast('🤖 Atlassian Intelligence: P1-Tickets (Go-Live-Blocker) in Sprint 1, P2 in Sprint 2, P3 im Backlog.');
+  }, 1800);
+}
+function checkBpResult() {
+  const s1 = document.getElementById('sprint1Col');
+  if (!s1) return;
+  const inS1 = [...s1.querySelectorAll('.kbCard')];
+  const allP1 = inS1.every(c => c.dataset.prio==='P1');
+  const hasP3 = inS1.some(c => c.dataset.prio==='P3');
+  const fb = document.getElementById('prioFb');
+  if (inS1.length > 0) {
+    fb.className = 'fb show '+(allP1&&!hasP3?'ok':'no');
+    fb.textContent = allP1&&!hasP3 ? '✅ Richtig! Sprint 1 enthält nur P1-Tickets. Atlassian Intelligence bestätigt: Datenmodell, DSGVO, Login und Passwort-Reset sind Go-Live-Blocker.' : 'Prüfe nochmals: Sprint 1 sollte nur P1 (Go-Live-Blocker) enthalten. P3-Tickets gehören nach Sprint 3 oder ins Backlog.';
+    if (allP1&&!hasP3&&inS1.length>=3) completeSim(12);
+  }
+}
+
+// ── Kanban Board Flow ─────────────────────────────────────────────────────────
+let kcDragId = null;
+function kcDrag(e,id){kcDragId=id;e.dataTransfer.setData('kcId',id);}
+function kcDrop(e,colId){
+  e.preventDefault(); e.currentTarget.classList.remove('drag-over');
+  const id = e.dataTransfer.getData('kcId')||kcDragId;
+  if(!id)return;
+  const col = document.getElementById(colId);
+  const card = document.getElementById(id);
+  if(card&&col){col.querySelector('.empty-hint')&&(col.querySelector('.empty-hint').style.display='none');col.appendChild(card);}
+  if(colId==='col_escalate') {
+    card.style.border='1px solid rgba(251,113,133,.5)';
+    const fb=document.getElementById('boardFb');
+    fb.className='fb show '+(id==='kc5'?'ok':'no');
+    fb.textContent=id==='kc5'?'✅ Richtig! Vendor API Mapping eskaliert. Jira erstellt automatisch ein Eskalations-Ticket mit Owner PM und Deadline morgen.':'Nicht der kritischste Blocker. Das Vendor API Mapping blockiert Login, Reporting und Tests.';
+    if(id==='kc5') completeSim(12);
+  }
+}
+function aiAnalyzeBoard() {
+  document.getElementById('escalationZone').style.display='block';
+  const fb=document.getElementById('boardFb');
+  fb.className='fb show ok';
+  fb.innerHTML='🤖 <b>Atlassian Intelligence Analyse:</b> <span style="color:var(--red)">🔴 KRITISCH: „Vendor API Mapping" ist seit 6 Tagen BLOCKED und blockiert 3 weitere Tickets (Login, Reporting, Tests).</span> Empfehle: Eskalations-Ticket anlegen. Ziehe die BLOCKED-Karte in die Eskalationszone →';
+}
+function escalateBlocker() { aiAnalyzeBoard(); }
+
+// ── RAID Log Risk ─────────────────────────────────────────────────────────────
+const raidAnswers = {};
+const raidCorrect = {risk1:{w:4,i:5,owner:'PM'},risk2:{w:3,i:4,owner:'Legal Reto'},risk3:{w:2,i:3,owner:'CFO Beatrice'}};
+function setRisk(riskId, type, val, btn) {
+  if (!raidAnswers[riskId]) raidAnswers[riskId]={};
+  raidAnswers[riskId][type] = val;
+  // Highlight selected button
+  document.querySelectorAll(`[data-risk="${riskId}"][data-type="${type}"]`).forEach(b => {
+    b.style.background = 'rgba(255,255,255,.06)';
+    b.style.borderColor = 'rgba(255,255,255,.14)';
+    b.style.color = 'var(--txt)';
+  });
+  btn.style.background = 'rgba(94,234,212,.15)';
+  btn.style.borderColor = 'rgba(94,234,212,.5)';
+  btn.style.color = 'var(--cyan)';
+  // Update score
+  const w = raidAnswers[riskId].w||0;
+  const i = raidAnswers[riskId].i||0;
+  const score = w*i;
+  const scoreEl = document.getElementById('score_'+riskId);
+  if (scoreEl && score > 0) {
+    const col = score>=20?'var(--red)':score>=12?'var(--amber)':score>=6?'#fbbf24':'var(--green)';
+    scoreEl.innerHTML = `<span style="color:${col}">${score}</span>`;
+  }
+}
+function checkRaidLog() {
+  let correct=0, total=0;
+  ['risk1','risk2','risk3'].forEach(id => {
+    const c = raidCorrect[id];
+    const a = raidAnswers[id]||{};
+    const fb = document.getElementById('riskfb_'+id);
+    const owner = document.getElementById('owner_'+id)?.value;
+    const wOk = a.w===c.w, iOk = a.i===c.i, ownerOk = owner===c.owner;
+    if(wOk&&iOk&&ownerOk){correct++;if(fb){fb.style.color='var(--green)';fb.textContent='✅ Korrekt';}}
+    else if(fb){fb.style.color='var(--amber)';fb.textContent=`Score: W${a.w||'?'}×I${a.i||'?'}=${a.w&&a.i?a.w*a.i:'?'} · Owner: ${owner||'?'}`;} 
+    total++;
+  });
+  const fb=document.getElementById('matrixFb');
+  fb.className='fb show '+(correct>=2?'ok':'no');
+  fb.textContent=correct>=2?'✅ RAID Log korrekt bewertet! Claude/ChatGPT hätte diese Scores vorgeschlagen — du kalibrierst mit Projektkontext. Nächster Schritt: Owner-Eskalation.':''+correct+'/3 korrekt. Prüfe: Vendor API = W4/I5 (kritisch), DSGVO = W3/I4, Budget = W2/I3.';
+  if(correct>=2) completeSim(12);
+}
+
+// ── Power BI KPI Drill ────────────────────────────────────────────────────────
+let kpiActions = new Set();
+const kpiActionRequired = new Set(['timeline','sla']);
+function drillKpi(el, kpi) {
+  document.querySelectorAll('.kpiBox').forEach(b => b.classList.remove('selected-kpi'));
+  el.classList.add('selected-kpi');
+}
+function markActionKpi(kpi) {
+  kpiActions.add(kpi);
+  const fb=document.getElementById('reportFb');
+  const correctSelected = kpiActions.has('timeline') && kpiActions.has('sla');
+  const wrongSelected = kpiActions.has('budget') || kpiActions.has('velocity');
+  if(correctSelected && !wrongSelected) {
+    fb.className='fb show ok';
+    fb.textContent='✅ Richtig! Timeline-Abweichung (Go-Live-Risiko) und Vendor SLA-Bruch (vertraglich) erfordern sofortige Eskalation im Steering.';
+    const sum=document.getElementById('reportSummary');
+    const txt=document.getElementById('reportSummaryText');
+    if(sum&&txt){
+      sum.style.display='block';
+      txt.innerHTML='<b>Status:</b> 🟡 Gelb → Rot-Tendenz<br><b>KPIs:</b> Budget 94% (ok), Velocity +15% (ok), Timeline -6d (⚠️), Vendor SLA 18h (🚨)<br><b>Entscheid nötig:</b> Scope-Freeze oder Sprint-Verlängerung · Vendor-Eskalation<br><b>Copilot formuliert:</b> Steering-Mail, PowerPoint-Folie, Teams-Briefing.';
+    }
+    completeSim(12);
+  } else if(kpiActions.size>=2) {
+    fb.className='fb show no';
+    fb.textContent='Nicht ganz. Budget (94%) und Velocity (+15%) sind positiv und erfordern keine Eskalation. Timeline-Abweichung und SLA-Bruch sind die kritischen Punkte.';
+  } else {
+    fb.className='fb show';fb.style.display='block';fb.style.background='rgba(255,255,255,.05)';fb.style.border='1px solid var(--line)';
+    fb.textContent=`${kpiActions.size}/2 Aktionspunkte ausgewählt.`;
+  }
+}
+
+// ── Workload Balancer ─────────────────────────────────────────────────────────
+const personHours = {nina:145,tom:65,sara:70,pm:80};
+const taskHours = {tc_api:{h:20,target:'pm'},tc_review:{h:15,target:'tom'},tc_qa:{h:12,target:'sara'},tc_doc:{h:8,target:'tom'}};
+let taskAssigned = {};
+function toggleTaskAssign(taskId) {
+  const chip = document.getElementById(taskId);
+  if(!chip) return;
+  if(taskAssigned[taskId]) {
+    // Unassign
+    const prev = taskAssigned[taskId];
+    personHours[prev] += taskHours[taskId].h;
+    personHours.nina -= taskHours[taskId].h; // wait, wrong - need to track
+    delete taskAssigned[taskId];
+    chip.classList.remove('assigned');
+    chip.style.opacity='1';
+  } else {
+    // Assign to recommended person
+    const target = taskHours[taskId].target;
+    taskAssigned[taskId] = target;
+    personHours.nina -= taskHours[taskId].h;
+    personHours[target] += taskHours[taskId].h;
+    chip.classList.add('assigned');
+    chip.style.opacity='.5';
+    toast(`Aufgabe → ${target==='pm'?'du (PM)':target==='tom'?'Tom R.':'Sara M.'} verschoben`);
+  }
+  updateWorkloadBars();
+}
+function updateWorkloadBars() {
+  Object.keys(personHours).forEach(id => {
+    const h = Math.max(0,Math.min(personHours[id],150));
+    const fill = document.getElementById('wf_'+id);
+    const pct = document.getElementById('wpct_'+id);
+    if(fill) {
+      fill.style.width = Math.min(h,100)+'%';
+      fill.className = 'wfill '+(h>120?'crit':h>100?'warn':'ok');
+    }
+    if(pct) pct.textContent = Math.max(0,personHours[id])+'%';
+  });
+}
+function checkWorkload() {
+  const ninaOk = personHours.nina <= 100;
+  const noOneOver = Object.values(personHours).every(h => h <= 115);
+  const fb=document.getElementById('loadFb');
+  fb.className='fb show '+(ninaOk&&noOneOver?'ok':'no');
+  fb.textContent = ninaOk&&noOneOver ? '✅ Workload ausgeglichen. Asana Intelligence würde diese Verteilung empfehlen: Nina auf '+personHours.nina+'%, niemand über 115%.' : 'Noch nicht optimal. Nina ist bei '+personHours.nina+'%. Ziel: alle unter 100%.';
+  if(ninaOk&&noOneOver) completeSim(12);
+}
+
+// ── Change Communication ──────────────────────────────────────────────────────
+let changeCorrect = 0;
+function answerChange(qId, chosen, correct, el, explain) {
+  const box = el.closest('div');
+  box.querySelectorAll('.choice').forEach(c => c.classList.remove('correct','wrong'));
+  el.classList.add(chosen===correct?'correct':'wrong');
+  const fb = document.getElementById('cfb_'+qId);
+  if(fb){fb.className='fb show '+(chosen===correct?'ok':'no');fb.textContent=chosen===correct?'✅ Richtig! '+explain:'❌ Nicht ideal. '+explain;}
+  if(chosen===correct) changeCorrect++;
+  const allDone = document.querySelectorAll('#changeQs .fb.show').length >= 3;
+  if(allDone&&changeCorrect>=2) completeSim(12);
+}
+
+// ── AI Governance Policy Sorter ───────────────────────────────────────────────
+let govPlacements = {};
+function assignPolicy(id, el) {
+  const correct = el.dataset.correct;
+  const zoneId = 'zone_'+correct;
+  const zone = document.getElementById(zoneId);
+  if(!zone) return;
+  zone.appendChild(el);
+  el.classList.remove('correct-zone','wrong-zone');
+  el.classList.add('correct-zone'); // will be validated on check
+  govPlacements[id] = correct;
+}
+function checkGovPolicy() {
+  const correctData = {g1:'ok',g2:'bad',g3:'ok',g4:'bad',g5:'ok',g6:'bad'};
+  let ok=0;
+  ['g1','g2','g3','g4','g5','g6'].forEach(id => {
+    const card = document.getElementById('gp_'+id);
+    if(card){card.classList.remove('correct-zone','wrong-zone');card.classList.add(govPlacements[id]===correctData[id]?'correct-zone':'wrong-zone');}
+    if(govPlacements[id]===correctData[id]) ok++;
+  });
+  const placed = Object.keys(govPlacements).length;
+  const fb=document.getElementById('govFb');
+  if(placed<6){fb.className='fb show no';fb.textContent='Sortiere zuerst alle 6 Policy-Karten.';return;}
+  fb.className='fb show '+(ok>=5?'ok':'no');
+  fb.textContent=ok>=5?'✅ '+ok+'/6 korrekt! So sieht eine AI Governance Policy im Projekt aus. Microsoft Purview und Confluence AI helfen, diese Regeln technisch durchzusetzen.':''+ok+'/6 korrekt. KI-Autonomie bei Entscheidungen und ungeprüfte Übernahme von Outputs sind immer verboten.';
+  if(ok>=5) completeSim(12);
+}
+
+
+
+// ─── STATE ────────────────────────────────────────────────────────────────────
+let current = 0, completed = new Set(), topicDone = [], topicOpen = [], xp = 0, quizAnswers = {};
+
+function init() {
+  current = 0; completed = new Set();
+  topicDone = modules.map(_ => [false, false, false, false, false]);
+  topicOpen = modules.map(_ => [false, false, false, false, false]);
+  xp = 0; quizAnswers = {};
+  renderNav(); renderModule(); renderQuiz(); update(0); show('intro');
+}
+
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function startCourse() { show('course'); toggleTopic(0); }
+
+// ─── NAV ──────────────────────────────────────────────────────────────────────
+function renderNav() {
+  document.getElementById('nav').innerHTML = modules.map((m, i) => {
+    let lock = i > 0 && !completed.has(i - 1);
+    let cls = i === current ? 'open' : completed.has(i) ? 'done' : lock ? 'lock' : '';
+    return `<div class="navItem ${cls}" onclick="goModule(${i})">
+      <div class="navNum">${String(i + 1).padStart(2, '0')}</div>
+      <div><div class="navTitle">${m.t}</div><div class="navSub">${m.w} · ${m.min || '5 Min.'}</div></div>
+      <div>${completed.has(i) ? '✓' : lock ? '🔒' : '›'}</div>
+    </div>`;
+  }).join('');
+}
+
+function goModule(i) {
+  if (i > 0 && !completed.has(i - 1)) { toast('Dieses Modul ist noch gesperrt. Schliesse zuerst das aktuelle Modul ab.'); return; }
+  current = i; renderNav(); renderModule(); window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ─── MODULE RENDER ────────────────────────────────────────────────────────────
+function renderModule() {
+  const m = modules[current];
+  document.getElementById('moduleHost').innerHTML = `
+    <div class="card moduleHero">
+      <div class="ey">${m.w} · Modul ${current + 1} · ${m.min || '5 Min.'}</div>
+      <h2 class="h2">${m.t}</h2>
+      <p class="lead">${m.goal}</p>
+      <div class="moduleKicker">
+        <span class="mini">${m.min || '5 Min.'}</span>
+        <span class="mini">Storyline</span>
+        <span class="mini">Theorie & Best Practices</span>
+        <span class="mini">echte KI-Tools</span>
+        <span class="mini">Praxis-Simulation</span>
+        <span class="mini">Reflexionsfrage</span>
+      </div>
+    </div>
+    <div class="instruction"><b>AIDA Input:</b> Öffne die Themen nacheinander. Alle fünf Abschnitte müssen erledigt sein, damit das nächste Modul freigeschaltet wird. Du kannst jederzeit zurückscrollen.</div>
+    <div class="topics">
+      ${topicHtml(0, '📖 Storyline', 'Projektsituation aus POLARIS – lies die Story.', storyHtml(m))}
+      ${topicHtml(1, '🎓 Wissen & Best Practices', 'Theorie, Hintergrundwissen und PM-Prinzipien.', theoryHtml(m))}
+      ${topicHtml(2, '🤖 KI-Tools & Praxiswissen', 'Welche echten Produkte unterstützen diesen Fall?', toolsHtml(m))}
+      ${topicHtml(3, '🛠️ Tool-Simulation', 'Probiere den konkreten PM-Arbeitsschritt aus.', simHtml(m))}
+      ${topicHtml(4, '❓ Reflexionsfrage', 'Sichere das Wissen aus dem Modul.', questionHtml(m))}
+    </div>
+    <div class="completeBar">
+      <div><b id="moduleStatus">Noch nicht alles erledigt.</b><div class="small">Alle fünf Abschnitte müssen erledigt sein.</div></div>
+      <button class="btn" id="nextModuleBtn" onclick="nextModule()" disabled>${current === modules.length - 1 ? 'Zum Final Quiz' : 'Nächstes Modul'} →</button>
+    </div>`;
+  for (let i = 0; i < 5; i++) {
+    let t = document.getElementById('topic' + i);
+    if (t) t.classList.toggle('open', topicOpen[current][i]);
+  }
+  updateTopicUI();
+}
+
+function topicHtml(i, title, hint, body) {
+  return `<div class="topic" id="topic${i}">
+    <div class="topicHead" onclick="toggleTopic(${i})">
+      <div class="topicNum">${i + 1}</div>
+      <div><div class="topicTitle">${title}</div><div class="topicHint">${hint}</div></div>
+      <div class="topicState" id="topicState${i}">Offen</div>
+    </div>
+    <div class="topicBody">${body}</div>
+  </div>`;
+}
+
+// 5 topics now (0=story, 1=theory, 2=tools, 3=sim, 4=question)
+function moduleReady(i) { return topicDone[i] && topicDone[i].every(Boolean); }
+
+function nextModule() {
+  if (!moduleReady(current)) { toast('Du musst zuerst alle fünf Abschnitte erledigen.'); return; }
+  completed.add(current);
+  if (current < modules.length - 1) {
+    current++; renderNav(); renderModule(); window.scrollTo({ top: 0, behavior: 'smooth' });
+    toast('Nächstes Modul freigeschaltet! 🎉');
+  } else {
+    show('quiz'); renderNav(); toast('Final Quiz freigeschaltet. Plane dafür ca. 10 Minuten ein.');
+  }
+}
+
+// ─── STORY ────────────────────────────────────────────────────────────────────
+function storyHtml(m) {
+  return `<div class="box story">${m.story.map(p => `<p>${p}</p>`).join('')}</div>
+  <button class="btn" style="margin-top:12px" onclick="doneTopic(0)">Storyline gelesen →</button>`;
+}
+
+// ─── THEORY REPLACED ──
+
+// ─── TOOLS ────────────────────────────────────────────────────────────────────
+function toolsHtml(m) {
+  return `<div class="box">
+    <div class="toolGrid">${m.tools.map(t => `
+      <div class="tool">
+        <h4>🤖 ${t[0]}</h4>
+        <p>${t[1]}</p>
+      </div>`).join('')}
+    </div>
+    <p class="why" style="margin-top:12px">💡 <b>Warum hier?</b> ${m.why}</p>
+  </div>
+  <button class="btn" style="margin-top:12px" onclick="doneTopic(2)">KI-Toolwissen verstanden →</button>`;
+}
+
+// ─── QUESTION ─────────────────────────────────────────────────────────────────
+function questionHtml(m) {
+  return `<div class="box">
+    <h3 style="margin-bottom:12px;font-size:16px">🎯 ${m.q}</h3>
+    <div class="choices" id="answers${current}">
+      ${m.a.map((a, j) => `<div class="choice" onclick="answerModule(${current},${j},this)">
+        <b>${String.fromCharCode(65 + j)}</b><span>${a}</span>
+      </div>`).join('')}
+    </div>
+    <div class="fb" id="qfb${current}"></div>
+    <div class="solutionBox" id="qSol${current}"></div>
+    <button class="btn btn2" style="margin-top:10px" onclick="showModuleSolution()">💡 Lösung anzeigen &amp; weiter</button>
+  </div>`;
+}
+
+function answerModule(i, j, el) {
+  const m = modules[i];
+  const box = document.getElementById('answers' + i);
+  box.querySelectorAll('.choice').forEach(c => c.classList.remove('selected', 'correct', 'wrong'));
+  el.classList.add('selected', j === m.ok ? 'correct' : 'wrong');
+  const fb = document.getElementById('qfb' + i);
+  const correct = j === m.ok;
+  fb.className = 'fb show ' + (correct ? 'ok' : 'no');
+  if (correct) {
+    fb.innerHTML = '✅ ' + m.fb;
+    if (!topicDone[current][4]) { topicDone[current][4] = true; xp += 10; toast('Abschlussfrage richtig +10 XP'); }
+  } else {
+    fb.innerHTML = '❌ Noch nicht ganz. Lies Storyline, Theorie und KI-Tool-Wissen nochmals.' +
+      '<br><small>Tipp: AIDA gibt dir mit dem 💡-Button die Lösung — du kannst danach trotzdem weiterfahren.</small>';
+  }
+  updateTopicUI();
+}
+
+function showModuleSolution() {
+  const m = modules[current];
+  const box = document.getElementById('answers' + current);
+  if (box) box.querySelectorAll('.choice').forEach((c, j) => {
+    c.classList.remove('wrong', 'selected'); c.classList.toggle('correct', j === m.ok);
+  });
+  const fb = document.getElementById('qfb' + current);
+  if (fb) { fb.className = 'fb show ok'; fb.innerHTML = '💡 Musterlösung eingeblendet.'; }
+  const sol = document.getElementById('qSol' + current);
+  if (sol) { sol.innerHTML = `<b>Richtige Antwort:</b> ${m.a[m.ok]}<br><br><b>Erklärung:</b> ${m.fb}`; sol.classList.add('show'); }
+  if (!topicDone[current][4]) { topicDone[current][4] = true; xp += 5; toast('Lösung verstanden +5 XP'); }
+  updateTopicUI();
+}
+
+
+// ─── TOPIC FLOW ────────────────────────────────────────────────────────────────
+function toggleTopic(idx) {
+  if (idx > 0 && !topicDone[current][idx - 1]) { toast('Erledige zuerst den vorherigen Abschnitt.'); return; }
+  topicOpen[current][idx] = true;
+  const t = document.getElementById('topic' + idx);
+  if (t) t.classList.add('open');
+  updateTopicUI();
+}
+
+function doneTopic(idx) {
+  if (topicDone[current][idx]) return;
+  topicDone[current][idx] = true;
+  const msgs = ['Storyline gelesen +5 XP', 'Theorie verstanden +8 XP', 'KI-Tools bekannt +8 XP', 'Simulation erledigt', 'Abschlussfrage erledigt'];
+  const pts = [5, 8, 8, 0, 0];
+  xp += pts[idx];
+  toast(msgs[idx]);
+  updateTopicUI();
+  if (idx < 4) setTimeout(() => toggleTopic(idx + 1), 180);
+}
+
+function completeSim(points) {
+  if (topicDone[current][3]) return;
+  topicDone[current][3] = true;
+  xp += points;
+  toast('Tool-Simulation erledigt +' + points + ' XP');
+  updateTopicUI();
+  setTimeout(() => toggleTopic(4), 180);
+}
+
+function updateTopicUI() {
+  for (let i = 0; i < 5; i++) {
+    const t = document.getElementById('topic' + i);
+    const s = document.getElementById('topicState' + i);
+    if (!t) continue;
+    t.classList.toggle('done', topicDone[current][i]);
+    t.classList.toggle('lock', i > 0 && !topicDone[current][i - 1]);
+    if (s) s.textContent = topicDone[current][i] ? '✓ Erledigt' : (i > 0 && !topicDone[current][i - 1] ? '🔒 Gesperrt' : 'Offen');
+  }
+  const ready = moduleReady(current);
+  const btn = document.getElementById('nextModuleBtn');
+  const st = document.getElementById('moduleStatus');
+  if (btn) btn.disabled = !ready;
+  if (st) st.textContent = ready ? '✅ Alle Abschnitte erledigt – du kannst weiter.' : 'Noch nicht alles erledigt.';
+  update();
+}
+
+// SIM REPLACED
+
+// ─── SOLUTION TEXTS ───────────────────────────────────────────────────────────
+function solutionText(type) {
+  const map = {
+    prompt: '<b>Musterprompt (RAKE-Framework):</b><br>Rolle: Du bist ein erfahrener IT-PM. Aufgabe: Erstelle einen Project Charter. Kontext: POLARIS, 12 Wochen, CHF 180k, Stakeholder: CFO/Legal/PO/Dev/Vendor. Format: Tabelle mit Ziel, Scope, Nicht-Ziele, Annahmen, Risiken, nächste Schritte.<br><br>💡 Microsoft Copilot in Teams hätte diesen Charter direkt aus der Meeting-Aufzeichnung generiert.',
+    stakeholder: '<b>Miro AI Musterlösung:</b><br>🟡 CFO Beatrice = Zufriedenstellen (hohe Macht, tiefes operatives Interesse)<br>🔴 PO Mikel = Intensiv managen (hohe Macht, hohes Interesse)<br>🟢 Legal Reto = Informieren (niedrige formale Macht, hohes Datenschutz-Interesse)<br>⚪ Vendor Sam = Beobachten (externe Rolle, niedrige Macht)',
+    jiraReq: '<b>Atlassian Intelligence Musterlösung:</b><br>✅ Brauchbar: User Story (testbar, messbar, nutzerorientiert) + Akzeptanzkriterium (Given-When-Then Format).<br>❌ Nicht testbar: "Modern und intuitiv" und "beste KI-Plattform" – zu vage, kein messbares Kriterium.',
+    jiraPrio: '<b>Jira AI Priorisierung (MoSCoW):</b><br>🔴 P1 Must-have: Datenmodell KI-Insights (blockiert 11 Stories) + DSGVO Audit-Logging (Go-Live-Blocker)<br>🟡 P2 Should-have: Tooltip-Texte (Sprint 3)<br>🟢 P3 Could-have: Dark Mode (nach Launch)',
+    kanban: '<b>Atlassian Intelligence Flow-Analyse:</b><br>🔴 Vendor API Mapping (BLOCKED, 6 Tage) ist das kritischste Flow-Risiko: Login, Reporting und Tests sind abhängig. WIP begrenzen, Blocker sofort eskalieren.',
+    matrix: '<b>Risk Matrix (RAID Log):</b><br>Vendor-Schnittstelle: W=4, Impact=5, Score=20 → KRITISCH (rote Zone).<br>Pflichtfelder: Owner, Trigger, Gegenmassnahme, Eskalationspfad, Due Date.<br>💡 Claude/ChatGPT generiert das RAID Log – Confluence führt es mit Owner und Fälligkeit.',
+    report: '<b>Power BI Copilot Vollbeispiel:</b><br>Status: 🟡 Gelb → Rot-Tendenz. Budget: 94% (on track). Timeline: gefährdet.<br>Hauptrisiko: Vendor-API-Verzug (Score 20/25), DSGVO-Freigabe offen.<br>Entscheid nötig: Scope-Freeze oder Eskalation. Empfehlung: Steering Approval bis Freitag.',
+    resource: '<b>Asana Intelligence Lösung:</b><br>Ninas Workload: 145% → Ziel: max. 100%.<br>Massnahmen: Vendor-Koordination zum PM (−20%), QA-Support zum QA-Engineer (−15%), Code Reviews verteilen (−10%).<br>💡 Asana Intelligence zeigt Überlastung proaktiv – die Umverteilung entscheidet der PM.',
+    change: '<b>Microsoft Copilot Kommunikationslösung:</b><br>Beste Antwort B: Transparent und klar. Copilot kann E-Mails zusammenfassen – Nutzung ist konfigurierbar. Datenschutzrichtlinie verfügbar stellen.<br>💡 KI-Adoption braucht Ehrlichkeit, nicht Hochglanz.',
+    governance: '<b>Governance Musterlösung:</b><br>✅ Keine vertraulichen Daten in öffentliche KI-Tools<br>✅ KI-Outputs fachlich prüfen und freigeben<br>✅ AI Policy und Entscheidungslog dokumentieren<br>✅ EU AI Act Anforderungen prüfen<br>❌ KI-autonome Budget/Go-No-Go-Entscheide: NIEMALS',
+    vendor: '<b>Microsoft Copilot / Jira Eskalations-Lösung:</b><br>✅ Eskalieren: API-Lieferung unsicher (Risiko Go-Live), SLA-Bruch 3x (vertraglich relevant), fehlende Abnahmekriterien (Streitpotential).<br>❌ Nicht eskalieren: Meetingagenda, Grussmail.',
+    golive: '<b>Jira AI Go-Live Musterlösung:</b><br>✅ Security Sign-off · Rollback-Plan getestet · Monitoring aktiv · Support bereit<br>❌ P1-Bug ignorieren: Niemals ein Pflichtpunkt. Offen P1 = kein Go-Live oder bewusster Entscheid mit Sponsor-Approval und Rollback-Plan aktiviert.'
+  };
+  return map[type] || '<b>Musterlösung:</b><br>KI unterstützt die Analyse – der PM validiert, entscheidet und verantwortet.';
+}
+
+function solveCurrentSim() {
+  const type = modules[current].sim;
+  const sol = document.getElementById('simSol');
+  if (sol) { sol.innerHTML = solutionText(type); sol.classList.add('show'); }
+  // Auto-solve interactive elements
+  if (type === 'stakeholder') document.querySelectorAll('#topic3 select').forEach(s => s.value = s.dataset.correct);
+  if (type === 'jiraPrio') document.querySelectorAll('#topic3 .ticket[data-correct]').forEach(t => {
+    t.dataset.done = '1';
+    t.querySelectorAll('button').forEach(b => { b.classList.toggle('hit', b.textContent === t.dataset.correct); b.classList.remove('miss'); });
+  });
+  if (type === 'kanban') {
+    document.querySelectorAll('#topic3 .ticket').forEach(t => t.classList.remove('done'));
+    const hit = [...document.querySelectorAll('#topic3 .ticket')].find(t => t.textContent.includes('Vendor API Mapping'));
+    if (hit) hit.classList.add('done');
+  }
+  if (type === 'matrix') {
+    document.querySelectorAll('.cell').forEach(c => c.classList.remove('sel'));
+    const hit = [...document.querySelectorAll('.cell')].find(c => c.textContent.trim() === '4/5');
+    if (hit) hit.classList.add('sel');
+  }
+  if (type === 'resource') { const sl = document.querySelector('#topic3 input[type=range]'); if (sl) { sl.value = 95; document.getElementById('loadVal').textContent = '95'; } checkLoad(95); }
+  if (type === 'governance' || type === 'golive') document.querySelectorAll('#topic3 input[type=checkbox]').forEach(b => b.checked = b.dataset.good === '1');
+  if (type === 'report') reportWithRisk();
+  if (type === 'prompt') fillPrompt();
+  if (type === 'change') {
+    const choices = document.querySelectorAll('#topic3 .choice');
+    if (choices[1]) choices[1].classList.add('correct');
+  }
+  if (type === 'vendor') {
+    document.querySelectorAll('#topic3 .jiraRow button').forEach(b => {
+      const ok = b.getAttribute('onclick').includes('true');
+      b.classList.toggle('hit', ok); b.classList.toggle('miss', !ok); b.dataset.done = ok ? '1' : '0';
+    });
+  }
+  completeSim(8);
+
+  completeSim(8);
+}
+
+// ─── QUIZ (8 Fragen, 90% = mind. 8/8 richtig → alle 8 nötig) ─────────────────
+function renderQuiz() {
+  document.getElementById('quizBox').innerHTML = quiz.map((q, i) => `
+    <div class="q">
+      <h3>${i + 1}. ${q[0]}</h3>
+      ${q[1].map((a, j) => `<div class="choice" data-q="${i}" data-a="${j}" onclick="selectQuiz(${i},${j},this)">
+        <b>${String.fromCharCode(65 + j)}</b><span>${a}</span>
+      </div>`).join('')}
+    </div>`).join('');
+}
+
+function selectQuiz(q, a, el) {
+  quizAnswers[q] = a;
+  document.querySelectorAll(`#quizBox .choice[data-q="${q}"]`).forEach(x => x.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function gradeQuiz() {
+  // 90% Grenze: 8/8 richtig nötig (bei 8 Fragen)
+  const PASS_SCORE = Math.ceil(quiz.length * 0.9); // = 8
+  let score = 0;
+  quiz.forEach((q, i) => {
+    document.querySelectorAll(`#quizBox .choice[data-q="${i}"]`).forEach(el => {
+      el.classList.remove('correct', 'wrong');
+      const a = +el.dataset.a;
+      if (a === q[2]) el.classList.add('correct');
+      if (quizAnswers[i] === a && a !== q[2]) el.classList.add('wrong');
+    });
+    if (quizAnswers[i] === q[2]) score++;
+  });
+  const pct = Math.round(score / quiz.length * 100);
+  const fb = document.getElementById('quizFb');
+  const passed = score >= PASS_SCORE;
+  fb.className = 'fb show ' + (passed ? 'ok' : 'no');
+  if (passed) {
+    fb.textContent = `Bestanden: ${score}/${quiz.length} richtig (${pct}%). Zertifikat freigeschaltet.`;
+    document.getElementById('cert').classList.add('show');
+    document.getElementById('certScore').textContent = pct + '%';
+    completed = new Set(modules.map((_, i) => i));
+    xp = Math.max(xp, 520);
+    update(100);
+  } else {
+    fb.innerHTML = `${score}/${quiz.length} richtig (${pct}%). Du brauchst ${PASS_SCORE}/${quiz.length} Antworten (90%) für das Zertifikat.
+      <br><br><button class="btn btn2" style="margin-top:8px" onclick="restartQuiz()">Quiz neu starten 🔄</button>`;
+  }
+}
+
+function restartQuiz() {
+  quizAnswers = {};
+  document.getElementById('quizFb').className = 'fb';
+  renderQuiz();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ─── PROGRESS ─────────────────────────────────────────────────────────────────
+function completeLearning() {
+  completed = new Set(modules.map((_, i) => i));
+  xp = Math.max(xp, 600);
+  update(100);
+  toast('🎉 Project POLARIS abgeschlossen. Fortschritt 100%.');
+}
+
+function update(force) {
+  const modulePart = completed.size / modules.length * 86;
+  const topicPart = topicDone[current] ? topicDone[current].filter(Boolean).length / 5 * (86 / modules.length) : 0;
+  const pct = Math.round(force ?? Math.min(99, modulePart + (completed.has(current) ? 0 : topicPart)));
+  document.getElementById('fill').style.width = pct + '%';
+  document.getElementById('xp').textContent = xp + ' XP';
+  document.getElementById('dashPct').textContent = pct + '%';
+  document.getElementById('dashStatus').textContent = pct === 0 ? 'Ready' : pct < 86 ? 'In Progress' : pct < 100 ? 'Final Quiz' : 'Complete';
+}
+
+function resetAll() { init(); toast('Neuer Durchlauf gestartet.'); }
+function toast(html) { let t = document.createElement('div'); t.className = 'toast'; t.innerHTML = html; document.body.appendChild(t); setTimeout(() => t.remove(), 2600); }
+
+window.addEventListener('load', init);
+
+
+function checkSelects(){checkSHMatrix();}
+
+function miniChoice(el,ok,ti){if(ok)completeSim(10);else toast("Prüfe nochmals.");}
+
+function prio(btn,val){}
+
+function vendorPick(btn,ok){
+  btn.classList.toggle('hit',ok);btn.classList.toggle('miss',!ok);btn.dataset.done=ok?'1':'0';
+  const rows=[...document.querySelectorAll('#topic3 .jiraRow button')];
+  const goodOk=rows.filter(b=>b.getAttribute('onclick').includes('true')).every(b=>b.dataset.done==='1');
+  const badWrong=rows.filter(b=>b.getAttribute('onclick').includes('false')).some(b=>b.dataset.done==='1');
+  const fb=document.getElementById('vendorFb');
+  if(!fb)return;
+  fb.className='fb show '+(goodOk&&!badWrong?'ok':'no');
+  fb.textContent=goodOk&&!badWrong?'✅ Richtig! API-Unsicherheit, SLA-Bruch und fehlende Abnahmekriterien sind Eskalationsthemen.':'⚠️ Eskaliere: API-Verzug, SLA-Bruch, offene Abnahmekriterien. Nicht: reine Infos.';
+  if(goodOk&&!badWrong)completeSim(10);
+}
+
+function checkGoLive(){
+  const boxes=[...document.querySelectorAll('[onchange="checkGoLive()"]')];
+  const good=boxes.filter(b=>b.dataset.good==='1').every(b=>b.checked);
+  const bad=boxes.filter(b=>b.dataset.good==='0').some(b=>b.checked);
+  const fb=document.getElementById('goFb');if(!fb)return;
+  fb.className='fb show '+(good&&!bad?'ok':'no');
+  fb.textContent=good&&!bad?'✅ Go-Live Kriterien korrekt! Jira AI bestätigt: P1-Bugs dürfen nie ignoriert werden.':'Prüfe nochmals. P1-Bug ignorieren ist keine Option.';
+  if(good&&!bad)completeSim(10);
+}
+
+function report(){
+  const out=document.getElementById('reportOut');
+  if(out)out.innerHTML='<b style="color:var(--amber)">⚠️ Status: Gelb</b><br>Budget 94%, Timeline gefährdet, 2 kritische Risiken.';
+  completeSim(8);
+}
+function reportWithRisk(){report();}
+
+function fillPrompt(){
+  ['r','a','k','e'].forEach(id => { if(!rakeSelected.includes(id)) addRakeBlock(id); });
+  evalRakePrompt();
+}
+
+
+</script></body></html>
