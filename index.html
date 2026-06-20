@@ -147,10 +147,10 @@ const modules = [
   ],
 
   theory: [
-    { icon: '📋', title: 'Was ist ein Project Charter?', text: 'Der Project Charter ist das Gründungsdokument eines Projekts. Er legt Zweck, Scope, Stakeholder, Annahmen, erste Risiken und Erfolgskriterien fest. Ohne Charter fehlt die Basis für alle späteren Entscheidungen.' },
-    { icon: '✍️', title: 'RACI-Prinzip im Kickoff', text: 'RACI steht für Responsible (macht es), Accountable (zeichnet ab), Consulted (wird befragt), Informed (wird informiert). Im Kickoff legst du für jede Hauptaktivität eine RACI-Zuordnung fest – damit Verantwortlichkeiten von Anfang an klar sind.' },
-    { icon: '🔑', title: 'Gute Prompts: das RAKE-Framework', text: '<b>R</b>olle definieren · <b>A</b>ufgabe spezifizieren · <b>K</b>ontext liefern · <b>E</b>rwartetes Format angeben. Je präziser die vier Elemente, desto nützlicher der KI-Output. Vage Prompts erzeugen generische Ergebnisse.' },
-    { icon: '⚠️', title: 'KI-Grenzen im Kickoff', text: 'KI kennt weder Firmenpolitik noch mündliche Zusagen. Sie erfindet plausibel klingende Details, wenn der Kontext fehlt (Halluzinationen). Deshalb: Immer gegen echte Quellen prüfen, bevor du den Charter freigibst.' }
+{ icon: '📋', title: 'Problem: Noch kein gemeinsames Projektbild', text: 'Zu Beginn haben alle Beteiligten andere Erwartungen. Ein Project Charter hilft, Ziel, Umfang, Nicht-Ziele, Stakeholder, Risiken und nächste Schritte auf einer gemeinsamen Basis festzuhalten.' },
+    { icon: '🧭', title: 'So hilft der Project Charter', text: 'Er verhindert spätere Missverständnisse: Was gehört zum Projekt? Was nicht? Wer entscheidet? Welche Annahmen gelten? Damit wird aus einem Kickoff-Gespräch ein steuerbares Projekt.' },
+    { icon:'', title:'RAKE-Framework für gute KI-Prompts', image:'01_RAKE.png', visual:true },
+    { icon: '⚠️', title: 'Wichtig bei KI-Outputs', text: 'ChatGPT, Claude oder Copilot liefern schnelle Entwürfe. Du prüfst Fakten, ergänzt Firmenkontext und gibst den Charter erst frei, wenn er fachlich stimmt.' }
   ],
 
   tools: [
@@ -185,10 +185,10 @@ const modules = [
   ],
 
   theory: [
-    { icon: '🗺️', title: 'Die Macht-Interesse-Matrix', text: 'Das klassische Tool von Eden & Ackermann: Stakeholder werden nach <b>Macht</b> (Einfluss auf Entscheidungen) und <b>Interesse</b> (Engagement im Projekt) kategorisiert. Vier Quadranten: Intensiv managen · Zufriedenstellen · Informieren · Beobachten.' },
-    { icon: '📡', title: 'Kommunikationsrhythmus festlegen', text: 'Für jeden Quadranten brauchst du einen anderen Rhythmus: Sponsor (hohe Macht) = wöchentlicher Executive Summary. Fachteam (hohes Interesse) = täglicher Stand-up. Externe (tiefes Interesse) = monatlicher Newsletter. Dieser Plan gehört in Confluence.' },
-    { icon: '🔍', title: 'Informelle Macht vs. formale Rolle', text: 'Formale Macht steht im Organigramm. Informelle Macht entsteht durch Netzwerk, Wissen und Vertrauen. Ein erfahrener Senior Developer ohne Management-Titel kann einen Release blockieren. KI erkennt informelle Macht nicht – das ist menschliche Aufgabe.' },
-    { icon: '💬', title: 'Einwand-Management als PM-Kompetenz', text: 'Stakeholder mit hoher Macht und tiefem Interesse können Projekte bremsen, wenn sie das Gefühl haben, übergangen zu werden. Best Practice: Regelmässige kurze Updates (max. 1 Seite), klare Entscheidungsvorlagen, persönliches Check-in bei kritischen Meilensteinen.' }
+{ icon:'', title:'Macht-Interesse-Matrix', image:'02_Stakeholder Matrix.png', visual:true },
+    { icon: '🧭', title: 'Problem: Nicht alle Stakeholder brauchen dasselbe', text: 'Manche Personen entscheiden über Budget, andere können durch Datenschutz, Technik oder Fachwissen den Fortschritt blockieren. Die Matrix zeigt, wen du eng einbindest, informierst oder beobachtest.' },
+    { icon: '🤖', title: 'So kann KI helfen', text: 'Miro AI kann Workshop-Notizen gruppieren und erste Stakeholder-Cluster bilden. Du prüfst, ob informelle Macht oder politische Themen fehlen.' },
+    { icon: '💬', title: 'Praxisregel', text: 'Hohe Macht braucht klare, knappe Entscheidungsinformationen. Hohes Interesse braucht regelmässige Einbindung. So steuerst du Kommunikation gezielter.' }
   ],
 
   tools: [
@@ -223,10 +223,10 @@ const modules = [
   ],
 
   theory: [
-    { icon: '📝', title: 'User Stories richtig schreiben', text: '<b>Format:</b> Als [Rolle] will ich [Ziel], damit ich [Nutzen]. Drei Eigenschaften machen sie tauglich: <b>Unabhängig</b> (kann alleine geliefert werden), <b>Testbar</b> (Akzeptanzkriterien messbar), <b>Klein genug</b> (in einem Sprint lieferbar). KI schreibt Stories schnell – die PM-Aufgabe ist Prüfung und Scope-Kontrolle.' },
-    { icon: '✅', title: 'Akzeptanzkriterien: Given-When-Then', text: '<b>Given</b> (Ausgangszustand) – <b>When</b> (Aktion) – <b>Then</b> (erwartetes Ergebnis). Beispiel: Given das Dashboard ist geladen, When ein CFO-User einloggt, Then werden ROI-KPIs in unter 2 Sekunden angezeigt. Dieses Format ist für Entwickler und Tester gleichermassen klar.' },
-    { icon: '🚫', title: 'Scope Creep frühzeitig stoppen', text: 'KI-generierte Requirements neigen zu Überproduktion: Zu viele Features, zu breiter Scope, zu wenig Fokus. Best Practice: Definition of Done festlegen, Minimum Viable Product klar definieren und KI-Vorschläge gegen Projektziel und Budget prüfen, bevor sie ins Backlog wandern.' },
-    { icon: '🔗', title: 'Abhängigkeiten sichtbar machen', text: 'In Jira kannst du Stories als "blocked by" oder "is blocked by" verlinken. Atlassian Intelligence erkennt textuelle Ähnlichkeiten und schlägt Abhängigkeiten vor. Ohne dieses Mapping können Sprint-Planungen scheitern, weil Teams auf externe Lieferungen warten.' }
+{ icon: '📝', title: 'Problem: Wünsche sind oft zu ungenau', text: '„Modernes Dashboard“ klingt gut, ist aber nicht prüfbar. Eine gute Anforderung sagt klar, wer etwas braucht, was gebraucht wird und woran man erkennt, dass es erfüllt ist.' },
+    { icon: '✅', title: 'So werden Anforderungen verständlich', text: 'Nutze einfache Abnahmekriterien: Was muss sichtbar sein? Wie schnell muss es funktionieren? Welche Daten dürfen angezeigt werden? So weiss das Team, was gebaut und getestet wird.' },
+    { icon: '🤖', title: 'So kann Jira AI helfen', text: 'Atlassian Intelligence kann aus Notizen erste Anforderungen und Akzeptanzkriterien formulieren. Du prüfst, ob sie realistisch, eindeutig und im Projektumfang sind.' },
+    { icon: '🚫', title: 'Praxisregel', text: 'KI produziert oft zu viel. Nicht jeder Vorschlag gehört ins Projekt. Priorisiere nach Nutzen, Risiko, Zeit und Budget.' }
   ],
 
   tools: [
@@ -261,10 +261,10 @@ const modules = [
   ],
 
   theory: [
-    { icon:'', title:'MoSCoW-Methode', image:'04_MoSCoW-Methode.png', visual:true },
-    { icon: '💎', title: 'WSJF – Weighted Shortest Job First', text: 'Ein priorisierungswerkzeug aus SAFe: (Geschäftswert + Risikoreduzierung + Zeitkritikalität) ÷ Jobgrösse. Je höher der Wert, desto höher die Priorität. KI kann WSJF-Scores aus Ticket-Beschreibungen schätzen – du kalibrierst mit Businesskontext.' },
-    { icon: '🔒', title: 'Technische Abhängigkeiten', text: 'Im Jira-Backlog kannst du Abhängigkeiten explizit verlinken. Atlassian Intelligence erkennt auch implizite Abhängigkeiten aus dem Tickettext. Nicht erkannte Abhängigkeiten sind häufig die Hauptursache für Sprint-Fails.' },
-    { icon: '📊', title: 'Velocity und Kapazitätsplanung', text: 'Sprint-Velocity ist die durchschnittliche Story-Point-Leistung des Teams pro Sprint. Atlassian Intelligence kann historische Velocity-Daten auswerten und warnen, wenn der geplante Sprint die reale Kapazität übersteigt.' }
+{ icon:'', title:'MoSCoW-Methode', image:'04_MoSCoW-Methode.png', visual:true },
+    { icon: '🎯', title: 'Problem: Es gibt mehr Wünsche als Zeit', text: 'In Projekten kann nicht alles gleichzeitig umgesetzt werden. Priorisierung entscheidet, was für den Go-Live zwingend ist und was später kommen kann.' },
+    { icon: '🔗', title: 'Abhängigkeiten beachten', text: 'Manche Aufgaben blockieren andere. Wenn zum Beispiel Datenmodell oder Compliance fehlen, können Funktionen später nicht sauber fertiggestellt werden.' },
+    { icon: '🤖', title: 'So kann Jira AI helfen', text: 'Jira AI erkennt ähnliche Tickets, Abhängigkeiten und mögliche Blocker. Die Business-Priorität muss der Projektmanager ergänzen.' }
   ],
 
   tools: [
@@ -299,10 +299,10 @@ const modules = [
   ],
 
   theory: [
-    { icon: '🌊', title: 'Kanban-Prinzipien', text: 'Kanban aus dem Toyota Produktionssystem: <b>Visualisiere Arbeit</b> · <b>Begrenze WIP</b> · <b>Manage Flow</b> · <b>Mache Regeln explizit</b> · <b>Verbessere kontinuierlich</b>. Das Ziel ist nicht volle Boards, sondern fertige Tickets.' },
-    { icon: '🚦', title: 'WIP-Limits richtig setzen', text: 'WIP-Limit = maximale Anzahl gleichzeitiger Tickets pro Spalte oder Person. Ohne Limit wird alles gleichzeitig begonnen, nichts fertiggestellt. Faustregel: WIP-Limit ≈ Teamgrösse ÷ 2. Atlassian Intelligence kann Verstösse automatisch melden.' },
-    { icon: '🔴', title: 'Blocker-Management', text: 'Ein Blocker ist alles, das die Fertigstellung eines Tickets verhindert. Blocker eskalieren schnell in Kaskaden. Best Practice: Tägliche Blocker-Review im Stand-up, Owner für jeden Blocker, Eskalationspfad ab 48h. KI macht Kaskaden sichtbar – Eskalieren ist Menschenaufgabe.' },
-    { icon: '📈', title: 'Cycle Time & Lead Time', text: 'Cycle Time = Zeit von „In Progress" bis „Done". Lead Time = Zeit von „Erstellt" bis „Done". Kürzere Cycle Times signalisieren guten Flow. Atlassian Intelligence analysiert historische Daten und zeigt, welche Ticket-Typen regelmässig länger brauchen.' }
+{ icon: '🧩', title: 'Problem: Arbeit bleibt hängen', text: 'Ein Projekt kann im Status „in Arbeit“ gut aussehen, obwohl ein blockierter Punkt mehrere Aufgaben aufhält. Genau solche Blocker gefährden Termine.' },
+    { icon: '🗂️', title: 'Kanban einfach erklärt', text: 'Kanban zeigt, wo Aufgaben stehen: offen, in Arbeit, blockiert oder erledigt. Ziel ist nicht, möglichst viel zu starten, sondern Arbeit zuverlässig fertigzustellen.' },
+    { icon: '🚦', title: 'WIP-Limit einfach erklärt', text: 'WIP bedeutet „Work in Progress“. Ein Limit verhindert, dass zu viele Aufgaben gleichzeitig laufen und dadurch nichts fertig wird.' },
+    { icon: '🤖', title: 'So kann Jira AI helfen', text: 'Atlassian Intelligence kann blockierte Aufgaben und Abhängigkeiten sichtbar machen. Die Eskalation und Entscheidung bleiben bei dir.' }
   ],
 
   tools: [
@@ -337,10 +337,10 @@ const modules = [
   ],
 
   theory: [
-    { icon: '⚠️', title: 'RAID Log: das PM-Steuerungswerkzeug', text: '<b>R</b>isks (könnte eintreten) · <b>A</b>ssumptions (angenommen, aber nicht bestätigt) · <b>I</b>ssues (ist bereits eingetreten) · <b>D</b>ependencies (abhängig von externen Lieferungen). Jeder Eintrag braucht: Owner, Status, Wahrscheinlichkeit, Impact, Gegenmassnahme und Fälligkeitsdatum.' },
-    { icon: '📐', title: 'Risikomatrix: Wahrscheinlichkeit × Impact', text: 'Bewertung auf einer 5×5-Matrix ergibt den Risk Score (max. 25). Score < 6 = gering (grün), 6–12 = mittel (gelb), 13–19 = hoch (orange), 20–25 = kritisch (rot). Kritische Risiken brauchen sofortige Eskalation und Gegenmassnahmen.' },
-    { icon: '🛡️', title: 'Risiko-Reaktionsstrategien', text: '<b>Vermeiden</b> (Projekt anpassen, damit Risiko nicht eintritt) · <b>Übertragen</b> (Versicherung, Vertragsklausel, Vendor-Garantie) · <b>Mindern</b> (Wahrscheinlichkeit oder Impact reduzieren) · <b>Akzeptieren</b> (bewusste Entscheidung mit Fallback-Plan). Akzeptieren ohne Plan ist kein Risikomanagement.' },
-    { icon: '📣', title: 'Eskalationspfade definieren', text: 'Für kritische Risiken: Wer wird ab welchem Schwellenwert informiert? Beispiel: Score ≥ 20 → sofortige Eskalation an Sponsor. Score ≥ 15 → in jedem Steering-Meeting. Dieser Pfad muss im Kick-off vereinbart und in Confluence dokumentiert sein.' }
+{ icon:'', title:'Risikomatrix', image:'06_Risikoanalyse.png', visual:true },
+    { icon: '⚠️', title: 'Problem: Risiken werden oft zu spät sichtbar', text: 'Verzögerungen, Datenschutzfragen oder Budgetabweichungen können den Go-Live gefährden. Ein Risiko ist etwas, das noch eintreten könnte. Ein Issue ist bereits passiert.' },
+    { icon: '📌', title: 'DSGVO-Freigabe einfach erklärt', text: 'DSGVO-Freigabe bedeutet: Datenschutz oder Legal prüft, ob personenbezogene Daten rechtlich korrekt verarbeitet werden. Ohne diese Freigabe kann ein Launch gestoppt werden.' },
+    { icon: '🤖', title: 'So kann KI helfen', text: 'Claude oder ChatGPT können aus Statusnotizen ein RAID Log erstellen. Du bewertest Wahrscheinlichkeit, Auswirkung und Eskalation mit Projektkontext.' }
   ],
 
   tools: [
@@ -375,10 +375,10 @@ const modules = [
   ],
 
   theory: [
-    { icon: '📊', title: 'Steering-Meeting-Prinzipien', text: 'Ein Steering Committee trifft Entscheidungen, keine operativen Detailbesprechungen. Vorbereitung: Eine Seite Executive Summary · Ampelstatus · Entscheidungsvorlage mit Optionen und Empfehlung · Budget-Snapshot. Mehr braucht ein CFO nicht.' },
-    { icon: '🚦', title: 'Ampelstatus richtig nutzen', text: 'RAG-Status (Red/Amber/Green) ist ein Kommunikationswerkzeug, kein Beurteilungssystem. Grün = alles im Plan. Gelb = Risiken oder Abweichungen, Massnahmen laufen. Rot = Massnahmen reichen nicht, Entscheidung nötig. Das grösste PM-Fehler: Alles auf Grün halten, um Druck zu vermeiden.' },
-    { icon: '💡', title: 'Was Power BI Copilot kann', text: 'KPI-Trends erklären, Ausreisser identifizieren, Forecast-Szenarien berechnen, Management-Texte formulieren und Q&A-Fragen zu Dashboards beantworten. Es ersetzt nicht die PM-Analyse, beschleunigt aber die Vorbereitung erheblich.' },
-    { icon: '📧', title: 'Microsoft Copilot für Kommunikation', text: 'Microsoft Copilot kann aus Power BI-Daten und Confluence-Inhalten eine Steering-Mail formulieren, ein Teams-Meeting-Update erstellen oder eine PowerPoint-Folie generieren – alles aus dem Microsoft 365-Ökosystem.' }
+{ icon: '📊', title: 'Problem: Management braucht Entscheidungen, keine Details', text: 'Ein gutes Reporting zeigt kurz: Wo stehen wir? Was läuft gut? Wo gibt es Risiken? Welche Entscheidung wird benötigt?' },
+    { icon: '🚦', title: 'Ampelstatus einfach erklärt', text: 'Grün bedeutet: im Plan. Gelb bedeutet: Risiko vorhanden, Massnahmen laufen. Rot bedeutet: Entscheidung oder Eskalation nötig.' },
+    { icon: '🤖', title: 'So kann Power BI Copilot helfen', text: 'Copilot kann KPIs erklären, Abweichungen erkennen und eine erste Management-Zusammenfassung schreiben. Du ergänzt Risiken ehrlich und entscheidungsorientiert.' },
+    { icon: '✅', title: 'Praxisregel', text: 'KI formuliert oft positiv. Ein Projektbericht muss aber transparent sein – auch wenn eine Botschaft unangenehm ist.' }
   ],
 
   tools: [
@@ -413,10 +413,10 @@ const modules = [
   ],
 
   theory: [
-    { icon: '🔄', title: 'Change Management: ADKAR-Modell', text: '<b>A</b>wareness (Bewusstsein schaffen) · <b>D</b>esire (Wunsch nach Veränderung wecken) · <b>K</b>nowledge (Wissen aufbauen) · <b>A</b>bility (Fähigkeit entwickeln) · <b>R</b>einforcement (Veränderung verankern). KI kann ADKAR-Massnahmen beschleunigen – Vertrauen muss durch echte Erfahrungen entstehen.' },
-    { icon: '🛡️', title: 'Häufige Widerstände und wie man ihnen begegnet', text: '"KI ersetzt mich." → KI unterstützt, Entscheidungen treffen Menschen. "Meine Daten sind nicht sicher." → Klare Erklärung der Datenhaltung und -klassifikation. "Ich bin zu alt dafür." → Champions-Programm, Peer Learning. "Zu kompliziert." → Schritt-für-Schritt Onboarding.' },
-    { icon: '🏆', title: 'Change Champions als Multiplikatoren', text: 'Change Champions sind erfahrene Mitarbeitende, die die neue Plattform früh testen, als Botschafterinnen im Team wirken und Fragen auf Augenhöhe beantworten. KI kann FAQ und Schulungsmaterial erstellen – Champions machen es glaubwürdig.' },
-    { icon: '📈', title: 'Adoption messen', text: 'Was gemessen wird, kann gesteuert werden: Login-Rate, Feature-Nutzung, Support-Tickets, NPS nach 30 Tagen. Viva Learning AI, Microsoft Analytics oder Asana Goals können Adoption-Daten auswerten und zeigen, wo gezieltes Nachfassen nötig ist.' }
+{ icon:'', title:'ADKAR-Modell', image:'08_ADKAR Modell.png', visual:true },
+    { icon: '🔄', title: 'Problem: Menschen müssen Veränderungen verstehen', text: 'Ein neues System scheitert nicht nur technisch. Es scheitert auch, wenn Menschen Angst haben, den Nutzen nicht sehen oder nicht wissen, wie sie damit arbeiten sollen.' },
+    { icon: '💬', title: 'So hilft Change Management', text: 'Gute Kommunikation erklärt, was sich ändert, warum es wichtig ist und welche Unterstützung es gibt. Fragen und Widerstände sind normal und müssen ernst genommen werden.' },
+    { icon: '🤖', title: 'So kann Copilot helfen', text: 'Microsoft Copilot kann FAQ, Schulungsunterlagen und Town-Hall-Inhalte vorbereiten. Vertrauen entsteht aber durch ehrliche, menschliche Kommunikation.' }
   ],
 
   tools: [
@@ -451,10 +451,10 @@ const modules = [
   ],
 
   theory: [
-    { icon: '🔐', title: 'Datenklassifikation als Grundlage', text: 'Nicht alle Daten dürfen in KI-Tools fliessen. Klassifikation: <b>Öffentlich</b> (unkritisch) · <b>Intern</b> (nur für Mitarbeitende) · <b>Vertraulich</b> (nur für definierte Rollen) · <b>Streng vertraulich</b> (z.B. Kundendaten, nie in öffentliche KI-Tools). Microsoft Purview hilft, Klassifikationen automatisch zu erkennen und durchzusetzen.' },
-    { icon: '⚖️', title: 'EU AI Act – was PMs wissen müssen', text: 'Der EU AI Act (2024) klassifiziert KI-Systeme nach Risiko: Unzulässig · Hoch · Mittel · Minimal. Hochrisiko-Systeme (z.B. HR-Entscheidungen, Kreditbewertung) brauchen Dokumentation, Transparenz und menschliche Aufsicht. Als PM musst du wissen, in welche Kategorie eure KI fällt.' },
-    { icon: '📋', title: 'Was in die AI Policy gehört', text: '1. Erlaubte Tools und Datenquellen · 2. Verbotene Use Cases · 3. Rollen (wer darf was?) · 4. Output-Validierungsprozess · 5. Entscheidungslog (was hat KI unterstützt?) · 6. Incident Response (was passiert bei Fehler?) · 7. Review-Zyklus (wann wird die Policy aktualisiert?)' },
-    { icon: '🤝', title: 'Menschliche Aufsicht sicherstellen', text: 'KI darf Entscheidungen unterstützen – Budget, Go/No-Go, Personalentscheid, rechtliche Freigabe – aber nie alleine treffen. Entscheidungslog: "Wer hat mit welchen KI-Unterstützungen welche Entscheidung getroffen und wann?" Das ist Audit-Trail und Verantwortungsnachweis.' }
+{ icon: '🛡️', title: 'Problem: KI braucht klare Regeln', text: 'KI kann sensible Daten verarbeiten, falsche Aussagen erzeugen oder Entscheidungen scheinbar objektiv wirken lassen. Deshalb braucht das Projekt klare Leitplanken.' },
+    { icon: '📌', title: 'Governance einfach erklärt', text: 'Governance bedeutet: Wer darf welches Tool nutzen? Welche Daten sind erlaubt? Wer prüft Ergebnisse? Wo wird dokumentiert?' },
+    { icon: '👤', title: 'Human-in-the-loop', text: 'Bei wichtigen Ergebnissen prüft ein Mensch den KI-Output, bevor er weiterverwendet wird. KI unterstützt – sie entscheidet nicht allein.' },
+    { icon: '🤖', title: 'So kann KI helfen', text: 'Confluence AI oder ChatGPT können Richtlinien und Checklisten vorbereiten. Verantwortung und Freigabe bleiben bei Projektleitung, Legal und Fachbereich.' }
   ],
 
   tools: [
@@ -1460,10 +1460,8 @@ const storyAudioFiles = [
   '05_Sprint.mp3',
   '06_Risikoanalyse.mp3',
   '07_Reporting.mp3',
-  '08_Ressourcen.mp3',
   '09_Change.mp3',
   '10_AI_Gov.mp3',
-  '11_Vendor.mp3',
   '12_GoLive.mp3'
 ];
 let activeStoryAudio = null;
