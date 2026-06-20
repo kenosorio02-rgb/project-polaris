@@ -399,44 +399,6 @@ const modules = [
   fb: 'Richtig. PM-Integrität bedeutet: Risiken transparent kommunizieren, auch wenn es unbequem ist. KI optimiert auf Lesbarkeit – du sorgst für Ehrlichkeit und Entscheidungsreife.'
 },
 
-// ── MODUL 8: Ressourcen & Workload ────────────────────────────────────────────
-{
-  t: 'Ressourcen & Workload mit Asana AI',
-  min: '5 Min.',
-  w: 'Woche 5–6',
-  goal: 'Überlastung erkennen, Fokus schaffen und realistische Kapazitäten sichern.',
-
-  story: [
-    '<b>Mittwoch, Sprint-Review.</b> Ninas Aufgabenliste: Technische Lead-Aufgaben, Code Reviews, Vendor-Koordination, QA-Unterstützung und zwei „dringende" Anfragen von Mikel. Das Asana-Board zeigt Nina mit 145% Auslastung.',
-    'Asana Intelligence sendet dir eine automatische Warnung: „Nina ist seit 8 Tagen über 120% ausgelastet. Empfehlung: Aufgaben priorisieren oder delegieren." Du öffnest die Workload-Ansicht: Farbige Balken zeigen, welche Woche kritisch ist und welche Aufgaben verschoben werden könnten.',
-    'Ressourcenüberlastung ist einer der häufigsten Gründe für Qualitätsprobleme und Ausfall. KI macht Muster sichtbar. Die Entscheidung, was nicht gemacht wird oder wer entlastet wird, ist aber eine Führungsentscheidung – nicht eine, die du an die KI delegierst.'
-  ],
-
-  theory: [
-    { icon: '⚖️', title: 'Kapazitätsplanung-Grundsätze', text: 'Maximale Produktivität liegt nicht bei 100%, sondern bei 70–80%. Über 100% sinkt Qualität, steigt Fehlerrate und wächst Burnout-Risiko. In der Planung: Buffer einrechnen, Urlaub und ungeplante Unterbrüche berücksichtigen, keine Person für den kritischen Pfad einzeln verantworten.' },
-    { icon: '🎯', title: 'WIP reduzieren statt Druck erhöhen', text: 'Die häufige Reaktion auf Überlastung ist: mehr Meetings, mehr Status-Abfragen, mehr Druck. Das ist kontraproduktiv. Bessere Antwort: WIP-Limit durchsetzen, nicht kritische Aufgaben verschieben, Team-Fokus auf Sprint-Ziel schützen und Scope klar priorisieren.' },
-    { icon: '📋', title: 'RACI und Verantwortlichkeitstransparenz', text: 'Überlastung entsteht oft, weil eine Person für zu viele Bereiche „Responsible" oder sogar als einzige Person „Accountable" eingetragen ist. RACI-Review in Woche 3–4 hilft, strukturelle Überlastung sichtbar zu machen, bevor sie zur Krise wird.' },
-    { icon: '🤖', title: 'Asana Intelligence im Einsatz', text: 'Asana Intelligence erkennt: Überlastungstendenzen nach historischen Daten, Aufgaben ohne Deadline-Realismus, Abhängigkeitsstaus und Workload-Imbalancen. Sie schlägt Umverteilungen vor, aber du entscheidest, welche Aufgaben wirklich verzögert werden können.' }
-  ],
-
-  tools: [
-    ['Asana Intelligence', 'Workload-Analyse, automatische Überlastungs-Warnungen, Aufgaben-Umverteilungsvorschläge und Goal-Tracking für das gesamte Team.'],
-    ['Microsoft Project + Copilot', 'Ressourcenplanung, Abhängigkeiten, Timeline-Szenarien und kritische-Pfad-Analyse für komplexere Projekte.'],
-    ['Jira Plans (Advanced Roadmap)', 'Kapazität und Abhängigkeiten über mehrere Teams und Sprints hinweg steuern, Engpässe visualisieren.']
-  ],
-  why: 'KI hilft, Überlastung früh zu erkennen – besonders bei komplexen Teams mit vielen parallelen Aufgaben. Die Entscheidung, was nicht gemacht wird, ist immer eine menschliche Führungsentscheidung.',
-  sim: 'resource',
-
-  q: 'Asana Intelligence meldet Nina bei 145% Auslastung. Was ist dein nächster Schritt?',
-  a: [
-    'Nichts – Nina ist erfahren genug, um damit umzugehen.',
-    'Sofort analysieren, welche Aufgaben in den nächsten 5 Tagen verschoben, delegiert oder aus dem Sprint genommen werden können, und das mit Nina besprechen.',
-    'Die KI bitten, automatisch Aufgaben zu verschieben.'
-  ],
-  ok: 1,
-  fb: 'Richtig. KI zeigt das Problem – du löst es mit Nina und Mikel. Aufgaben verschieben oder delegieren ist eine menschliche Entscheidung mit Konsequenzen für Sprint-Ziele und Stakeholder-Erwartungen.'
-},
-
 // ── MODUL 9: Change & Adoption ────────────────────────────────────────────────
 {
   t: 'Change & Adoption mit Microsoft Copilot',
@@ -511,44 +473,6 @@ const modules = [
   ],
   ok: 1,
   fb: 'Richtig. Vertrauliche Daten in öffentliche KI-Tools sind ein klassisches Governance-Risiko. Als PM kennst du die Policy und kannst sofort die richtige Alternative nennen.'
-},
-
-// ── MODUL 11: Vendor Management ───────────────────────────────────────────────
-{
-  t: 'Vendor Management mit KI',
-  min: '5 Min.',
-  w: 'Woche 7',
-  goal: 'Externe Anbieter strukturiert steuern und KI zur Analyse nutzen.',
-
-  story: [
-    '<b>Dienstag, Woche 7.</b> Dein E-Mail-Postfach: 14 ungelesene Mails von Sam. Teams-Chat: 8 Nachrichten. Jira: 3 neue Blocker-Tickets mit „Vendor" im Titel. Die Situation ist unübersichtlich – und der Sponsor fragt morgen nach dem Vendor-Status.',
-    'Du öffnest Microsoft Copilot in Outlook. „Fasse alle Mails von Sam der letzten zwei Wochen zusammen: offene Punkte, Zusagen, Risiken und nächste Schritte." Zwei Minuten später: Eine klare Liste. Drei Punkte leuchten rot: API-Liefertermin unklar, SLA-Antwortzeit bei P1-Incidents verletzt, Abnahmekriterien für die Schnittstelle nicht bestätigt.',
-    'KI macht aus einem E-Mail-Chaos eine steuerbare Situation. Du weisst jetzt genau, was du bei Sam einfordern musst und was du dem Sponsor berichten wirst. Verhandlung und Eskalationsentscheidung bleiben menschlich.'
-  ],
-
-  theory: [
-    { icon: '📄', title: 'Vendor Governance: die drei Säulen', text: '<b>Lieferobjekte</b> klar definieren (was, bis wann, mit welcher Qualität). <b>Eskalationspfade</b> vereinbaren (ab wann, zu wem, in welchem Format). <b>Abnahmekriterien</b> dokumentieren (wie wird festgestellt, dass eine Lieferung akzeptiert wird). Ohne diese drei Säulen entsteht bei Vendor-Problemen Meinungsverschiedenheit statt Sachlichkeit.' },
-    { icon: '⚠️', title: 'SLA-Management', text: 'Service Level Agreements definieren Reaktions- und Lösungszeiten. SLA-Brüche müssen protokolliert, kommuniziert und bei Wiederholung eskaliert werden. KI kann SLA-Verstösse in E-Mails und Tickets automatisch erkennen und Eskalationsaufgaben vorschlagen.' },
-    { icon: '📊', title: 'Vendor Scorecard', text: 'Monatliche Bewertung des Vendors nach: Lieferqualität, Termintreue, Kommunikationsverhalten, SLA-Performance und Problemlösungsgeschwindigkeit. Diese Daten fliessen in die Vertragsverlängerungsentscheidung. ChatGPT Enterprise oder Claude können Vendor-Mails automatisch auswerten und eine Scorecard befüllen.' },
-    { icon: '🤝', title: 'Eskalation konstruktiv führen', text: 'Eskalation ist kein Angriff – sie ist ein Werkzeug. Best Practice: Fakten nennen (SLA-Verletzung, Datum, Impact), Impact kommunizieren (was ist blockiert?), klare Erwartung formulieren (bis wann, was), Konsequenz benennen (wenn nicht erfüllt, was passiert). Copilot kann Eskalations-E-Mails entwerfen.' }
-  ],
-
-  tools: [
-    ['Microsoft Copilot (Outlook/Teams)', 'Vendor-Mails, Meeting-Protokolle und Vertragsauszüge zu offenen Punkten, Risiken und Actions verdichten.'],
-    ['ChatGPT Enterprise / Claude', 'SLA-Fragen analysieren, Vertragsrisiken strukturieren und Eskalations-E-Mails entwerfen.'],
-    ['Jira / Confluence', 'Vendor-Deliverables, Abnahmen, Blocker und Entscheidungslog transparent dokumentieren und nachverfolgen.']
-  ],
-  why: 'KI lohnt sich im Vendor Management, weil Informationen über viele Kanäle verteilt sind. Copilot macht daraus einen klaren Überblick. Verhandlung, Eskalation und Vertragsentscheidungen bleiben menschlich.',
-  sim: 'vendor',
-
-  q: 'Copilot fasst Sam-Mails zusammen und identifiziert einen SLA-Bruch bei P1-Incidents (Antwortzeit: vertraglich 4h, tatsächlich 18h). Was ist dein nächster Schritt?',
-  a: [
-    'Den Befund ignorieren – vielleicht hat Sam einen guten Grund.',
-    'Den SLA-Bruch in Confluence dokumentieren, Sam schriftlich darauf hinweisen, einen Jira-Eskalations-Task mit Owner und Deadline erstellen und den Sponsor informieren.',
-    'Den ganzen Vendor-Vertrag sofort kündigen.'
-  ],
-  ok: 1,
-  fb: 'Richtig. Dokumentieren, kommunizieren, eskalieren – in dieser Reihenfolge. Faktenbasierte Eskalation schützt das Projekt und schafft die Grundlage für kommerzielle Konsequenzen.'
 },
 
 // ── MODUL 12: Go-Live & Lessons Learned ────────────────────────────────────────
