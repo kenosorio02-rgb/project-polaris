@@ -646,8 +646,8 @@ function getTheoryVisual(m, item){
   const moduleTitle = (m.t || '').toLowerCase();
   const itemTitle = (item && item.title ? item.title : '').toLowerCase();
 
-  if ((moduleTitle.includes('kickoff') || moduleTitle.includes('charter')) && itemTitle.includes('project charter')) {
-    return {src:'01_Project%20Charter.png', alt:'Project Charter visuell erklärt'};
+  if ((moduleTitle.includes('kickoff') || moduleTitle.includes('charter')) && itemTitle.includes('rake')) {
+    return {src:'01_RAKE.png', alt:'RAKE-Framework visuell erklärt'};
   }
   if (moduleTitle.includes('stakeholder') && itemTitle.includes('macht-interesse')) {
     return {src:'02_Stakeholder%20Matrix.png', alt:'Macht-Interesse-Matrix visuell erklärt'};
