@@ -122,11 +122,44 @@
 }
 @media(max-width:560px){.theoryItem.visualTheory{padding:10px}.visualExplainer{padding:7px;border-radius:14px}.visualExplainer img{border-radius:10px}}
 
+
+/* Improved KPI action selection */
+.kpiBox.action-selected{
+  border-color:var(--cyan)!important;
+  background:rgba(94,234,212,.12)!important;
+  box-shadow:0 0 0 2px rgba(94,234,212,.09) inset;
+}
+.kpiActionToggle{
+  margin-top:10px;
+  width:100%;
+  justify-content:center;
+  padding:8px 10px;
+  font-size:12px;
+  border-radius:10px;
+}
+.kpiBox.action-selected .kpiActionToggle{
+  border-color:var(--cyan)!important;
+  color:#d9fffa!important;
+  background:rgba(94,234,212,.16)!important;
+}
+.raidSolutionList{
+  display:grid;
+  gap:8px;
+}
+.raidSolutionItem{
+  border:1px solid rgba(94,234,212,.22);
+  background:rgba(94,234,212,.065);
+  border-radius:12px;
+  padding:10px 12px;
+  font-size:13px;
+}
+.raidSolutionItem b{color:var(--cyan)}
+
 </style></head><body>
 <header class="top"><div class="wrap topin"><div class="logo">⭐</div><div><div class="brand"><span>AI PM</span> Academy</div><div class="pill">Project POLARIS · KI im Projektmanagement</div></div><div class="topright"><div class="meter"><div class="fill" id="fill"></div></div><div class="xp" id="xp">0 XP</div></div></div></header>
 <section class="screen active" id="intro"><div class="wrap hero"><div class="heroGrid"><div class="card heroMain"><div class="ey">Project Briefing</div><h1 class="h1">AI PM Academy<br><span class="grad">Project POLARIS.</span></h1><p class="lead">Du bist Project Manager bei <b>NovaTech Solutions</b>. Das Unternehmen baut mit Project POLARIS eine neue cloudbasierte Kundenportal-Plattform. Dein Auftrag: das Projekt strukturiert führen und dabei echte KI-Produkte gezielt im Projektmanagement einsetzen.</p><div class="box story" style="margin-top:20px"><p><b>Ausgangslage:</b> Die Geschäftsleitung will innerhalb von 12 Wochen einen ersten produktiven Launch. Fachbereich, IT, Legal, Finance und ein externer Implementierungspartner arbeiten zusammen — und alle bringen unterschiedliche Erwartungen mit.</p><p><b>Wichtig:</b> AIDA begleitet dich als persönliche E-Learning-KI durch die Story. Die eigentliche Projektarbeit wird aber immer mit realen Tools simuliert: Jira mit Atlassian Intelligence, Microsoft Copilot, Miro AI, Confluence AI, Asana Intelligence, ChatGPT/Claude und Power BI Copilot.</p></div><div class="toolGrid" style="margin-top:16px"><div class="tool"><h4>🎯 Projektziel</h4><p>Launch eines Kundenportals mit Login, Dashboard, Dokumentenbereich, Benachrichtigungen und Management Reporting.</p></div><div class="tool"><h4>⏱️ Zeitrahmen</h4><p>12 Wochen bis zum Go-Live. Das E-Learning selbst ist auf ca. 60 Minuten Lernzeit ausgelegt.</p></div><div class="tool"><h4>💰 Budget</h4><p>CHF 180'000 Gesamtbudget inklusive interner Umsetzung, externer Unterstützung, Testing und Go-Live-Vorbereitung.</p></div><div class="tool"><h4>👥 Team</h4><p>9 Personen: du als PM, Product Owner, UX, 4 Entwickler, QA, Legal/Compliance-Ansprechperson und externer Vendor.</p></div></div><div class="box" style="margin-top:16px"><div class="ey" style="margin-bottom:8px">Lernfokus</div><p class="lead" style="font-size:16px">Der Fokus liegt nicht auf einer bestimmten Projektmethode, sondern auf der Frage: <b>Wann, wo und wie unterstützen KI-Produkte Projektmanager in der Praxis?</b> Du lernst, KI sinnvoll einzusetzen, Outputs kritisch zu prüfen und Entscheidungen weiterhin verantwortungsvoll zu führen.</p></div><button class="btn" style="margin-top:24px" onclick="startCourse()">Project POLARIS starten →</button></div><div class="card heroSide"><div class="ey">Projekt-Steckbrief</div><div class="stat"><span>Projekt</span><b>POLARIS</b></div><div class="stat"><span>Unternehmen</span><b>NovaTech</b></div><div class="stat"><span>Dauer</span><b>12 Wochen</b></div><div class="stat"><span>Budget</span><b>CHF 180k</b></div><div class="stat"><span>Team</span><b>9 Personen</b></div><div class="stat"><span>Risiko</span><b>mittel-hoch</b></div><div class="stat"><span>Toolfokus</span><b>echte KI-Tools</b></div><div class="stat"><span>Lernzeit</span><b>ca. 60 Min.</b></div><div class="stat"><span>Fortschritt</span><b id="dashPct">0%</b></div><div class="stat"><span>Status</span><b id="dashStatus">Ready</b></div><button class="btn btn2" style="margin-top:18px;width:100%;justify-content:center" onclick="resetAll()">Reset</button></div></div></div></section>
 <section class="screen" id="course"><div class="wrap layout"><aside class="side"><h3>Module</h3><div id="nav"></div></aside><main class="mainPanel" id="moduleHost"></main></div></section>
-<section class="screen" id="quiz"><div class="wrap hero"><div class="card moduleHero"><div class="ey">Final Quiz</div><h2 class="h2">Beweise deine AI-PM-Kompetenz.</h2><p class="lead">Beantworte alle 8 Fragen richtig (90%-Grenze). Keine Hilfen. Keine Lösungen. Erst nach Bestehen wird das Zertifikat freigeschaltet.</p></div><div class="quizBox" id="quizBox"></div><div class="completeBar"><div><b>Finale Bewertung</b><div class="small">Die Antworten sind jetzt sauber anwählbar. Eine Auswahl pro Frage.</div></div><button class="btn" onclick="gradeQuiz()">Quiz auswerten</button></div><div class="fb" id="quizFb"></div><div class="card cert" id="cert"><div class="certSeal">🏆</div><div class="ey">Certificate unlocked</div><h2 class="h2">AI-Powered Project Manager</h2><p class="lead" style="margin:auto">Du hast Project POLARIS abgeschlossen und gezeigt, wie echte KI-Tools Projektmanagement praxisnah unterstützen können.</p><p style="margin-top:12px;font-family:var(--mono);color:var(--green)">Score: <span id="certScore">0%</span></p><button class="btn" style="margin-top:18px" onclick="completeLearning()">E-Learning beenden →</button></div></div></section>
+<section class="screen" id="quiz"><div class="wrap hero"><div class="card moduleHero"><div class="ey">Final Quiz</div><h2 class="h2">Beweise deine AI-PM-Kompetenz.</h2><p class="lead">Beantworte alle 8 Fragen richtig (90%-Grenze). Keine Hilfen. Keine Lösungen. Erst nach Bestehen wird das Zertifikat freigeschaltet. Über den Button im Zertifikat kommst du zurück zum Homescreen.</p></div><div class="quizBox" id="quizBox"></div><div class="completeBar"><div><b>Finale Bewertung</b><div class="small">Die Antworten sind jetzt sauber anwählbar. Eine Auswahl pro Frage.</div></div><button class="btn" onclick="gradeQuiz()">Quiz auswerten</button></div><div class="fb" id="quizFb"></div><div class="card cert" id="cert"><div class="certSeal">🏆</div><div class="ey">Certificate unlocked</div><h2 class="h2">AI-Powered Project Manager</h2><p class="lead" style="margin:auto">Du hast Project POLARIS abgeschlossen und gezeigt, wie echte KI-Tools Projektmanagement praxisnah unterstützen können.</p><p style="margin-top:12px;font-family:var(--mono);color:var(--green)">Score: <span id="certScore">0%</span></p><button class="btn" style="margin-top:18px" onclick="completeLearning()">E-Learning beenden & zurück zum Homescreen →</button></div></div></section>
 <script>
 
 
@@ -906,54 +939,64 @@ function simHtml(m) {
   if (m.sim === 'report') return `
     <div class="box">
       <div class="bar" style="border-radius:12px;margin-bottom:12px"><span class="dot"></span><span class="dot"></span><span class="dot"></span>Power BI Copilot — Steering Dashboard</div>
-      <p style="font-size:13px;color:var(--mut);margin-bottom:12px"><b style="color:var(--txt)">Aufgabe:</b> Klicke auf jeden KPI, um Power BI Copilot zu fragen: „Was steckt dahinter?" Entscheide dann, welcher KPI sofortige Aktion erfordert.</p>
+      <p style="font-size:13px;color:var(--mut);margin-bottom:12px">
+        <b style="color:var(--txt)">Aufgabe:</b> Lies die Copilot-Einschätzung pro KPI. Markiere genau die zwei KPIs, die im Steering sofort eskaliert werden müssen.
+      </p>
+
       <div class="kpiGrid">
-        <div class="kpiBox kpi-ok" data-kpi="budget" onclick="drillKpi(this,'budget')">
+        <div class="kpiBox kpi-ok" data-kpi="budget">
           <div class="kval">94%</div><div class="klbl">Budget verbraucht</div>
-          <div class="ktrend" style="color:var(--green)">↗ on track</div>
-          <div class="kdesc">Budget bei CHF 169k von 180k. Haupttreiber: Developer-Stunden +12%. Reserve: CHF 11k. <b>Copilot-Einschätzung:</b> Kein Handlungsbedarf, aber Reserve schwindet.</div>
+          <div class="ktrend" style="color:var(--green)">↗ im Plan</div>
+          <div class="kdesc" style="display:block">Budget bei CHF 169k von 180k. Reserve: CHF 11k. <b>Copilot:</b> beobachten, aber keine Soforteskalation.</div>
+          <button class="btn btn2 kpiActionToggle" onclick="toggleActionKpi('budget', this)">Als Sofortaktion markieren</button>
         </div>
-        <div class="kpiBox kpi-warn" data-kpi="timeline" onclick="drillKpi(this,'timeline')">
-          <div class="kval">-6 Tage</div><div class="klbl">Timeline-Abweichung</div>
-          <div class="ktrend" style="color:var(--amber)">↘ gefährdet</div>
-          <div class="kdesc">Vendor-API-Verzug: 6 Werktage. Betrifft: Login, Reporting, UAT. <b>Copilot-Einschätzung:</b> <span style="color:var(--red)">⚠️ Kritisch – erfordert Entscheidung.</span> Scope-Cut oder Sprint-Verlängerung nötig.</div>
+
+        <div class="kpiBox kpi-warn" data-kpi="timeline">
+          <div class="kval">-6 Tage</div><div class="klbl">Terminabweichung</div>
+          <div class="ktrend" style="color:var(--amber)">↘ Go-Live gefährdet</div>
+          <div class="kdesc" style="display:block">Vendor-API-Verzug betrifft Login, Reporting und Tests. <b>Copilot:</b> kritisch – Entscheidung im Steering nötig.</div>
+          <button class="btn btn2 kpiActionToggle" onclick="toggleActionKpi('timeline', this)">Als Sofortaktion markieren</button>
         </div>
-        <div class="kpiBox kpi-ok" data-kpi="velocity" onclick="drillKpi(this,'velocity')">
-          <div class="kval">38 SP</div><div class="klbl">Sprint Velocity</div>
-          <div class="ktrend" style="color:var(--green)">↑ +15% vs. letzter Sprint</div>
-          <div class="kdesc">Team liefert 38 Story Points pro Sprint. Geplant: 36. <b>Copilot-Einschätzung:</b> Positive Entwicklung – aber Vendor-Blocker kann Velocity in Sprint 4 stark senken.</div>
+
+        <div class="kpiBox kpi-ok" data-kpi="velocity">
+          <div class="kval">38</div><div class="klbl">Teamkapazität</div>
+          <div class="ktrend" style="color:var(--green)">↑ +15% vs. letzte Phase</div>
+          <div class="kdesc" style="display:block">Das Team liefert aktuell mehr als geplant. <b>Copilot:</b> positiv, aber Abhängigkeiten beobachten.</div>
+          <button class="btn btn2 kpiActionToggle" onclick="toggleActionKpi('velocity', this)">Als Sofortaktion markieren</button>
         </div>
-        <div class="kpiBox kpi-warn" data-kpi="risks" onclick="drillKpi(this,'risks')">
+
+        <div class="kpiBox kpi-warn" data-kpi="risks">
           <div class="kval">2 🔴</div><div class="klbl">Kritische Risiken</div>
           <div class="ktrend" style="color:var(--amber)">↗ +1 neu diese Woche</div>
-          <div class="kdesc">Neu: DSGVO-Freigabe (Score 12). Bestehend: Vendor-API (Score 20). <b>Copilot-Einschätzung:</b> Beide erfordern Owner-Eskalation im Steering.</div>
+          <div class="kdesc" style="display:block">Vendor-API und DSGVO-Freigabe sind offen. <b>Copilot:</b> in Steering Summary erwähnen, aber Hauptentscheidung hängt an Termin und Vendor SLA.</div>
+          <button class="btn btn2 kpiActionToggle" onclick="toggleActionKpi('risks', this)">Als Sofortaktion markieren</button>
         </div>
-        <div class="kpiBox kpi-ok" data-kpi="done" onclick="drillKpi(this,'done')">
-          <div class="kval">67%</div><div class="klbl">Stories abgeschlossen</div>
+
+        <div class="kpiBox kpi-ok" data-kpi="done">
+          <div class="kval">67%</div><div class="klbl">Aufgaben abgeschlossen</div>
           <div class="ktrend" style="color:var(--green)">↑ Ziel: 70%</div>
-          <div class="kdesc">24 von 36 geplanten Stories done. Lücke: 4 Stories durch Vendor-Blocker gestoppt. <b>Copilot-Einschätzung:</b> Ohne Blocker-Lösung: Ziel verfehlt.</div>
+          <div class="kdesc" style="display:block">Fast im Zielbereich. Die Lücke kommt vor allem vom Vendor-Blocker. <b>Copilot:</b> nicht separat eskalieren.</div>
+          <button class="btn btn2 kpiActionToggle" onclick="toggleActionKpi('done', this)">Als Sofortaktion markieren</button>
         </div>
-        <div class="kpiBox kpi-crit" data-kpi="sla" onclick="drillKpi(this,'sla')">
-          <div class="kval">18h</div><div class="klbl">Vendor SLA-Response</div>
-          <div class="ktrend" style="color:var(--red)">↗ Vertraglich: 4h</div>
-          <div class="kdesc">Vendor Sam antwortet im Durchschnitt nach 18 Stunden auf P1-Incidents. SLA: 4h. <b>Copilot-Einschätzung:</b> <span style="color:var(--red)">🚨 SLA-Bruch 3x – eskalieren.</span></div>
-        </div>
-      </div>
-      <div id="reportAction" style="margin-top:12px">
-        <div style="font-size:13px;margin-bottom:8px;font-weight:600">Welche zwei KPIs erfordern <b style="color:var(--red)">sofortige Aktion</b> im Steering?</div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn btn2" onclick="markActionKpi('timeline')">⚡ Timeline-Abweichung eskalieren</button>
-          <button class="btn btn2" onclick="markActionKpi('sla')">⚡ Vendor SLA eskalieren</button>
-          <button class="btn btn2" onclick="markActionKpi('budget')">⚡ Budget eskalieren</button>
-          <button class="btn btn2" onclick="markActionKpi('velocity')">⚡ Velocity eskalieren</button>
+
+        <div class="kpiBox kpi-crit" data-kpi="sla">
+          <div class="kval">18h</div><div class="klbl">Vendor-Antwortzeit</div>
+          <div class="ktrend" style="color:var(--red)">vertraglich: 4h</div>
+          <div class="kdesc" style="display:block">Vendor Sam antwortet deutlich zu spät auf kritische Punkte. <b>Copilot:</b> SLA-Bruch – Vendor eskalieren.</div>
+          <button class="btn btn2 kpiActionToggle" onclick="toggleActionKpi('sla', this)">Als Sofortaktion markieren</button>
         </div>
       </div>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+        <button class="btn" onclick="checkReportActions()">Auswahl prüfen</button>
+        <button class="btn btn2" onclick="solveCurrentSim()">💡 Vollständiges Beispiel &amp; weiter</button>
+      </div>
+
       <div class="fb" id="reportFb" style="margin-top:10px"></div>
       <div class="reportSection" id="reportSummary" style="display:none">
         <h4>📊 Power BI Copilot — Steering Summary</h4>
         <div id="reportSummaryText"></div>
       </div>
-      <button class="btn btn2" style="margin-top:10px" onclick="solveCurrentSim()">💡 Vollständiges Beispiel &amp; weiter</button>
       <div class="solutionBox" id="simSol" style="margin-top:10px"></div>
     </div>`;
 
@@ -1011,9 +1054,9 @@ function simHtml(m) {
           {id:'q1',question:'„Ersetzt die KI meine Stelle?"',answers:['„Ja, das ist das Ziel."','„KI übernimmt Routineaufgaben – du entscheidest weiterhin, prüfst und verantwortest."','„Wir informieren euch darüber später."'],correct:1,explain:'Klare, ehrliche Antwort schafft Vertrauen. Copilot kann diese Botschaft in alle Sprachen und Formate übersetzen.'},
           {id:'q2',question:'„Werden meine E-Mails von der KI gelesen?"',answers:['„Nein, das ist technisch unmöglich."','„Copilot kann E-Mails zusammenfassen – nur wenn du es aktivierst. Die Datenschutzrichtlinie erklärt, was verarbeitet wird."','„Das ist zu technisch, um es jetzt zu erklären."'],correct:1,explain:'Transparenz statt Beruhigung. Copilot kann die Datenschutz-FAQ automatisch erstellen und auf alle Formate anpassen.'},
           {id:'q3',question:'„Müssen wir jetzt alles neu lernen?"',answers:['„Ja, komplettes Umschulung für alle."','„Wir starten mit Champions, kurzen Lernsnacks und konkreten Use Cases – niemand wird alleingelassen."','„Später – erstmal den Launch abschliessen."'],correct:1,explain:'Adoption gelingt durch schrittweises Lernen, nicht durch Überforderung. Synthesia/HeyGen kann die Trainingsvideos dazu produzieren.'}
-        ].map((q,i) => `<div style="padding:12px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.05);margin-bottom:10px">
+        ].map((q,i) => `<div class="changeQuestion" data-qid="${q.id}" data-correct="${q.correct}" data-explain="${q.explain.replace(/"/g,'&quot;').replace(/'/g,'&apos;')}" style="padding:12px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.05);margin-bottom:10px">
           <div style="font-size:14px;font-weight:600;margin-bottom:10px;color:var(--txt)">❓ ${q.question}</div>
-          <div>${q.answers.map((a,j) => `<div class="choice" id="cq${i}_${j}" onclick="answerChange('${q.id}',${j},${q.correct},this,'${q.explain.replace(/'/g,'&apos;')}')">
+          <div>${q.answers.map((a,j) => `<div class="choice" id="cq${i}_${j}" data-choice="${j}" onclick="answerChange('${q.id}',${j},${q.correct},this,'${q.explain.replace(/'/g,'&apos;')}')">
             <b>${String.fromCharCode(65+j)}</b><span>${a}</span>
           </div>`).join('')}</div>
           <div class="fb" id="cfb_${q.id}" style="margin-top:6px"></div>
@@ -1196,8 +1239,12 @@ function checkReqClassify() {
   const ok = Object.keys(reqCorrect).filter(id => reqAnswers[id]===reqCorrect[id]).length;
   const fb = document.getElementById('reqClassFb');
   fb.className = 'fb show '+(ok>=5?'ok':'no');
-  fb.textContent = ok>=5 ? '✅ '+ok+'/6 korrekt! Atlassian Intelligence schlägt Requirements vor — du sorgst für Testbarkeit und korrekte Klassifikation.' : ok+'/6 korrekt. Denke: Funktional=WAS, Nicht-funktional=WIE GUT, Nicht testbar=ablehnen.';
-  if (ok>=5) completeSim(12);
+  if (ok>=5) {
+    fb.innerHTML = '✅ '+ok+'/6 korrekt! Atlassian Intelligence schlägt Anforderungen vor — du sorgst für Testbarkeit und korrekte Klassifikation.';
+    completeSim(12);
+  } else {
+    fb.innerHTML = ok+'/6 korrekt.<br><b>Hinweis:</b> Funktional = was das System tun soll · Nicht-funktional = Qualität/Performance/Compliance · Nicht testbar = zu vage.';
+  }
 }
 
 // ── Backlog AI Sort ───────────────────────────────────────────────────────────
@@ -1324,39 +1371,67 @@ function checkRaidLog() {
   });
   const fb=document.getElementById('matrixFb');
   fb.className='fb show '+(correct>=2?'ok':'no');
-  fb.textContent=correct>=2?'✅ RAID Log korrekt bewertet! Claude/ChatGPT hätte diese Scores vorgeschlagen — du kalibrierst mit Projektkontext. Nächster Schritt: Owner-Eskalation.':''+correct+'/3 korrekt. Prüfe: Vendor API = W4/I5 (kritisch), DSGVO = W3/I4, Budget = W2/I3.';
-  if(correct>=2) completeSim(12);
+  if(correct>=2){
+    fb.innerHTML='✅ RAID Log korrekt bewertet! Claude/ChatGPT hätte diese Scores vorgeschlagen — du kalibrierst mit Projektkontext. Nächster Schritt: Owner-Eskalation.';
+    completeSim(12);
+  } else {
+    fb.innerHTML=correct+'/3 korrekt.<br><b>Musterlösung:</b> Vendor API = W4/I5, Owner PM · DSGVO = W3/I4, Owner Legal Reto · Budget = W2/I3, Owner CFO Beatrice.';
+  }
 }
 
 // ── Power BI KPI Drill ────────────────────────────────────────────────────────
 let kpiActions = new Set();
 const kpiActionRequired = new Set(['timeline','sla']);
+
+function toggleActionKpi(kpi, btn) {
+  const card = btn.closest('.kpiBox');
+  if(kpiActions.has(kpi)){
+    kpiActions.delete(kpi);
+    card.classList.remove('action-selected');
+    btn.innerHTML='Als Sofortaktion markieren';
+  } else {
+    kpiActions.add(kpi);
+    card.classList.add('action-selected');
+    btn.innerHTML='✓ Markiert';
+  }
+  const fb=document.getElementById('reportFb');
+  if(fb){
+    fb.className='fb show';
+    fb.style.background='rgba(255,255,255,.05)';
+    fb.style.border='1px solid var(--line)';
+    fb.textContent=`${kpiActions.size} KPI(s) markiert. Prüfe deine Auswahl, wenn du fertig bist.`;
+  }
+}
+
+function checkReportActions() {
+  const fb=document.getElementById('reportFb');
+  const correct = kpiActions.size===2 && kpiActions.has('timeline') && kpiActions.has('sla');
+  if(correct) {
+    fb.className='fb show ok';
+    fb.innerHTML='✅ Richtig! <b>Terminabweichung</b> und <b>Vendor-Antwortzeit/SLA</b> brauchen sofortige Aktion im Steering.';
+    const sum=document.getElementById('reportSummary');
+    const txt=document.getElementById('reportSummaryText');
+    if(sum&&txt){
+      sum.style.display='block';
+      txt.innerHTML='<b>Status:</b> 🟡 Gelb mit Rot-Tendenz<br><b>Ok:</b> Budget 94% und Teamkapazität sind aktuell im Rahmen.<br><b>Kritisch:</b> Terminabweichung -6 Tage und Vendor SLA 18h statt 4h.<br><b>Entscheid nötig:</b> Vendor-Eskalation und Entscheidung zu Scope, Termin oder zusätzlicher Unterstützung.';
+    }
+    completeSim(12);
+  } else {
+    fb.className='fb show no';
+    fb.innerHTML='Nicht ganz. <b>Budget</b>, <b>Teamkapazität</b> und <b>abgeschlossene Aufgaben</b> sind Beobachtungspunkte. Sofort eskalieren musst du: <b>Terminabweichung</b> und <b>Vendor-Antwortzeit/SLA</b>.';
+  }
+}
+
+// Backward compatibility if an older onclick still calls this
 function drillKpi(el, kpi) {
   document.querySelectorAll('.kpiBox').forEach(b => b.classList.remove('selected-kpi'));
   el.classList.add('selected-kpi');
 }
 function markActionKpi(kpi) {
-  kpiActions.add(kpi);
-  const fb=document.getElementById('reportFb');
-  const correctSelected = kpiActions.has('timeline') && kpiActions.has('sla');
-  const wrongSelected = kpiActions.has('budget') || kpiActions.has('velocity');
-  if(correctSelected && !wrongSelected) {
-    fb.className='fb show ok';
-    fb.textContent='✅ Richtig! Timeline-Abweichung (Go-Live-Risiko) und Vendor SLA-Bruch (vertraglich) erfordern sofortige Eskalation im Steering.';
-    const sum=document.getElementById('reportSummary');
-    const txt=document.getElementById('reportSummaryText');
-    if(sum&&txt){
-      sum.style.display='block';
-      txt.innerHTML='<b>Status:</b> 🟡 Gelb → Rot-Tendenz<br><b>KPIs:</b> Budget 94% (ok), Velocity +15% (ok), Timeline -6d (⚠️), Vendor SLA 18h (🚨)<br><b>Entscheid nötig:</b> Scope-Freeze oder Sprint-Verlängerung · Vendor-Eskalation<br><b>Copilot formuliert:</b> Steering-Mail, PowerPoint-Folie, Teams-Briefing.';
-    }
-    completeSim(12);
-  } else if(kpiActions.size>=2) {
-    fb.className='fb show no';
-    fb.textContent='Nicht ganz. Budget (94%) und Velocity (+15%) sind positiv und erfordern keine Eskalation. Timeline-Abweichung und SLA-Bruch sind die kritischen Punkte.';
-  } else {
-    fb.className='fb show';fb.style.display='block';fb.style.background='rgba(255,255,255,.05)';fb.style.border='1px solid var(--line)';
-    fb.textContent=`${kpiActions.size}/2 Aktionspunkte ausgewählt.`;
-  }
+  const card = document.querySelector(`.kpiBox[data-kpi="${kpi}"]`);
+  const btn = card?.querySelector('.kpiActionToggle');
+  if(btn) toggleActionKpi(kpi, btn);
+  else { kpiActions.add(kpi); checkReportActions(); }
 }
 
 // ── Workload Balancer ─────────────────────────────────────────────────────────
@@ -1418,6 +1493,48 @@ function answerChange(qId, chosen, correct, el, explain) {
   if(chosen===correct) changeCorrect++;
   const allDone = document.querySelectorAll('#changeQs .fb.show').length >= 3;
   if(allDone&&changeCorrect>=2) completeSim(12);
+}
+
+
+function revealChangeSolutionsInline(){
+  const items = [
+    {
+      qid:'q1',
+      prefix:'cq0_',
+      correct:1,
+      explanation:'Klare, ehrliche Kommunikation schafft Vertrauen. KI übernimmt Routineaufgaben, aber Verantwortung, Prüfung und Entscheidungen bleiben beim Menschen.'
+    },
+    {
+      qid:'q2',
+      prefix:'cq1_',
+      correct:1,
+      explanation:'Transparenz statt falscher Beruhigung: Copilot kann E-Mails zusammenfassen, wenn die Funktion genutzt wird. Datenschutz und Datenverarbeitung müssen klar erklärt werden.'
+    },
+    {
+      qid:'q3',
+      prefix:'cq2_',
+      correct:1,
+      explanation:'Schrittweise Einführung statt Überforderung: Champions, kurze Lernsnacks und konkrete Use Cases erleichtern die Adoption.'
+    }
+  ];
+
+  items.forEach(item => {
+    for(let j=0; j<3; j++){
+      const c = document.getElementById(item.prefix + j);
+      if(!c) continue;
+      c.classList.remove('correct','wrong','hit','miss','selected');
+      if(j === item.correct) c.classList.add('correct');
+    }
+
+    const fb = document.getElementById('cfb_' + item.qid);
+    if(fb){
+      fb.className = 'fb show ok';
+      fb.style.display = 'block';
+      fb.innerHTML = '✅ Richtige Antwort: <b>B</b><br>' + item.explanation;
+    }
+  });
+
+  
 }
 
 // ── AI Governance Policy Sorter ───────────────────────────────────────────────
@@ -1523,7 +1640,7 @@ function show(id) {
   document.getElementById(id).classList.add('active');
 }
 
-function startCourse() { stopStoryAudio(); show('course'); toggleTopic(0); }
+function startCourse() { stopStoryAudio(); show('course'); renderModule(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
 // ─── NAV ──────────────────────────────────────────────────────────────────────
 function renderNav() {
@@ -1600,7 +1717,7 @@ function nextModule() {
     stopStoryAudio(); current++; renderNav(); renderModule(); window.scrollTo({ top: 0, behavior: 'smooth' });
     toast('Nächstes Modul freigeschaltet! 🎉');
   } else {
-    stopStoryAudio(); show('quiz'); renderNav(); toast('Final Quiz freigeschaltet. Plane dafür ca. 10 Minuten ein.');
+    stopStoryAudio(); show('quiz'); renderQuiz(); renderNav(); setTimeout(()=>window.scrollTo({top:0, behavior:'smooth'}), 50); toast('Final Quiz freigeschaltet. Plane dafür ca. 10 Minuten ein.');
   }
 }
 
@@ -1611,7 +1728,7 @@ function storyHtml(m) {
     <div class="storyAudioBar">
       <div>
         <div class="audioTitle">🎙️ AIDA Storyline</div>
-        <div class="audioNote">Optional: Lass dir diese Storyline mit deiner ElevenLabs-Aufnahme vorlesen.</div>
+        <div class="audioNote">Optional: Lass dir die Storyline von AIDA vorlesen.</div>
       </div>
       <button class="audioBtn" onclick="playStoryAudio('${audioFile}', this, event)">▶️ Anhören</button>
     </div>` : '';
@@ -1686,9 +1803,9 @@ function showModuleSolution() {
 // ─── TOPIC FLOW ────────────────────────────────────────────────────────────────
 function toggleTopic(idx) {
   if (idx > 0 && !topicDone[current][idx - 1]) { toast('Erledige zuerst den vorherigen Abschnitt.'); return; }
-  topicOpen[current][idx] = true;
+  topicOpen[current][idx] = !topicOpen[current][idx];
   const t = document.getElementById('topic' + idx);
-  if (t) t.classList.add('open');
+  if (t) t.classList.toggle('open', topicOpen[current][idx]);
   updateTopicUI();
 }
 
@@ -1736,13 +1853,36 @@ function solutionText(type) {
   const map = {
     prompt: '<b>Musterprompt (RAKE-Framework):</b><br>Rolle: Du bist ein erfahrener IT-PM. Aufgabe: Erstelle einen Project Charter. Kontext: POLARIS, 12 Wochen, CHF 180k, Stakeholder: CFO/Legal/PO/Dev/Vendor. Format: Tabelle mit Ziel, Scope, Nicht-Ziele, Annahmen, Risiken, nächste Schritte.<br><br>💡 Microsoft Copilot in Teams hätte diesen Charter direkt aus der Meeting-Aufzeichnung generiert.',
     stakeholder: '<b>Miro AI Musterlösung:</b><br>🟡 CFO Beatrice = Zufriedenstellen (hohe Macht, tiefes operatives Interesse)<br>🔴 PO Mikel = Intensiv managen (hohe Macht, hohes Interesse)<br>🟢 Legal Reto = Informieren (niedrige formale Macht, hohes Datenschutz-Interesse)<br>⚪ Vendor Sam = Beobachten (externe Rolle, niedrige Macht)',
-    jiraReq: '<b>Atlassian Intelligence Musterlösung:</b><br>✅ Brauchbar: User Story (testbar, messbar, nutzerorientiert) + Akzeptanzkriterium (Given-When-Then Format).<br>❌ Nicht testbar: "Modern und intuitiv" und "beste KI-Plattform" – zu vage, kein messbares Kriterium.',
+    jiraReq: `<b>Atlassian Intelligence Musterlösung – vollständige Klassifikation:</b><br><br>
+<div class="raidSolutionList">
+  <div class="raidSolutionItem"><b>✅ Funktional</b><br>„Als CFO will ich ROI-KPIs sehen, damit ich Nutzen und Kosten bewerten kann.“<br><span class="small">Das ist eine User Story und damit funktional: Sie beschreibt, was ein Nutzer im System tun/sehen möchte.</span></div>
+  <div class="raidSolutionItem"><b>✅ Nicht-funktional</b><br>„Das Dashboard soll in unter 2 Sekunden laden.“<br><span class="small">Beschreibt Qualität/Performance.</span></div>
+  <div class="raidSolutionItem"><b>❌ Nicht testbar</b><br>„Die App soll modern, intuitiv und cool sein.“<br><span class="small">Zu vage, kein messbares Kriterium.</span></div>
+  <div class="raidSolutionItem"><b>✅ Funktional</b><br>„Nutzer können Dokumente hochladen (max. 10 MB, Formate: PDF, DOCX).“<br><span class="small">Beschreibt eine konkrete Funktion.</span></div>
+  <div class="raidSolutionItem"><b>✅ Nicht-funktional</b><br>„Das System muss DSGVO-konform sein und Audit-Logs führen.“<br><span class="small">Beschreibt Compliance/Sicherheit.</span></div>
+  <div class="raidSolutionItem"><b>❌ Nicht testbar</b><br>„Wir brauchen die beste KI-Plattform des Markts.“<br><span class="small">Nicht messbar und nicht eindeutig prüfbar.</span></div>
+</div>`, 
     jiraPrio: '<b>Jira AI Priorisierung (MoSCoW):</b><br>🔴 P1 Must-have: Datenmodell KI-Insights (blockiert 11 Stories) + DSGVO Audit-Logging (Go-Live-Blocker)<br>🟡 P2 Should-have: Tooltip-Texte (Sprint 3)<br>🟢 P3 Could-have: Dark Mode (nach Launch)',
     kanban: '<b>Atlassian Intelligence Flow-Analyse:</b><br>🔴 Vendor API Mapping (BLOCKED, 6 Tage) ist das kritischste Flow-Risiko: Login, Reporting und Tests sind abhängig. WIP begrenzen, Blocker sofort eskalieren.',
-    matrix: '<b>Risk Matrix (RAID Log):</b><br>Vendor-Schnittstelle: W=4, Impact=5, Score=20 → KRITISCH (rote Zone).<br>Pflichtfelder: Owner, Trigger, Gegenmassnahme, Eskalationspfad, Due Date.<br>💡 Claude/ChatGPT generiert das RAID Log – Confluence führt es mit Owner und Fälligkeit.',
-    report: '<b>Power BI Copilot Vollbeispiel:</b><br>Status: 🟡 Gelb → Rot-Tendenz. Budget: 94% (on track). Timeline: gefährdet.<br>Hauptrisiko: Vendor-API-Verzug (Score 20/25), DSGVO-Freigabe offen.<br>Entscheid nötig: Scope-Freeze oder Eskalation. Empfehlung: Steering Approval bis Freitag.',
+    matrix: `<b>Risk Matrix (RAID Log) – vollständige Musterlösung:</b><br><br>
+<div class="raidSolutionList">
+  <div class="raidSolutionItem"><b>🔴 Vendor API Verzug</b><br>Wahrscheinlichkeit 4 × Impact 5 = <b>Score 20 / kritisch</b><br>Owner: PM · Massnahme: Vendor eskalieren, Liefertermin schriftlich bestätigen, Fallback prüfen.</div>
+  <div class="raidSolutionItem"><b>🟡 DSGVO-Freigabe offen</b><br>Wahrscheinlichkeit 3 × Impact 4 = <b>Score 12 / mittel-hoch</b><br>Owner: Legal Reto · Massnahme: Datenschutzprüfung terminieren, offene Fragen dokumentieren, Go-Live-Abhängigkeit klären.</div>
+  <div class="raidSolutionItem"><b>🔵 Budget-Überschreitung</b><br>Wahrscheinlichkeit 2 × Impact 3 = <b>Score 6 / mittel</b><br>Owner: CFO Beatrice · Massnahme: Forecast aktualisieren, Reserve prüfen, Entscheid bei weiterer Abweichung vorbereiten.</div>
+</div>
+<br>💡 Claude/ChatGPT kann das RAID Log vorbereiten. Du prüfst Score, Owner und Eskalation mit Projektkontext.`, 
+    report: `<b>Power BI Copilot – vollständige Musterlösung:</b><br><br>
+<div class="raidSolutionList">
+  <div class="raidSolutionItem"><b>✅ Keine Soforteskalation: Budget 94%</b><br>Budget ist hoch, aber noch im Rahmen. Weiter beobachten und Forecast aktualisieren.</div>
+  <div class="raidSolutionItem"><b>🔴 Sofort eskalieren: Terminabweichung -6 Tage</b><br>Vendor-API-Verzug gefährdet Login, Reporting und Tests. Steering-Entscheid nötig: Termin halten mit Scope-Cut oder zusätzliche Unterstützung.</div>
+  <div class="raidSolutionItem"><b>✅ Keine Soforteskalation: Teamkapazität +15%</b><br>Die Lieferung ist aktuell positiv. Wichtig ist nur, Abhängigkeiten weiter zu beobachten.</div>
+  <div class="raidSolutionItem"><b>🟡 Beobachten: 2 kritische Risiken</b><br>In der Steering Summary erwähnen. Die direkte Aktion entsteht aber aus Terminabweichung und Vendor-SLA.</div>
+  <div class="raidSolutionItem"><b>✅ Keine Soforteskalation: 67% abgeschlossen</b><br>Nahe am Ziel. Hauptursache der Lücke ist der Vendor-Blocker.</div>
+  <div class="raidSolutionItem"><b>🔴 Sofort eskalieren: Vendor SLA 18h statt 4h</b><br>SLA-Bruch ist vertraglich relevant und verstärkt das Go-Live-Risiko. Vendor-Eskalation vorbereiten.</div>
+</div>
+<br><b>Empfehlung für Steering:</b> Gelb mit Rot-Tendenz. Entscheidung zu Vendor-Eskalation, Scope-Freeze oder Terminoption bis Freitag einholen.`, 
     resource: '<b>Asana Intelligence Lösung:</b><br>Ninas Workload: 145% → Ziel: max. 100%.<br>Massnahmen: Vendor-Koordination zum PM (−20%), QA-Support zum QA-Engineer (−15%), Code Reviews verteilen (−10%).<br>💡 Asana Intelligence zeigt Überlastung proaktiv – die Umverteilung entscheidet der PM.',
-    change: '<b>Microsoft Copilot Kommunikationslösung:</b><br>Beste Antwort B: Transparent und klar. Copilot kann E-Mails zusammenfassen – Nutzung ist konfigurierbar. Datenschutzrichtlinie verfügbar stellen.<br>💡 KI-Adoption braucht Ehrlichkeit, nicht Hochglanz.',
+    change: '',
     governance: '<b>Governance Musterlösung:</b><br>✅ Keine vertraulichen Daten in öffentliche KI-Tools<br>✅ KI-Outputs fachlich prüfen und freigeben<br>✅ AI Policy und Entscheidungslog dokumentieren<br>✅ EU AI Act Anforderungen prüfen<br>❌ KI-autonome Budget/Go-No-Go-Entscheide: NIEMALS',
     vendor: '<b>Microsoft Copilot / Jira Eskalations-Lösung:</b><br>✅ Eskalieren: API-Lieferung unsicher (Risiko Go-Live), SLA-Bruch 3x (vertraglich relevant), fehlende Abnahmekriterien (Streitpotential).<br>❌ Nicht eskalieren: Meetingagenda, Grussmail.',
     golive: '<b>Jira AI Go-Live Musterlösung:</b><br>✅ Security Sign-off · Rollback-Plan getestet · Monitoring aktiv · Support bereit<br>❌ P1-Bug ignorieren: Niemals ein Pflichtpunkt. Offen P1 = kein Go-Live oder bewusster Entscheid mit Sponsor-Approval und Rollback-Plan aktiviert.'
@@ -1753,9 +1893,33 @@ function solutionText(type) {
 function solveCurrentSim() {
   const type = modules[current].sim;
   const sol = document.getElementById('simSol');
-  if (sol) { sol.innerHTML = solutionText(type); sol.classList.add('show'); }
+  if (sol) { const st = solutionText(type); sol.innerHTML = st; sol.classList.toggle('show', !!st && st.trim() !== ''); }
   // Auto-solve interactive elements
   if (type === 'stakeholder') document.querySelectorAll('#topic3 select').forEach(s => s.value = s.dataset.correct);
+  if (type === 'jiraReq') {
+    Object.entries(reqCorrect).forEach(([id,val]) => {
+      reqAnswers[id]=val;
+      document.querySelectorAll(`[data-req="${id}"]`).forEach(b => {
+        const txt = b.textContent.trim().toLowerCase();
+        const isCorrectButton =
+          (val === 'func' && txt.includes('funktional') && !txt.includes('nicht-funktional')) ||
+          (val === 'nonfunc' && txt.includes('nicht-funktional')) ||
+          (val === 'bad' && txt.includes('nicht testbar'));
+        b.classList.toggle('hit', isCorrectButton);
+        b.classList.remove('miss');
+      });
+      const fb = document.getElementById('req_fb_'+id);
+      if(fb){
+        fb.style.display='block';
+        fb.style.color='var(--green)';
+        fb.textContent = val==='func'
+          ? '✅ Funktional: beschreibt, was das System tun soll.'
+          : val==='nonfunc'
+            ? '✅ Nicht-funktional: beschreibt Qualität, Performance, Sicherheit oder Compliance.'
+            : '✅ Nicht testbar: zu vage, kein messbares Kriterium.';
+      }
+    });
+  }
   if (type === 'jiraPrio') document.querySelectorAll('#topic3 .ticket[data-correct]').forEach(t => {
     t.dataset.done = '1';
     t.querySelectorAll('button').forEach(b => { b.classList.toggle('hit', b.textContent === t.dataset.correct); b.classList.remove('miss'); });
@@ -1771,6 +1935,9 @@ function solveCurrentSim() {
     if (hit) hit.classList.add('sel');
   }
   if (type === 'resource') { const sl = document.querySelector('#topic3 input[type=range]'); if (sl) { sl.value = 95; document.getElementById('loadVal').textContent = '95'; } checkLoad(95); }
+  if (type === 'change') {
+    revealChangeSolutionsInline();
+  }
   if (type === 'governance' || type === 'golive') document.querySelectorAll('#topic3 input[type=checkbox]').forEach(b => b.checked = b.dataset.good === '1');
   if (type === 'report') reportWithRisk();
   if (type === 'prompt') fillPrompt();
@@ -1824,7 +1991,7 @@ function gradeQuiz() {
   const passed = score >= PASS_SCORE;
   fb.className = 'fb show ' + (passed ? 'ok' : 'no');
   if (passed) {
-    fb.textContent = `Bestanden: ${score}/${quiz.length} richtig (${pct}%). Zertifikat freigeschaltet.`;
+    fb.textContent = `Bestanden: ${score}/${quiz.length} richtig (${pct}%). Zertifikat freigeschaltet. Über den Button im Zertifikat kommst du zurück zum Homescreen.`;
     document.getElementById('cert').classList.add('show');
     document.getElementById('certScore').textContent = pct + '%';
     completed = new Set(modules.map((_, i) => i));
@@ -1848,7 +2015,9 @@ function completeLearning() {
   completed = new Set(modules.map((_, i) => i));
   xp = Math.max(xp, 600);
   update(100);
-  toast('🎉 Project POLARIS abgeschlossen. Fortschritt 100%.');
+  show('intro');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  toast('🎉 Project POLARIS abgeschlossen. Fortschritt 100%. Du bist zurück auf dem Homescreen.');
 }
 
 function update(force) {
